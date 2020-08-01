@@ -61,7 +61,11 @@ syntax on
 
 " If using the fish shell, spawn things with bash instead.
 if &shell =~# 'fish$'
-    set shell=/usr/bin/bash
+    if has('mac')
+        set shell=/opt/local/bin/bash
+    else
+        set shell=/usr/bin/bash
+    endif
 endif
 " }}}
 
