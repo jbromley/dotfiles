@@ -94,6 +94,12 @@ Plug 'chrisbra/unicode.vim'
 " Commentary
 Plug 'tpope/vim-commentary'
 
+" Neovim language server
+Plug 'neovim/nvim-lsp'
+
+" Elixir language support
+Plug 'elixir-editors/vim-elixir'
+
 call plug#end()
 "}}}
 
@@ -111,6 +117,20 @@ let g:NERDTreeIgnore=['\~$', '__pycache__', '.git']
 
 " VimWiki
 let g:vimwiki_list = [{'path': '~/Documents/VimWiki/'}]
+
+" nvim-lsp
+lua require'nvim_lsp'.elixirls.setup{}
+
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+
 " }}}
 
 " Functions{{{
@@ -158,6 +178,11 @@ augroup python_buffer
     " autocmd BufRead,BufNewFile *.py nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
     autocmd FileType python nnoremap <Leader>b V:s/[,)]/&\r/g <cr>='<
     autocmd BufWritePre *.py %s/\s\+$//e
+augroup END
+
+augroup elixir_file
+    autocmd!
+    autocmd FileType elixir setlocal omnifunc=v:lua.vim.lsp.omnifunc
 augroup END
 "}}}
 
