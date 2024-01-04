@@ -4,12 +4,14 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 lspconfig.racket_langserver.setup { }
+
 lspconfig.elixirls.setup {
-  cmd = {"/home/jay/.local/share/rtx/installs/elixir-ls/0.17.10/bin/elixir-ls"}
+  -- cmd = { "/home/jay/.local/share/rtx/installs/elixir-ls/0.18.1/language_server.sh" },
+  cmd = { "/home/jay/.local/share/nvim/mason/packages/elixir-ls/language_server.sh", };
 }
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd", "erlangls", "elixirls" }
+local servers = { "html", "cssls", "tsserver", "clangd", "erlangls" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
