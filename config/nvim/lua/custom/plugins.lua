@@ -28,6 +28,14 @@ local plugins = {
     opts = overrides.mason
   },
 
+   -- Set up NvLime for completion
+   {
+     "hrsh7th/nvim-cmp",
+     opts = function(_, opts)
+       table.insert(opts.sources, { name = "nvlime" })
+     end,
+   },
+
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
@@ -47,6 +55,18 @@ local plugins = {
     end,
   },
 
+  -- NvLime
+  {
+    "monkoose/nvlime",
+    lazy = true,
+    dependencies = "monkoose/parsley",
+    ft = "lisp",
+    config = function()
+      --vim.g.nvlime_config.cmp.enabled = true
+    end,
+  },
+
+  -- NeoVim Org
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
