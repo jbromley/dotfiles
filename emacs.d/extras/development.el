@@ -132,24 +132,45 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;;   lsp-bridge
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package markdown-mode
+  :ensure t)
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode))
+
+(use-package lsp-bridge
+  :load-path "~/.emacs.d/packages/lsp-bridge"
+  :init
+  (setq native-comp-deferred-compilation-deny-list '("lsp-bridge"))
+  :config
+  (global-lsp-bridge-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;   Eglot, the built-in LSP client for Emacs
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package eglot
-  ;; no :ensure t here because it's built-in
+;; (use-package eglot
+;;   ;; no :ensure t here because it's built-in
 
-  ;; Configure hooks to automatically turn-on eglot for selected modes
-  :hook
-  (((c-mode c++-mode python-mode elixir-mode gleam-ts-mode racket-mode) . eglot-ensure))
-  :custom
-  (eglot-send-changes-idle-time 0.1)
+;;   ;; Configure hooks to automatically turn-on eglot for selected modes
+;;   :hook
+;;   (((c-mode c++-mode python-mode elixir-mode gleam-ts-mode racket-mode) . eglot-ensure))
+;;   :custom
+;;   (eglot-send-changes-idle-time 0.1)
 
-  :config
-  (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
-  ;; Sometimes you need to tell Eglot where to find the language server
-  ; (add-to-list 'eglot-server-programs '(haskell-mode . ("haskell-language-server-wrapper" "--lsp")))
-  ; (add-to-list 'eglot-server-programs '(elixir-mode . ("/opt/elixir-ls/language_server.sh"))))
-  )
+;;   :config
+;;   (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
+;;   ;; Sometimes you need to tell Eglot where to find the language server
+;;   ; (add-to-list 'eglot-server-programs '(haskell-mode . ("haskell-language-server-wrapper" "--lsp")))
+;;   ; (add-to-list 'eglot-server-programs '(elixir-mode . ("/opt/elixir-ls/language_server.sh"))))
+;;   )
 
 (provide 'development)
