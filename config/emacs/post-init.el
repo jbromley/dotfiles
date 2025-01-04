@@ -375,7 +375,7 @@
   (eldoc-box-hover-mode))
 
 ;; OCaml setup 
-(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+(require 'opam-user-setup "~/.config/emacs/opam-user-setup.el")
 
 (use-package dune
   :ensure t
