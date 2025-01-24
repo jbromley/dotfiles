@@ -4,6 +4,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Operations
 import XMonad.Util.EZConfig
@@ -35,13 +36,18 @@ myConfig = def
     , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
     ]
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayout = tiled ||| tabbed shrinkText tabConfig ||| Full ||| threeCol
   where
     tiled = Tall nmaster delta ratio 
     threeCol = ThreeColMid nmaster delta ratio
     nmaster = 1
     ratio = 1/2
     delta = 3/100
+    tabConfig = def { fontName = "xft:Lilex:style=Regular:size=9"
+                    , activeBorderColor = "#ff0000"
+                    , inactiveBorderColor = "#400000"
+                    , urgentBorderColor = "#ff5b00"
+                    }
     
 myXmobarPP :: PP
 myXmobarPP = def
