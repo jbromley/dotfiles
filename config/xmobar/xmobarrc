@@ -1,11 +1,11 @@
-Config { font = "Lilex 10"
-       , additionalFonts = ["Lilex Bold 10"]
+Config { font = "Lilex 11"
+       , additionalFonts = ["Lilex Bold 11"]
        , borderColor = "black"
        , border = FullB
        , bgColor = "black"
        , fgColor = "whitesmoke"
        , alpha = 192
-       , position = TopW L 90
+       , position = TopSize L 90 26
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -27,5 +27,5 @@ Config { font = "Lilex 10"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %cpu% | %memory% %swap% | %dynnetwork% | <fn=1>%date%</fn> | %uname%"
+       , template = "%XMonadLog% }{ %cpu% | %memory% %swap% | %dynnetwork% | <fn=1>%date%</fn> | %uname% "
        }
