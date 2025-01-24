@@ -111,6 +111,8 @@ if [ -x "$opam_executable" ]; then
   eval "$($opam_executable env)"
 fi
 
+# Set up Haskell environment
+[ -f "/home/jayai/.ghcup/env" ] && . "/home/jayai/.ghcup/env" # ghcup-env
 
 # Functions
 
