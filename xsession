@@ -10,7 +10,7 @@ case $(hostname) in
 esac
 [ -x ~/.fehbg ] && ~/.fehbg
 picom &
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --alpha 64 --tint 0x000000 &
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 5 --transparent true --alpha 64 --tint 0x000000 &
 xsetroot -cursor_name left_ptr
 if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &
