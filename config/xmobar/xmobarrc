@@ -1,11 +1,12 @@
-Config { font = "Lilex 11"
-       , additionalFonts = ["Lilex Bold 11"]
+Config { font = "Lilex 10"
+       , dpi = 108
+       , additionalFonts = ["Lilex Bold 10"]
        , borderColor = "black"
        , border = FullB
        , bgColor = "black"
        , fgColor = "whitesmoke"
        , alpha = 192
-       , position = TopSize L 90 26
+       , position = TopSize L 95 26
        , textOffset = -1
        , iconOffset = -1
        , lowerOnStart = True
@@ -16,16 +17,14 @@ Config { font = "Lilex 11"
        , allDesktops = True
        , overrideRedirect = False
        , textOutputFormat = Ansi
-       , commands = [ Run DynNetwork ["--", "--devices", "wlp7s0,eno1"] 10
-                    , Run Cpu ["-L","3","-H","75",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+       , commands = [ Run Cpu ["-L", "3", "-H", "75", "--normal", "green", "--high", "red"] 10
+                    , Run Memory ["-t", "Mem: <usedratio>%"] 10
                     , Run Swap [] 10
-                    , Run Com "uname" ["-n"] "" 36000
+                    , Run DynNetwork ["--", "--devices", "wlp7s0,eno1"] 10
                     , Run Date "%a %b %_d %Y %H:%M" "date" 10
                     , Run XMonadLog
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%XMonadLog% }{ %cpu% | %memory% %swap% | %dynnetwork% | <fn=1>%date%</fn> | %uname% "
+       , template = "%XMonadLog% }{ %cpu% | %memory% %swap% | %dynnetwork% | <fn=1>%date%</fn> "
        }
