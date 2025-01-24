@@ -29,7 +29,11 @@ myConfig = def
     , ("M-S-z", spawn "i3lock-fancy -p")
     , ("M-C-s", unGrab *> spawn "scrot -s")
     , ("M-f", spawn "firefox")
-    , ("M-S-Return", spawn "kitty")]
+    , ("M-S-Return", spawn "kitty")
+    , ("<XF86AudioMute>", spawn "amixer -q set Master toggle")
+    , ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 2%-")
+    , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 2%+")
+    ]
 
 myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
   where
