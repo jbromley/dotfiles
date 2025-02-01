@@ -1,4 +1,3 @@
-import = ["~/.config/alacritty/theme.toml"]
 
 [bell]
 animation = "EaseOutExpo"
@@ -30,3 +29,6 @@ opacity = 0.9375
 [window.dimensions]
 columns = 100
 lines = 50
+
+[general]
+import = ["~/.config/alacritty/theme.toml"]
