@@ -34,7 +34,7 @@ fi
 [ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
 
 # Haskell
-[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup.env"
+[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
 
 # ROS 2
 ROS_DIR=/opt/ros/iron
