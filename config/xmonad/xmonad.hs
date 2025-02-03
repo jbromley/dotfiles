@@ -5,6 +5,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.Combo
+import XMonad.Layout.Renamed
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.TwoPane
@@ -34,28 +35,33 @@ myConfig =
                         ("M-S-z", spawn "i3lock -i ~/.cache/lockscreen.png"),
                         ("M-C-s", unGrab *> spawn "scrot -s"),
                         ("M-f", spawn "firefox"),
+                        ("M-p", spawn "rofi -show drun"),
+                        ("M-o", spawn "rofi -show run"),
+                        ("M-i", spawn "rofi -show window"),
                         ("<XF86AudioMute>", spawn "pavol toggle"),
                         ("<XF86AudioLowerVolume>", spawn "pavol down"),
                         ("<XF86AudioRaiseVolume>", spawn "pavol up"),
-                        ("M-S-<Right>", sendMessage $ Move R),
-                        ("M-S-<Right>", sendMessage $ Move R),
-                        ("M-S-<Up>", sendMessage $ Move U),
-                        ("M-S-<Down>", sendMessage $ Move D)
+                        ("M-<Right>", sendMessage $ Move R),
+                        ("M-<Left>", sendMessage $ Move L),
+                        ("M-<Up>", sendMessage $ Move U),
+                        ("M-<Down>", sendMessage $ Move D)
                       ]
 
-myLayout = tiled ||| tallAndTabbed ||| fullTabbed ||| Full ||| threeCol
+myLayout = tiled ||| windowNavigation tabbedTabbed ||| fullTabbed ||| Full ||| threeCol
   where
     tiled = Tall nmaster delta ratio
     threeCol = ThreeColMid nmaster delta ratio
-    fullTabbed = tabbed shrinkText tabConfig
-    tallAndTabbed = combineTwo (TwoPane (3 / 100) (1 / 2)) (tabbed shrinkText tabConfig) (tabbed shrinkText tabConfig)
+    fullTabbed = renamed [Replace "Tabbed Full"] $ tabbed shrinkText tabConfig
+    tabbedTabbed = renamed [Replace "Tabbed Panes"] $ combineTwo (TwoPane (3 / 100) (1 / 2)) (tabbed shrinkText tabConfig) (tabbed shrinkText tabConfig)
     nmaster = 1
     ratio = 1 / 2
     delta = 3 / 100
     tabConfig =
       def
-        { fontName = "xft:Lilex:style=Regular:size=9",
+        { fontName = "xft:Lilex:style=Bold:size=9",
+          activeColor = "#400000",
           activeBorderColor = "#ff0000",
+          inactiveColor = "#200000",
           inactiveBorderColor = "#400000",
           urgentBorderColor = "#ff5b00"
         }
