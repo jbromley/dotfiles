@@ -42,6 +42,7 @@
           (json-mode . json-ts-mode)
           (python-mode . python-ts-mode)
           (typescript-mode . typescript-ts-mode)
+          (verilog-mode . verilog-ts-mode)
           (yaml-mode . yaml-ts-mode)))
 
   ;; Set up to use programs installed with mise
@@ -54,10 +55,11 @@
 
 (use-package paredit
   :ensure t
+  :defer t
   :autoload enable-paredit-mode
   :hook
   (emacs-lisp-mode . enable-paredit-mode)
-  (lisp-interaction-mode . enable-paredit-mode))
+  (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp))))
  
 
 ;;;   Version Control
@@ -65,29 +67,38 @@
 ;; Magit: best Git client to ever exist
 (use-package magit
   :ensure t
+  :defer t
   :bind (("C-x g" . magit-status)))
 
 ;;;   Common file types
 
 (use-package elixir-mode
   :ensure t
+  :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
   :interpreter ("iex"))
 
 (use-package markdown-mode
+  :defer t
+  :mode ("\\.md\\'")
   :hook ((markdown-mode . visual-line-mode)))
 
 (use-package json-mode
-  :ensure t)
+  :ensure t
+  :defer t
+  :mode ("\\.json\\'"))
 
 (use-package racket-mode
   :ensure t
+  :defer t
   :mode ("\\.rkt\\'")
   :interpreter "racket"
   :hook (racket-mode . enable-paredit-mode))
 
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :defer t
+  :mode ("\\.yaml\\'" "\\.yml\\'"))
 
 ;;;   Eglot, the built-in LSP client for Emacs
 
@@ -111,6 +122,8 @@
   ;; Sometimes you need to tell Eglot where to find the language server
   (add-to-list 'eglot-server-programs
                ; '(haskell-mode . ("haskell-language-server-wrapper" "--lsp"))
-               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))))
+               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
+               '((verilog-mode verilog-ts-mode) . ("svls"))))
 
 (provide 'dev)
+
