@@ -164,7 +164,7 @@ If the new path's directories does not exist, create them."
 
 (use-package emacs
   :config
-  (load-theme 'dracula))          ; for light theme, use modus-operandi
+  (load-theme 'dracula t))          ; for light theme, use modus-operandi
 
 ;;;   Optional extras
 
