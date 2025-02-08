@@ -174,4 +174,13 @@
   :config
   (setq wgrep-auto-save-buffer t))
 
+;; Use ChatGPT in Emacs
+(use-package chatgpt-shell
+  :ensure t
+  :defer t
+  :custom
+  (chatgpt-shell-openai-key
+   (lambda ()
+     (auth-source-pick-first-password :host "api.openai.com"))))
+
 (provide 'base)
