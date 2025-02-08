@@ -51,7 +51,7 @@
 (savehist-mode)
 
 ;; Move through windows with Ctrl-<arrow keys>
-(windmove-default-keybindings 'control) ; You can use other modifiers here
+(windmove-default-keybindings 'shift) ; You can use other modifiers here
 
 ;; Fix archaic defaults
 (setopt sentence-end-double-space nil)
@@ -65,17 +65,17 @@
 (defun bedrock--backup-file-name (fpath)
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
-  (let* ((backupRootDir (concat user-emacs-directory "emacs-backup/"))
-         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
-         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") )))
-    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
-    backupFilePath))
+  (let* ((backup-root-dir (concat user-emacs-directory "emacs-backup/"))
+         (file-path (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
+         (backup-file-path (replace-regexp-in-string "//" "/" (concat backup-root-dir file-path "~") )))
+    (make-directory (file-name-directory backup-file-path) (file-name-directory backup-file-path))
+    backup-file-path))
 (setopt make-backup-file-name-function 'bedrock--backup-file-name)
 
 ;;;   Discovery aids
 
 ;; Show the help buffer after startup
-(add-hook 'after-init-hook 'help-quick)
+;; (add-hook 'after-init-hook 'help-quick)
 
 ;; which-key: shows a popup of available keybindings when typing a long key
 ;; sequence (e.g. C-x ...)
@@ -83,6 +83,9 @@ If the new path's directories does not exist, create them."
   :ensure t
   :config
   (which-key-mode))
+
+;;; Global key binds
+(global-set-key (kbd "C-z") #'zap-up-to-char)
 
 ;;;   Minibuffer/completion settings
 ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
@@ -131,8 +134,9 @@ If the new path's directories does not exist, create them."
 (setopt tab-width 4)
 
 ;; Misc. UI tweaks
-(blink-cursor-mode -1)                                ; Steady cursor
-(pixel-scroll-precision-mode)                         ; Smooth scrolling
+(blink-cursor-mode 20)
+(set-cursor-color "green")
+(pixel-scroll-precision-mode)
 
 ;; Display line numbers in programming mode
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
