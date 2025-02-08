@@ -105,25 +105,26 @@
 ;; Helpful resources:
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
+;; (with-eval-after-load 'eglot
+;;   (add-to-list 'eglot-server-programs
+;;                ;; '(haskell-mode . ("haskell-language-server-wrapper" "--lsp"))
+;;                '((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
+;;                '((verilog-mode verilog-ts-mode) . ("svls"))))
 
 (use-package eglot
-  ;; no :ensure t here because it's built-in
-
-  ;; Configure hooks to automatically turn-on eglot for selected modes
-  :hook
-  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot))
-
   :custom
   (eglot-send-changes-idle-time 0.1)
-  (eglot-extend-to-xref t)              ; activate Eglot in referenced non-project files
+  (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
 
   :config
-  (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
-  ;; Sometimes you need to tell Eglot where to find the language server
-  (add-to-list 'eglot-server-programs
-               ; '(haskell-mode . ("haskell-language-server-wrapper" "--lsp"))
-               '((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
-               '((verilog-mode verilog-ts-mode) . ("svls"))))
+  (fset #'jsonrpc--log-event #'ignore)
+  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
+                   ((verilog-mode verilog-ts-mode) . ("svls")))))
+    (dolist (server servers eglot-server-programs)
+      (add-to-list 'eglot-server-programs server)))
+
+  :hook
+  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
 
 (provide 'dev)
 
