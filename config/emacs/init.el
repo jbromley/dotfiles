@@ -170,6 +170,10 @@ If the new path's directories does not exist, create them."
   :config
   (load-theme 'dracula t))          ; for light theme, use modus-operandi
 
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
 ;;;   Optional extras
 
 (add-to-list 'load-path (expand-file-name "extras" user-emacs-directory))
