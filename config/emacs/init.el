@@ -1,4 +1,4 @@
-;;; Minimal init.el
+;; Minimal init.el
 
 ;;; Contents:
 ;;;
@@ -50,7 +50,7 @@
 ;; Save history of minibuffer
 (savehist-mode)
 
-;; Move through windows with Ctrl-<arrow keys>
+;; Move through windows with Shift-<arrow keys>
 (windmove-default-keybindings 'shift) ; You can use other modifiers here
 
 ;; Fix archaic defaults
@@ -155,11 +155,11 @@ If the new path's directories does not exist, create them."
 (setopt tab-bar-show 1)
 
 ;; Add the time to the tab-bar, if visible
-(add-to-list 'tab-bar-format 'tab-bar-format-align-right 'append)
-(add-to-list 'tab-bar-format 'tab-bar-format-global 'append)
-(setopt display-time-format "%a %F %T")
-(setopt display-time-interval 1)
-(display-time-mode)
+;; (add-to-list 'tab-bar-format 'tab-bar-format-align-right 'append)
+;; (add-to-list 'tab-bar-format 'tab-bar-format-global 'append)
+;; (setopt display-time-format "%a %F %T")
+;; (setopt display-time-interval 1)
+;; (display-time-mode)
 
 ;;;   Theme
 
