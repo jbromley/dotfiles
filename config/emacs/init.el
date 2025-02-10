@@ -11,29 +11,20 @@
 ;;;  - Optional extras
 ;;;  - Built-in customization framework
 
-;;; Guardrail
-
-(when (< emacs-major-version 29)
-  (error "Emacs Bedrock only works with Emacs 29 and newer; you have version %s" emacs-major-version))
-
 ;;;   Basic settings
 
 ;; Package initialization
 ;;
 ;; We'll stick to the built-in GNU and non-GNU ELPAs (Emacs Lisp Package
-;; Archive) for the base install, but there are some other ELPAs you could look
-;; at if you want more packages. MELPA in particular is very popular. See
-;; instructions at:
+;; Archive) for the base install, but also include MELPA. For more information
+;; on MELPA see:
 ;;
 ;;    https://melpa.org/#/getting-started
-;;
-;; You can simply uncomment the following if you'd like to get started with
-;; MELPA packages quickly:
 ;;
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
-;; If you want to turn off the welcome screen, uncomment this
+;; Turn off the welcome screen, uncomment this
 ;; (setopt inhibit-splash-screen t)
 
 (setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
@@ -62,7 +53,7 @@
 
 ;; Don't litter file system with *~ backup files; put them all inside
 ;; ~/.emacs.d/backup or wherever
-(defun bedrock--backup-file-name (fpath)
+(defun jb/backup-file-name (fpath)
   "Return a new file path of a given file path.
 If the new path's directories does not exist, create them."
   (let* ((backup-root-dir (concat user-emacs-directory "emacs-backup/"))
@@ -70,14 +61,14 @@ If the new path's directories does not exist, create them."
          (backup-file-path (replace-regexp-in-string "//" "/" (concat backup-root-dir file-path "~") )))
     (make-directory (file-name-directory backup-file-path) (file-name-directory backup-file-path))
     backup-file-path))
-(setopt make-backup-file-name-function 'bedrock--backup-file-name)
+(setopt make-backup-file-name-function 'jb/backup-file-name)
 
 ;;;   Discovery aids
 
 ;; Show the help buffer after startup
 ;; (add-hook 'after-init-hook 'help-quick)
 
-;; which-key: shows a popup of available keybindings when typing a long key
+;; Show a popup of available keybindings when typing a long key
 ;; sequence (e.g. C-x ...)
 (use-package which-key
   :ensure t
