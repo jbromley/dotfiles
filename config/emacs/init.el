@@ -24,8 +24,19 @@
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
-;; Turn off the welcome screen, uncomment this
+;;; Welcome screen
+
+;; Default splash screen
 ;; (setopt inhibit-splash-screen t)
+
+(use-package dashboard
+  :ensure t
+  :custom
+  (dashboard-center-content t)
+  (dashboard-vertically-center-content t)
+  (dashboard-startup-banner 'logo)
+  :config
+  (dashboard-setup-startup-hook))
 
 (setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
 (setopt display-time-default-load-average nil) ; this information is useless for most
@@ -200,11 +211,7 @@ If the new path's directories does not exist, create them."
  '(custom-safe-themes
    '("11819dd7a24f40a766c0b632d11f60aaf520cf96bd6d8f35bae3399880937970"
      default))
- '(package-selected-packages
-   '(avy cape chatgpt-shell corfu-terminal doom-modeline dracula-theme
-         eat elixir-mode embark-consult git-gutter json-mode kind-icon
-         magit marginalia orderless paredit racket-mode
-         verilog-ts-mode vertico vterm wgrep which-key yaml-mode)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
