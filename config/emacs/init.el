@@ -200,7 +200,11 @@ If the new path's directories does not exist, create them."
  '(custom-safe-themes
    '("11819dd7a24f40a766c0b632d11f60aaf520cf96bd6d8f35bae3399880937970"
      default))
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(avy cape chatgpt-shell corfu-terminal doom-modeline dracula-theme
+         eat elixir-mode embark-consult git-gutter json-mode kind-icon
+         magit marginalia orderless paredit racket-mode
+         verilog-ts-mode vertico vterm wgrep which-key yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
