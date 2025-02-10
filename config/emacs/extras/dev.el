@@ -70,6 +70,11 @@
   :defer t
   :bind (("C-x g" . magit-status)))
 
+(use-package git-gutter
+  :ensure t
+  :config
+  (global-git-gutter-mode t))
+
 ;;;   Common file types
 
 (use-package elixir-mode
