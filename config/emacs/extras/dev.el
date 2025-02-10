@@ -35,12 +35,13 @@
   (setq major-mode-remap-alist
         '((bash-mode . bash-ts-mode)
           (c-mode . c-ts-mode)
-          (C++-mode . c++-ts-mode)
+          (c++-mode . c++-ts-mode)
           (css-mode . css-ts-mode)
           (elixir-mode . elixir-ts-mode)
           (js2-mode . js-ts-mode)
           (json-mode . json-ts-mode)
           (python-mode . python-ts-mode)
+          (racket-mode . racket-ts-mode)
           (typescript-mode . typescript-ts-mode)
           (verilog-mode . verilog-ts-mode)
           (yaml-mode . yaml-ts-mode)))
@@ -110,11 +111,6 @@
 ;; Helpful resources:
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
-;; (with-eval-after-load 'eglot
-;;   (add-to-list 'eglot-server-programs
-;;                ;; '(haskell-mode . ("haskell-language-server-wrapper" "--lsp"))
-;;                '((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
-;;                '((verilog-mode verilog-ts-mode) . ("svls"))))
 
 (use-package eglot
   :custom
