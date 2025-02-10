@@ -57,7 +57,7 @@
 			               ("r" "Capture with Reference" entry (file "Inbox.org")
 			                "* TODO %?\n%U\n%i\n%a")))
   (org-todo-keywords
-   '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "OBSOLETE(o@)")))
+   '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (org-export-with-smart-quotes t)
 
   ;; (org-link-abbrev-alist
