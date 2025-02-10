@@ -51,10 +51,10 @@
   (org-refile-targets nil)
   (org-outline-path-complete-in-steps nil)
   (org-refile-use-outline-path 'file)
-  (org-capture-templates '(("c" "Default Capture" entry (file "inbox.org")
+  (org-capture-templates '(("c" "Default Capture" entry (file "Inbox.org")
 			                "* TODO %?\n%U\n%i")
 			               ;; Capture and keep an org-link to the thing we're currently working with
-			               ("r" "Capture with Reference" entry (file "inbox.org")
+			               ("r" "Capture with Reference" entry (file "Inbox.org")
 			                "* TODO %?\n%U\n%i\n%a")))
   (org-todo-keywords
    '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "OBSOLETE(o@)")))
