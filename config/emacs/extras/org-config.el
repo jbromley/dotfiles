@@ -20,6 +20,9 @@
 ;; Write code here. defcustom first, then defconst, defvar,
 ;; defsubst/defmacro and defuns last
 
+(use-package org-superstar
+  :ensure t)
+
 (use-package org
   :config
   (require 'oc-csl)                     ; citation support
@@ -28,24 +31,14 @@
   ;; Make org-open-at-point follow file links in the same window
   (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)
 
-  ;; Make exporting quotes better
-  (setq org-export-with-smart-quotes t)
-
-  ;; Instead of just two states (TODO, DONE) we set up a few different states
-  ;; that a task can be in. Run
-  ;;     M-x describe-variable RET org-todo-keywords RET
-  ;; for documentation on how these keywords work.
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "OBSOLETE(o@)")))
-
   :custom
   (org-directory "~/Org/")
   (org-agenda-files '("~/Org"))  
   (org-tag-alist '((:startgroup)
-		   ("home" . ?h)
-		   ("work" . ?w)
-		   ("learning" . ?l)
-		   (:endgroup)
+		           ("home" . ?h)
+		           ("work" . ?w)
+		           ("learning" . ?l)
+		           (:endgroup)
                    (:newline)
                    (:startgroup)
                    ("one-shot" . ?o)
@@ -59,10 +52,14 @@
   (org-outline-path-complete-in-steps nil)
   (org-refile-use-outline-path 'file)
   (org-capture-templates '(("c" "Default Capture" entry (file "inbox.org")
-			    "* TODO %?\n%U\n%i")
-			   ;; Capture and keep an org-link to the thing we're currently working with
-			   ("r" "Capture with Reference" entry (file "inbox.org")
-			    "* TODO %?\n%U\n%i\n%a")))
+			                "* TODO %?\n%U\n%i")
+			               ;; Capture and keep an org-link to the thing we're currently working with
+			               ("r" "Capture with Reference" entry (file "inbox.org")
+			                "* TODO %?\n%U\n%i\n%a")))
+  (org-todo-keywords
+   '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "OBSOLETE(o@)")))
+  (org-export-with-smart-quotes t)
+
   ;; (org-link-abbrev-alist
   ;;  '(("family_search" . "https://www.familysearch.org/tree/person/details/%s")))
   
@@ -71,6 +68,7 @@
               ("C-c l i" . org-insert-link-global)) ; Mnemonic: link → insert
 
   :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
-         (org-mode . flyspell-mode)))
+         (org-mode . flyspell-mode)
+         (org-mode . (lambda () (org-superstar-mode 1)))))
 
 (provide 'org-config)
