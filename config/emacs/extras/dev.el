@@ -28,24 +28,6 @@
 
 (use-package emacs
   :config
-  ;; Treesitter config
-
-  ;; Tell Emacs to prefer the treesitter mode
-  ;; You'll want to run the command `M-x treesit-install-language-grammar' before editing.
-  (setq major-mode-remap-alist
-        '((bash-mode . bash-ts-mode)
-          (c-mode . c-ts-mode)
-          (c++-mode . c++-ts-mode)
-          (css-mode . css-ts-mode)
-          (elixir-mode . elixir-ts-mode)
-          (js2-mode . js-ts-mode)
-          (json-mode . json-ts-mode)
-          (python-mode . python-ts-mode)
-          (racket-mode . racket-ts-mode)
-          (typescript-mode . typescript-ts-mode)
-          (verilog-mode . verilog-ts-mode)
-          (yaml-mode . yaml-ts-mode)))
-
   ;; Set up to use programs installed with mise
   (setenv "PATH" (concat (getenv "PATH") ":~/.local/share/mise/shims"))
   (setq exec-path (append exec-path '("~/.local/share/mise/shims")))
@@ -54,6 +36,15 @@
   ;; Auto parenthesis matching
   ((prog-mode . electric-pair-mode)))
 
+;; Automatically handle installing and using treesitter modes.
+(use-package treesit-auto
+  :ensure t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 (use-package paredit
   :ensure t
   :defer t
@@ -61,7 +52,6 @@
   :hook
   (emacs-lisp-mode . enable-paredit-mode)
   (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp))))
- 
 
 ;;;   Version Control
 
