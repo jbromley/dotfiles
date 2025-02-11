@@ -176,5 +176,4 @@
    (lambda ()
      (auth-source-pick-first-password :host "api.openai.com"))))
 
-
 (provide 'base)
