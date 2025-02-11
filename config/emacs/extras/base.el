@@ -36,26 +36,28 @@
 ;; Consult: Misc. enhanced commands
 (use-package consult
   :ensure t
-  :bind (
-         ;; Drop-in replacements
-         ("C-x b" . consult-buffer)     ; orig. switch-to-buffer
-         ("M-y"   . consult-yank-pop)   ; orig. yank-pop
-         ;; Searching
-         ("M-s r" . consult-ripgrep)
-         ("M-s l" . consult-line)       ; Alternative: rebind C-s to use
-         ("M-s s" . consult-line)       ; consult-line instead of isearch, bind
-         ("M-s L" . consult-line-multi) ; isearch to M-s s
-         ("M-s o" . consult-outline)
-         ;; Isearch integration
-         :map isearch-mode-map
-         ("M-e" . consult-isearch-history)   ; orig. isearch-edit-string
-         ("M-s e" . consult-isearch-history) ; orig. isearch-edit-string
-         ("M-s l" . consult-line)            ; needed by consult-line to detect isearch
-         ("M-s L" . consult-line-multi)      ; needed by consult-line to detect isearch
-         )
-  :config
-  ;; Narrowing lets you restrict results to certain groups of candidates
-  (setq consult-narrow-key "<"))
+  :custom
+  (consult-narrow-key "<")
+  (consult-fd-args
+   '((if (executable-find "fd" 'remote) "fd" "fdfind")
+     "--full-path --color=never"))
+  :bind
+  (("C-x b" . consult-buffer)     ; orig. switch-to-buffer
+   ("M-y"   . consult-yank-pop)   ; orig. yank-pop
+   ("M-s f" . consult-fd)
+   ("M-s F" . consult-find)
+   ("M-s l" . consult-line)     ; Alternative: rebind C-s to use
+   ("M-s L" . consult-line-multi) ; isearch to M-s s
+   ("M-s m" . consult-man)
+   ("M-s o" . consult-outline)
+   ("M-s r" . consult-ripgrep)
+   ("M-s s" . consult-line) ; consult-line instead of isearch, bind
+   ("M-s t" . consult-theme)
+   :map isearch-mode-map
+   ("M-e" . consult-isearch-history) ; orig. isearch-edit-string
+   ("M-s e" . consult-isearch-history) ; orig. isearch-edit-string
+   ("M-s l" . consult-line) ; needed by consult-line to detect isearch
+   ("M-s L" . consult-line-multi)))
 
 ;; Embark: supercharged context-dependent menu; kinda like a
 ;; super-charged right-click.
@@ -63,10 +65,10 @@
   :ensure t
   :demand t
   :after avy
-  :bind (("C-c a" . embark-act))        ; bind this to an easy key to hit
+  :bind (("C-c a" . embark-act))     ; bind this to an easy key to hit
   :init
   ;; Add the option to run embark when using avy
-  (defun bedrock/avy-action-embark (pt)
+  (defun jb/avy-action-embark (pt)
     (unwind-protect
         (save-excursion
           (goto-char pt)
@@ -77,7 +79,7 @@
 
   ;; After invoking avy-goto-char-timer, hit "." to run embark at the next
   ;; candidate you select
-  (setf (alist-get ?. avy-dispatch-alist) 'bedrock/avy-action-embark))
+  (setf (alist-get ?. avy-dispatch-alist) 'jb/avy-action-embark))
 
 (use-package embark-consult
   :ensure t)
@@ -148,15 +150,6 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-;; Eat: Emulate A Terminal
-(use-package eat
-  :ensure t
-  :custom
-  (eat-term-name "xterm")
-  :config
-  (eat-eshell-mode)                     ; use Eat to handle term codes in program output
-  (eat-eshell-visual-command-mode))     ; commands like less will be handled by Eat
-
 (use-package vterm
   :ensure t)
 
@@ -182,5 +175,6 @@
   (chatgpt-shell-openai-key
    (lambda ()
      (auth-source-pick-first-password :host "api.openai.com"))))
+
 
 (provide 'base)
