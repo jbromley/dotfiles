@@ -30,6 +30,7 @@
 ;; Default splash screen
 ;; (setopt inhibit-splash-screen t)
 
+;; Use a dashboard.
 (use-package dashboard
   :ensure t
   :custom
