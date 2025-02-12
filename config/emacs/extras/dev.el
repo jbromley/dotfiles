@@ -49,6 +49,10 @@
   :ensure t
   :defer t
   :autoload enable-paredit-mode
+  :bind
+  (:map paredit-mode-map
+   ("M-s" . nil)
+   ("M-S-<up>" . paredit-splice-sexp))
   :hook
   (emacs-lisp-mode . enable-paredit-mode)
   (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp))))
