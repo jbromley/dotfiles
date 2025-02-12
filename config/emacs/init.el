@@ -25,6 +25,11 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (setopt use-package-always-ensure t)
 
+;;; Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;;; Welcome screen
 
 ;; Default splash screen
@@ -168,11 +173,19 @@ If the new path's directories does not exist, create them."
 ;;;   Theme
 
 (use-package dracula-theme
-  :ensure t)
+  :ensure t
+  :defer t)
 
-(use-package emacs
-  :config
-  (load-theme 'dracula t))          ; for light theme, use modus-operandi
+(use-package solarized-theme
+  :ensure t
+  :defer t)
+
+(when (server-running-p)
+    (add-hook 'after-make-frame-functions
+	          (lambda (frame)
+		        (with-selected-frame frame
+		          (load-theme 'solarized-dark t)))))
+(load-theme 'solarized-dark t)
 
 (use-package doom-modeline
   :ensure t
@@ -211,7 +224,8 @@ If the new path's directories does not exist, create them."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("11819dd7a24f40a766c0b632d11f60aaf520cf96bd6d8f35bae3399880937970"
+   '("7fea145741b3ca719ae45e6533ad1f49b2a43bf199d9afaee5b6135fd9e6f9b8"
+     "11819dd7a24f40a766c0b632d11f60aaf520cf96bd6d8f35bae3399880937970"
      default))
  '(package-selected-packages nil))
 (custom-set-faces
