@@ -69,6 +69,9 @@
 
   :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
          (org-mode . flyspell-mode)
-         (org-mode . (lambda () (org-superstar-mode 1)))))
+         (org-mode . (lambda () (org-superstar-mode 1)))
+         (org-mode . (lambda ()
+                       (set-fill-column 80)
+                       (auto-fill-mode t)))))
 
 (provide 'org-config)
