@@ -31,10 +31,6 @@
   ;; Make org-open-at-point follow file links in the same window
   (setf (cdr (assoc 'file org-link-frame-setup)) 'find-file)
 
-  ;; Auto fill
-  (set-fill-column 80)
-  (auto-fill-mode t)
-
   :custom
   (org-directory "~/Org/")
   (org-agenda-files '("~/Org"))  

@@ -81,7 +81,10 @@
 (use-package markdown-mode
   :defer t
   :mode ("\\.md\\'")
-  :hook ((markdown-mode . visual-line-mode)))
+  :hook ((markdown-mode . visual-line-mode)
+         (markdown-mode . (lambda ()
+                            (set-fill-column 80)
+                            (auto-fill-mode t)))))
 
 (use-package json-mode
   :ensure t
