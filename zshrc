@@ -114,6 +114,9 @@ fi
 # Set up Haskell environment
 [ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env" # ghcup-env
 
+# Set up atuin
+eval "$(atuin init zsh)"
+
 # Functions
 
 # Check ps for a process
@@ -171,8 +174,6 @@ function yy() {
 }
 
 # Prompt
-# eval "$(starship init zsh)"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
