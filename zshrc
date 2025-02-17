@@ -1,16 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # ======================================================================
 # Zsh configuration file
 # Inspired by the blog post "Understanding and Configuring Zsh"
 # (https://thevaluable.dev/zsh-install-configure/) and the from-scratch
 # configuration on GitHub at https://github.com/Phantas0s/.dotfiles/tree/master/zsh
 #======================================================================
+
+# Enable Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Emacs key bindings
 bindkey -e
@@ -34,13 +32,6 @@ setopt APPEND_HISTORY
 setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Aliases
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
@@ -58,12 +49,10 @@ source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 
-# Change directories with z
-# source ${plugin_dir}/zsh-z/zsh-z.plugin.zsh
-
 #
 # Completion
 #
+
 # ROS 2 colcon
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 [ -f ${colcon_comp} ] && source ${colcon_comp}
@@ -71,12 +60,13 @@ colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 ros2_arg_comp=${ROS_DIR}/share/ros2cli/environment/ros2-argcomplete.zsh
 [ -f ${ros2_arg_comp} ] && source ${ros2_arg_comp}
 
+# zsh completion sources
 fpath=(${plugin_dir}/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
 source ${plugin_dir}/completion.zsh
 
-# Allow zsh to use bash completions
+# bash completions
 autoload bashcompinit; bashcompinit
 
 # Mise en place
@@ -111,13 +101,15 @@ if [ -x "$opam_executable" ]; then
   eval "$($opam_executable env)"
 fi
 
-# Set up Haskell environment
+# Setup  Haskell environment
 [ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env" # ghcup-env
 
 # Set up atuin
 eval "$(atuin init zsh)"
 
+#
 # Functions
+#
 
 # Check ps for a process
 function psinfo() {
@@ -173,7 +165,10 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+#
 # Prompt
+#
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
