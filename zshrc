@@ -69,11 +69,9 @@ source ${plugin_dir}/completion.zsh
 # bash completions
 autoload bashcompinit; bashcompinit
 
-# Mise en place
-mise_executable=${HOME}/.local/bin/mise
-if [ -x ${mise_executable} ]; then
-  eval "$(${mise_executable} activate zsh)"
-fi
+#
+# Interactive tools
+#
 
 # Fzf
 source <(fzf --zsh)
@@ -92,17 +90,6 @@ function set_term_title() {
     echo -ne "\e]0;${title}\a"
 }
 precmd_functions+=(set_term_title)
-
-# Set up OCaml environment
-[[ ! -r '${HOME}/.opam/opam-init/init.zsh' ]] || source '${HOME}/.opam/opam-init/init.zsh' &> /dev/null
-
-opam_executable="${HOME}/.local/share/mise/installs/opam/latest/bin/opam"
-if [ -x "$opam_executable" ]; then
-  eval "$($opam_executable env)"
-fi
-
-# Setup  Haskell environment
-[ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env" # ghcup-env
 
 # Set up atuin
 eval "$(atuin init zsh)"

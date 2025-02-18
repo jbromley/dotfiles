@@ -30,6 +30,20 @@ if [ -d "${HOME}/go" ]; then
     export GOBIN="${GOPATH}/bin"
 fi
 
+# Mise version manager
+mise_executable=${HOME}/.local/bin/mise
+if [ -x ${mise_executable} ]; then
+  eval "$(${mise_executable} activate zsh)"
+fi
+
+# OCaml environment
+[[ ! -r '${HOME}/.opam/opam-init/init.zsh' ]] || source '${HOME}/.opam/opam-init/init.zsh' &> /dev/null
+
+opam_executable="${HOME}/.local/share/mise/installs/opam/latest/bin/opam"
+if [ -x "$opam_executable" ]; then
+  eval "$($opam_executable env)"
+fi
+
 # Rust
 [ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
 
@@ -49,7 +63,7 @@ typeset -Ux PATH path
 path=(${HOME}/.local/bin $path)
 
 # If these paths exist, add them to PATH.
-extra_paths=(/usr/local/sbin /usr/lib/llvm-15/bin /usr/local/cuda/bin /Applications/Racket\ v8.11.1/bin)
+extra_paths=(/usr/lib/llvm-15/bin /usr/local/cuda/bin)
 [ -n "${GOBIN}" ] && extra_paths+=("${GOBIN}")
 
 for extra_path in $extra_paths; do
