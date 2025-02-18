@@ -36,6 +36,11 @@
   ;; Auto parenthesis matching
   ((prog-mode . electric-pair-mode)))
 
+;; Project management
+(use-package project
+  :custom
+  (project-vc-extra-root-markers '("mix.exs")))
+
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto
   :ensure t

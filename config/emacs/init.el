@@ -93,7 +93,11 @@ If the new path's directories does not exist, create them."
 ;; sequence (e.g. C-x ...)
 (use-package which-key
   :ensure t
+  :custom
+  (which-key-idle-delay 0.5)
   :config
+  (which-key-add-key-based-replacements "C-x n" "narrow-map")
+  (which-key-add-key-based-replacements "C-x p" "project-map")
   (which-key-mode))
 
 ;;; Global key binds
