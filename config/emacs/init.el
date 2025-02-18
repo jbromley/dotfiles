@@ -39,6 +39,9 @@
 (use-package dashboard
   :ensure t
   :custom
+  (dashboard-items '((recents . 5)
+                     (projects . 5)
+                     (bookmarks . 5)))
   (dashboard-center-content t)
   (dashboard-vertically-center-content t)
   (dashboard-startup-banner 'logo)
