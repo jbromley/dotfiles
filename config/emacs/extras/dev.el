@@ -103,6 +103,28 @@
   :interpreter "racket"
   :hook (racket-mode . enable-paredit-mode))
 
+(use-package verilog-ts-mode
+  :ensure t
+  :defer t
+  :mode ("\\.s?vh?\\'")
+  :custom
+  (verilog-indent-level 2)
+  (verilog-indent-level-behavioral 2)
+  (verilog-indent-level-declaration 2)
+  (verilog-indent-level-module 2)
+  (verilog-ts-indent-level 2)
+  :init
+  (setq jb/verilog-ts-auto-config
+        (make-treesit-auto-recipe
+         :lang 'verilog
+         :ts-mode 'verilog-ts-mode
+         :remap '(verilog-mode)
+         :url "https://github.com/gmlarumbe/tree-sitter-systemverilog"
+         :revision "master"
+         :source-dir "src"
+         :ext "\\.s?vh?"))
+  (add-to-list 'treesit-auto-recipe-list jb/verilog-ts-auto-config))
+
 (use-package yaml-mode
   :ensure t
   :defer t
