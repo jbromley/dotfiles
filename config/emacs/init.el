@@ -185,7 +185,10 @@ If the new path's directories does not exist, create them."
 
 (use-package solarized-theme
   :ensure t
-  :defer t)
+  :defer t
+  :custom
+  (solarized-scale-org-headlines nil)
+  (solarized-use-more-italic t))
 
 (when (server-running-p)
     (add-hook 'after-make-frame-functions
