@@ -86,8 +86,8 @@
 (use-package markdown-mode
   :defer t
   :mode ("\\.md\\'")
-  :hook ((markdown-mode . visual-line-mode)
-         (markdown-mode . (lambda ()
+  :hook ((markdown-mode . (lambda ()
+                            (visual-line-mode)
                             (set-fill-column 80)
                             (auto-fill-mode t)))))
 
