@@ -174,6 +174,9 @@
   :custom
   (chatgpt-shell-openai-key
    (lambda ()
-     (auth-source-pick-first-password :host "api.openai.com"))))
+     (auth-source-pick-first-password :host "api.openai.com")))
+  (chatgpt-shell-anthropic-key
+   (lambda ()
+     (auth-source-pick-first-password :host "api.anthropic.com"))))
 
 (provide 'base)
