@@ -41,6 +41,10 @@
   :custom
   (project-vc-extra-root-markers '("mix.exs")))
 
+;; Open shell configuration in shell-script-mode
+(add-to-list 'auto-mode-alist '("\\.?zshenv\\'" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.?zshrc\\'" . shell-script-mode))
+
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto
   :ensure t
