@@ -81,7 +81,7 @@
 
 ;;;   Common file types
 
-(use-package elixir-mode
+(use-package elixir-ts-mode
   :ensure t
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
@@ -95,7 +95,7 @@
                             (set-fill-column 80)
                             (auto-fill-mode t)))))
 
-(use-package json-mode
+(use-package json-ts-mode
   :ensure t
   :defer t
   :mode ("\\.json\\'"))
@@ -129,10 +129,10 @@
          :ext "\\.s?vh?"))
   (add-to-list 'treesit-auto-recipe-list jb/verilog-ts-auto-config))
 
-(use-package yaml-mode
+(use-package yaml-ts-mode
   :ensure t
   :defer t
-  :mode ("\\.yaml\\'" "\\.yml\\'"))
+  :mode ("\\.ya?ml\\'"))
 
 ;;;   Eglot, the built-in LSP client for Emacs
 
