@@ -63,7 +63,7 @@ typeset -Ux PATH path
 path=(${HOME}/.local/bin $path)
 
 # If these paths exist, add them to PATH.
-extra_paths=(/usr/lib/llvm-15/bin /usr/local/cuda/bin)
+extra_paths=(/usr/lib/llvm-15/bin)
 [ -n "${GOBIN}" ] && extra_paths+=("${GOBIN}")
 
 for extra_path in $extra_paths; do
