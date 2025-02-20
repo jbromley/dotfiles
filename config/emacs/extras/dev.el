@@ -54,14 +54,39 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
+(use-package hl-todo
+  :ensure t
+  :config
+  (global-hl-todo-mode)
+  :bind
+  (:map hl-todo-mode-map
+        ("C-c p" . hl-todo-previous)
+        ("C-c n" . hl-todo-next)
+        ("C-c o" . hl-todo-occur)
+        ("C-c i" . hl-todo-insert)))
+
+(use-package consult-todo
+  :ensure t
+  :demand t
+  :init
+  (define-prefix-command 'consult-todo-map)
+  :config
+  (which-key-add-key-based-replacements "M-s M-t" "consult-todo-map")
+  :bind
+  (("M-s M-t" . consult-todo-map)
+   :map consult-todo-map
+        ("t" . consult-todo)
+        ("a" . consult-todo-all)
+        ("p" . consult-todo-project)))
+
 (use-package paredit
   :ensure t
   :defer t
   :autoload enable-paredit-mode
   :bind
   (:map paredit-mode-map
-   ("M-s" . nil)
-   ("M-S-<up>" . paredit-splice-sexp))
+        ("M-s" . nil)
+        ("M-S-<up>" . paredit-splice-sexp))
   :hook
   (emacs-lisp-mode . enable-paredit-mode)
   (lisp-interaction-mode . (lambda () (define-key paredit-mode-map (kbd "C-j") 'eval-print-last-sexp))))
