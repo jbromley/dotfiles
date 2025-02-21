@@ -190,11 +190,6 @@ If the new path's directories does not exist, create them."
   (solarized-scale-org-headlines nil)
   (solarized-use-more-italic t))
 
-(when (server-running-p)
-    (add-hook 'after-make-frame-functions
-	          (lambda (frame)
-		        (with-selected-frame frame
-		          (load-theme 'solarized-dark t)))))
 (load-theme 'solarized-dark t)
 
 (use-package doom-modeline
