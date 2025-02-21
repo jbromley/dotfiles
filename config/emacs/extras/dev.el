@@ -72,9 +72,10 @@
   (define-prefix-command 'consult-todo-map)
   :config
   (which-key-add-key-based-replacements "M-s M-t" "consult-todo-map")
+  :bind-keymap
+  ("M-s M-t" . consult-todo-map)
   :bind
-  (("M-s M-t" . consult-todo-map)
-   :map consult-todo-map
+  (:map consult-todo-map
         ("t" . consult-todo)
         ("a" . consult-todo-all)
         ("p" . consult-todo-project)))
