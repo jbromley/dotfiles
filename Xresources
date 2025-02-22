@@ -1,12 +1,5 @@
 ! X Resrouces
 
-! Rxvt Unicode
-URxvt.font: xft:JetBrains Mono:style=Regular:size=10.0:antialias=true
-URxvt.boldFont: xft:JetBrains Mono:style=Bold:size=10.0:antialias=true
-URxvt.italicFont: xft:JetBrains Mono:style=Italic:size=10.0:antialias=true
-URxvt.boldItalicFont: xft:JetBrains Mono:style=Bold Italic:size=10.0:antialias=true
-URxvt.scrollBar: off
-
 ! XTerm
 XTerm.termName: xterm-256color
 XTerm.vt100.geometry: 100x50
