@@ -190,7 +190,7 @@ If the new path's directories does not exist, create them."
   (solarized-scale-org-headlines nil)
   (solarized-use-more-italic t))
 
-(load-theme 'solarized-dark t)
+(load-theme 'modus-vivendi t)
 
 (use-package doom-modeline
   :ensure t
