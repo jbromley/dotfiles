@@ -96,8 +96,10 @@ If the new path's directories does not exist, create them."
   :custom
   (which-key-idle-delay 0.5)
   :config
+  (which-key-add-key-based-replacements "C-x a" "abbrev-map")
   (which-key-add-key-based-replacements "C-x n" "narrow-map")
   (which-key-add-key-based-replacements "C-x p" "project-map")
+  (which-key-add-key-based-replacements "C-x r" "register-map")
   (which-key-mode))
 
 ;;; Global key binds
