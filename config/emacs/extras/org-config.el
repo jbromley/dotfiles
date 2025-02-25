@@ -21,9 +21,11 @@
 ;; defsubst/defmacro and defuns last
 
 (use-package org-superstar
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package org
+  :defer t
   :config
   (require 'oc-csl)                     ; citation support
   (add-to-list 'org-export-backends 'md)
@@ -60,9 +62,6 @@
    '((sequence "TODO(t)" "WAITING(w@/!)" "STARTED(s!)" "|" "DONE(d!)" "CANCELED(c@)")))
   (org-export-with-smart-quotes t)
 
-  ;; (org-link-abbrev-alist
-  ;;  '(("family_search" . "https://www.familysearch.org/tree/person/details/%s")))
-  
   :bind (:map global-map
               ("C-c l s" . org-store-link) ; Mnemonic: link → store
               ("C-c l i" . org-insert-link-global)) ; Mnemonic: link → insert
