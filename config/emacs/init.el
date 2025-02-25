@@ -13,14 +13,7 @@
 
 ;;;   Basic settings
 
-;; Package initialization
-;;
-;; We'll stick to the built-in GNU and non-GNU ELPAs (Emacs Lisp Package
-;; Archive) for the base install, but also include MELPA. For more information
-;; on MELPA see:
-;;
-;;    https://melpa.org/#/getting-started
-;;
+;; Package initialization - we'll use the built-in GNU and MELPA archives.
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (setopt use-package-always-ensure t)
@@ -32,14 +25,11 @@
 
 ;;; Welcome screen
 
-;; Default splash screen
-;; (setopt inhibit-splash-screen t)
-
 ;; Use a dashboard.
 (use-package dashboard
   :ensure t
   :custom
-  (dashboard-items '((recents . 5)
+  (dashboard-items '((recents . 8)
                      (projects . 5)
                      (bookmarks . 5)))
   (dashboard-center-content t)
@@ -72,22 +62,7 @@
 (when (display-graphic-p)
   (context-menu-mode))
 
-;; Don't litter file system with *~ backup files; put them all inside
-;; ~/.emacs.d/backup or wherever
-(defun jb/backup-file-name (fpath)
-  "Return a new file path of a given file path.
-If the new path's directories does not exist, create them."
-  (let* ((backup-root-dir (concat user-emacs-directory "emacs-backup/"))
-         (file-path (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
-         (backup-file-path (replace-regexp-in-string "//" "/" (concat backup-root-dir file-path "~") )))
-    (make-directory (file-name-directory backup-file-path) (file-name-directory backup-file-path))
-    backup-file-path))
-(setopt make-backup-file-name-function 'jb/backup-file-name)
-
 ;;;   Discovery aids
-
-;; Show the help buffer after startup
-;; (add-hook 'after-init-hook 'help-quick)
 
 ;; Show a popup of available keybindings when typing a long key
 ;; sequence (e.g. C-x ...)
@@ -113,7 +88,6 @@ If the new path's directories does not exist, create them."
 (setopt completions-detailed t)                        ; Show annotations
 (setopt tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
 (setopt completion-styles '(basic initials substring)) ; Different styles to match input to candidates
-
 (setopt completion-auto-help 'always)                  ; Open completion always; `lazy' another option
 (setopt completions-max-height 20)                     ; This is arbitrary
 (setopt completions-detailed t)
@@ -153,7 +127,6 @@ If the new path's directories does not exist, create them."
 
 ;; Misc. UI tweaks
 (blink-cursor-mode 20)
-(set-cursor-color "green")
 (pixel-scroll-precision-mode)
 
 ;; Display line numbers in programming mode
@@ -185,6 +158,7 @@ If the new path's directories does not exist, create them."
   :config
   (require-theme 'modus-themes)
   :custom
+  (set-mark-command-repeat-pop t)
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t))
 
