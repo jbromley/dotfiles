@@ -181,6 +181,13 @@ If the new path's directories does not exist, create them."
 
 ;;;   Theme
 
+(use-package emacs
+  :config
+  (require-theme 'modus-themes)
+  :custom
+  (modus-themes-italic-constructs t)
+  (modus-themes-bold-constructs t))
+
 (use-package dracula-theme
   :ensure t
   :defer t)
