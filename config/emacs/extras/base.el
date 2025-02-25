@@ -4,7 +4,7 @@
 ;;
 ;; Author:      J. Bromnley <jbromley@gmail.com>
 ;; Version:     0.1
-;; Package-Requires: ("avy" "consult" "embark" "embark-consult" "vertico" "vertico-directory" "marginalia" "corfu" "corfu-popupinfo" "corfu-terminal" "cape" "kind-icon" "eat" "vterm" "orderless" "wgrep")
+;; Package-Requires: ("avy" "consult" "embark" "embark-consult" "vertico" "vertico-directory" "marginalia" "corfu" "corfu-popupinfo" "corfu-terminal" "cape" "kind-icon" "vterm" "orderless" "wgrep")
 ;; Keywords:    calendar,hypermedia,outlines
 ;; URL:         https://orgmode.org
 ;;
