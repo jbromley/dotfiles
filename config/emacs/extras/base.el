@@ -143,12 +143,12 @@
   (add-to-list 'completion-at-point-functions #'cape-file))
 
 ;; Pretty icons for corfu
-(use-package kind-icon
+(use-package nerd-icons-corfu
   :if (display-graphic-p)
   :ensure t
   :after corfu
   :config
-  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package vterm
   :ensure t)

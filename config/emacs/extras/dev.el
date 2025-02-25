@@ -28,22 +28,23 @@
 
 (use-package emacs
   :config
-  ;; Set up to use programs installed with mise
-  (setenv "PATH" (concat (getenv "PATH") ":~/.local/share/mise/shims"))
-  (setq exec-path (append exec-path '("~/.local/share/mise/shims")))
+  ;; Open shell configuration in shell-script-mode
+  (add-to-list 'auto-mode-alist '("\\.?zshenv\\'" . shell-script-mode))
+  (add-to-list 'auto-mode-alist '("\\.?zshrc\\'" . shell-script-mode))
   
   :hook
   ;; Auto parenthesis matching
   ((prog-mode . electric-pair-mode)))
 
+;; Mise en place
+(use-package mise
+  :config
+  (global-mise-mode))
+
 ;; Project management
 (use-package project
   :custom
   (project-vc-extra-root-markers '("mix.exs")))
-
-;; Open shell configuration in shell-script-mode
-(add-to-list 'auto-mode-alist '("\\.?zshenv\\'" . shell-script-mode))
-(add-to-list 'auto-mode-alist '("\\.?zshrc\\'" . shell-script-mode))
 
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto

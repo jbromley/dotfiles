@@ -1,19 +1,6 @@
-;; Minimal init.el
+;;; Minimal init.el
 
-;;; Contents:
-;;;
-;;;  - Basic settings
-;;;  - Discovery aids
-;;;  - Minibuffer/completion settings
-;;;  - Interface enhancements/defaults
-;;;  - Tab-bar configuration
-;;;  - Theme
-;;;  - Optional extras
-;;;  - Built-in customization framework
-
-;;;   Basic settings
-
-;; Package initialization - we'll use the built-in GNU and MELPA archives.
+;;; Package initialization - we'll use the built-in GNU and MELPA archives.
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 (setopt use-package-always-ensure t)
@@ -23,9 +10,98 @@
 (unless (server-running-p)
   (server-start))
 
+;;; Basic Emasc settings
+
+(use-package emacs
+  :config
+  (global-auto-revert-mode)
+  (savehist-mode)
+  (windmove-default-keybindings 'shift) ; You can use other modifiers here
+
+  ;; Make right-click do something sensible
+  (when (display-graphic-p)
+    (context-menu-mode))
+
+  (blink-cursor-mode 20)
+  (pixel-scroll-precision-mode)
+
+  ;; Global key binds
+  (global-set-key (kbd "C-z") #'zap-up-to-char)
+  ;; TAB acts more like how it does in the shell
+  (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete)
+
+  ;; Add our configuration subdirectory to load-path.
+  (add-to-list 'load-path (expand-file-name "extras" user-emacs-directory))
+
+  :custom
+  (set-mark-command-repeat-pop t)
+  (initial-major-mode 'fundamental-mode)
+  (display-time-default-load-average nil)
+  (auto-revert-avoid-polling t)
+  (auto-revert-interval 5)
+  (auto-revert-check-vc-info t)
+  (sentence-end-double-space nil)
+
+  ;; Minibuffer/completion settings
+  ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
+  (enable-recursive-minibuffers t)
+  (completion-cycle-threshold 1)
+  (completions-detailed t)             ; Show annotations with completions.
+  (tab-always-indent 'complete)
+  (completion-styles '(basic initials substring))
+  (completion-auto-help 'always)
+  (completions-max-height 20)
+  (completions-detailed t)
+  (completions-format 'one-column)
+  (completions-group t)
+  (completion-auto-select 'second-tab)
+  ;; (completion-auto-select t))
+
+  ;; Show line and column in mode line.
+  (line-number-mode t)
+  (column-number-mode t)
+
+  ;; Prettier underlines
+  (x-underline-at-descent-line nil)
+  ;; Make switching buffers more consistent
+  (switch-to-buffer-obey-display-actions t)
+
+  ;; By default, don't underline trailing spaces
+  (show-trailing-whitespace nil)
+
+  ;; Show buffer top and bottom in the margin
+  (indicate-buffer-boundaries 'left)
+
+  ;; Enable horizontal scrolling
+  (mouse-wheel-tilt-scroll t)
+  (mouse-wheel-flip-direction t)
+
+  ;; Tab settings
+  (indent-tabs-mode nil)
+  (tab-width 4)
+
+  ;; Only show tab-bar if there is more than one tab.
+  (tab-bar-show 1)
+  
+  ;; Width of line numbers in fringe.
+  (display-line-numbers-width 3)
+
+  ;; Save customizations in their own file.
+  (custom-file "~/.config/emacs/custom.el")
+
+  :hook
+  ;; Display line numbers in programming modes.
+  (prog-mode . display-line-numbers-mode)
+
+  ;; Use automatic word wrap in text modes.
+  (text-mode . visual-line-mode)
+
+  ;; Highlight current line in any text mode.
+  ;; (prog-mode . hl-line-mode)
+  (text-mode . hl-line-mode))
+
 ;;; Welcome screen
 
-;; Use a dashboard.
 (use-package dashboard
   :ensure t
   :custom
@@ -37,30 +113,6 @@
   (dashboard-startup-banner 'logo)
   :config
   (dashboard-setup-startup-hook))
-
-(setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
-(setopt display-time-default-load-average nil) ; this information is useless for most
-
-;; Automatically reread from disk if the underlying file changes
-(setopt auto-revert-avoid-polling t)
-;; Some systems don't do file notifications well; see
-;; https://todo.sr.ht/~ashton314/emacs-bedrock/11
-(setopt auto-revert-interval 5)
-(setopt auto-revert-check-vc-info t)
-(global-auto-revert-mode)
-
-;; Save history of minibuffer
-(savehist-mode)
-
-;; Move through windows with Shift-<arrow keys>
-(windmove-default-keybindings 'shift) ; You can use other modifiers here
-
-;; Fix archaic defaults
-(setopt sentence-end-double-space nil)
-
-;; Make right-click do something sensible
-(when (display-graphic-p)
-  (context-menu-mode))
 
 ;;;   Discovery aids
 
@@ -77,94 +129,18 @@
   (which-key-add-key-based-replacements "C-x r" "register-map")
   (which-key-mode))
 
-;;; Global key binds
-(global-set-key (kbd "C-z") #'zap-up-to-char)
+;;; Themes and UI
 
-;;;   Minibuffer/completion settings
-;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
-
-(setopt enable-recursive-minibuffers t)                ; Use the minibuffer whilst in the minibuffer
-(setopt completion-cycle-threshold 1)                  ; TAB cycles candidates
-(setopt completions-detailed t)                        ; Show annotations
-(setopt tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent
-(setopt completion-styles '(basic initials substring)) ; Different styles to match input to candidates
-(setopt completion-auto-help 'always)                  ; Open completion always; `lazy' another option
-(setopt completions-max-height 20)                     ; This is arbitrary
-(setopt completions-detailed t)
-(setopt completions-format 'one-column)
-(setopt completions-group t)
-(setopt completion-auto-select 'second-tab)            ; Much more eager
-;(setopt completion-auto-select t)                     ; See `C-h v completion-auto-select' for more possible values
-
-(keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete) ; TAB acts more like how it does in the shell
-
-;; For a fancier built-in completion option, try ido-mode,
-;; icomplete-vertical, or fido-mode. See also the file extras/base.el
-
-;(icomplete-vertical-mode)
-;(fido-vertical-mode)
-;(setopt icomplete-delay-completions-threshold 4000)
-
-;;;   Interface enhancements/defaults
-
-;; Mode line information
-(setopt line-number-mode t)                        ; Show current line in modeline
-(setopt column-number-mode t)                      ; Show column as well
-
-(setopt x-underline-at-descent-line nil)           ; Prettier underlines
-(setopt switch-to-buffer-obey-display-actions t)   ; Make switching buffers more consistent
-
-(setopt show-trailing-whitespace nil)      ; By default, don't underline trailing spaces
-(setopt indicate-buffer-boundaries 'left)  ; Show buffer top and bottom in the margin
-
-;; Enable horizontal scrolling
-(setopt mouse-wheel-tilt-scroll t)
-(setopt mouse-wheel-flip-direction t)
-
-;; Tab settings
-(setopt indent-tabs-mode nil)
-(setopt tab-width 4)
-
-;; Misc. UI tweaks
-(blink-cursor-mode 20)
-(pixel-scroll-precision-mode)
-
-;; Display line numbers in programming mode
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(setopt display-line-numbers-width 3)           ; Set a minimum width
-
-;; Nice line wrapping when working with text
-(add-hook 'text-mode-hook 'visual-line-mode)
-
-;; Modes to highlight the current line with
-(let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
-  (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
-
-;;;   Tab-bar configuration
-
-;; Show the tab-bar as soon as tab-bar functions are invoked
-(setopt tab-bar-show 1)
-
-;; Add the time to the tab-bar, if visible
-;; (add-to-list 'tab-bar-format 'tab-bar-format-align-right 'append)
-;; (add-to-list 'tab-bar-format 'tab-bar-format-global 'append)
-;; (setopt display-time-format "%a %F %T")
-;; (setopt display-time-interval 1)
-;; (display-time-mode)
-
-;;;   Theme
-
-(use-package emacs
-  :config
-  (require-theme 'modus-themes)
+(use-package modus-themes
   :custom
-  (set-mark-command-repeat-pop t)
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t))
 
 (use-package dracula-theme
   :ensure t
-  :defer t)
+  :defer t
+  :custom
+  (dracula-enlarge-headings nil))
 
 (use-package solarized-theme
   :ensure t
@@ -173,15 +149,13 @@
   (solarized-scale-org-headlines nil)
   (solarized-use-more-italic t))
 
-(load-theme 'modus-vivendi t)
+(load-theme 'dracula t)
 
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
 ;;;   Optional extras
-
-(add-to-list 'load-path (expand-file-name "extras" user-emacs-directory))
 
 ;; UI/UX enhancements mostly focused on minibuffer and autocompletion interfaces
 ;; These ones are *strongly* recommended!
@@ -205,5 +179,4 @@
 ;(load-file (expand-file-name "extras/researcher.el" user-emacs-directory))
 
 ;;;   Built-in customization framework
-(setopt custom-file "~/.config/emacs/custom.el")
 (load custom-file)
