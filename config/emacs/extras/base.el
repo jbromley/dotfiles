@@ -151,7 +151,9 @@
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :defer t
+  :commands (vterm))
 
 ;; Orderless: powerful completion style
 (use-package orderless
