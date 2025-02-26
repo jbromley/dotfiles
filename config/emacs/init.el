@@ -21,17 +21,18 @@
 (setopt sentence-end-double-space nil)
 ;; Minibuffer/completion settings
 ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
-(setopt enable-recursive-minibuffers t
-        completion-cycle-threshold 1
+(setopt ;; enable-recursive-minibuffers t
+        completion-cycle-threshold 5
         completions-detailed t             ; Show annotations with completions.
         tab-always-indent 'complete
-        completion-styles '(basic initials substring)
-        completion-auto-help 'always
-        completions-max-height 20
+        ;; completion-styles '(basic initials substring)
+        completion-auto-help nil
+        completions-max-height 8
         completions-detailed t
         completions-format 'one-column
         completions-group t
-        completion-auto-select 'second-tab)
+        ;;completion-auto-select 'second-tab
+        )
   ;; (completion-auto-select t))
 (setopt line-number-mode t
         column-number-mode t)
