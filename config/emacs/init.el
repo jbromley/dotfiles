@@ -73,6 +73,8 @@
 
 (use-package dashboard
   :ensure t
+  :config
+  (dashboard-setup-startup-hook)
   :custom
   (dashboard-items '((recents . 8)
                      (projects . 5)
@@ -80,8 +82,8 @@
   (dashboard-center-content t)
   (dashboard-vertically-center-content t)
   (dashboard-startup-banner 'logo)
-  :config
-  (dashboard-setup-startup-hook))
+  (dashboard-set-file-icons t)
+  (initial-buffer-choice 'dashboard-open))
 
 ;;;   Discovery aids
 
