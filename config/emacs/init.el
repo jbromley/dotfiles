@@ -45,7 +45,7 @@
 (setopt indent-tabs-mode nil
         tab-width 4)
 (setopt tab-bar-show 1)
-(setopt display-line-numbers-width 3)
+;; (setopt display-line-numbers-width 3)
 (setopt custom-file "~/.config/emacs/custom.el")
 
 ;; Emacs configuration functions
@@ -66,7 +66,7 @@
 
 ;; Emacs hooks
 ;; Display line numbers in programming modes.
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+;; (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (add-hook 'text-mode-hook #'visual-line-mode)
 (add-hook 'text-mode-hook #'hl-line-mode)
 
