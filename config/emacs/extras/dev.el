@@ -182,6 +182,11 @@
   :hook
   (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
 
+(use-package flymake
+  :bind
+  (("M-n" . flymake-goto-next-error)
+   ("M-p" . flymake-goto-previous-error)))
+
 ;;; Ligatures
 
 (use-package ligature
