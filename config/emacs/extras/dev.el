@@ -174,7 +174,7 @@
 (use-package flymake
   :bind
   (("M-n" . flymake-goto-next-error)
-   ("M-p" . flymake-goto-previous-error)))
+   ("M-p" . flymake-goto-prev-error)))
 
 ;;; Ligatures
 
