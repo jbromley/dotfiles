@@ -73,7 +73,6 @@
 ;;; Welcome screen
 
 (use-package dashboard
-  :ensure t
   :config
   (dashboard-setup-startup-hook)
   :custom
@@ -91,7 +90,6 @@
 ;; Show a popup of available keybindings when typing a long key
 ;; sequence (e.g. C-x ...)
 (use-package which-key
-  :ensure t
   :custom
   (which-key-idle-delay 0.5)
   :config
@@ -104,27 +102,36 @@
 ;;; Themes and UI
 
 (use-package modus-themes
+  :defer t
   :custom
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t))
 
 (use-package dracula-theme
-  :ensure t
   :defer t
   :custom
   (dracula-enlarge-headings nil))
 
 (use-package solarized-theme
-  :ensure t
   :defer t
   :custom
   (solarized-scale-org-headlines nil)
   (solarized-use-more-italic t))
 
-(load-theme 'dracula t)
+(use-package eziam-themes
+  :defer t
+  :custom
+  (eziam-color-comments t)
+  (eziam-scale-headings nil)
+  (eziam-scale-other nil))
+
+(use-package tok-theme
+  :defer t)
+
+(use-package almost-mono-theme
+  :defer t)
 
 (use-package doom-modeline
-  :ensure t
   :hook (after-init . doom-modeline-mode))
 
 ;;;   Optional extras

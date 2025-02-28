@@ -48,7 +48,6 @@
 
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto
-  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
@@ -56,7 +55,6 @@
   (global-treesit-auto-mode))
 
 (use-package hl-todo
-  :ensure t
   :config
   (global-hl-todo-mode)
   :bind
@@ -67,7 +65,6 @@
         ("C-c i" . hl-todo-insert)))
 
 (use-package consult-todo
-  :ensure t
   :demand t
   :init
   (define-prefix-command 'consult-todo-map)
@@ -82,7 +79,6 @@
         ("p" . consult-todo-project)))
 
 (use-package paredit
-  :ensure t
   :defer t
   :autoload enable-paredit-mode
   :bind
@@ -97,19 +93,16 @@
 
 ;; Magit: best Git client to ever exist
 (use-package magit
-  :ensure t
   :defer t
   :bind (("C-x g" . magit-status)))
 
 (use-package git-gutter
-  :ensure t
   :config
   (global-git-gutter-mode t))
 
 ;;;   Common file types
 
 (use-package elixir-ts-mode
-  :ensure t
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
   :interpreter ("iex"))
@@ -123,19 +116,16 @@
                             (auto-fill-mode t)))))
 
 (use-package json-ts-mode
-  :ensure t
   :defer t
   :mode ("\\.json\\'"))
 
 (use-package racket-mode
-  :ensure t
   :defer t
   :mode ("\\.rkt\\'")
   :interpreter "racket"
   :hook (racket-mode . enable-paredit-mode))
 
 (use-package verilog-ts-mode
-  :ensure t
   :defer t
   :mode ("\\.s?vh?\\'")
   :custom
@@ -157,7 +147,6 @@
   (add-to-list 'treesit-auto-recipe-list jb/verilog-ts-auto-config))
 
 (use-package yaml-ts-mode
-  :ensure t
   :defer t
   :mode ("\\.ya?ml\\'"))
 
