@@ -148,6 +148,8 @@
 ;;   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 ;;; Other tools and editing enhancements
+(setopt eldoc-echo-area-use-multiline-p t)
+(setopt max-mini-window-height 8)
 
 (use-package vterm
   :defer t

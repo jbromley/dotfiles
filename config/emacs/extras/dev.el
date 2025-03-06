@@ -1,8 +1,8 @@
 ;;; dev.el --- Configure development tools -*-coding: utf-8 -*-
 ;;
-;; Copyright (C) 2025 J. Bromnley <jbromley@gmail.com>
+;; Copyright (C) 2025 J. Bromley <jbromley@gmail.com>
 ;;
-;; Author:      J. Bromnley <jbromley@gmail.com>
+;; Author:      J. Bromley <jbromley@gmail.com>
 ;; Version:     0.1
 ;; Package-Requires: ("org")
 ;; Keywords:    convenience,languages,lisp,tools
@@ -156,20 +156,30 @@
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
 
+
+(use-package eldoc-box
+  :defer t
+  :custom
+  ((eldoc-documentation-strategy 'eldoc-documentation-default)
+   (eldoc-echo-area-use-multiline-p 5)
+   (eldoc-idle-delay 1.0)))
+
 (use-package eglot
   :custom
   (eglot-send-changes-idle-time 0.1)
   (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
 
   :config
-  (fset #'jsonrpc--log-event #'ignore)
+  ;; (fset #'jsonrpc--log-event #'ignore)
   (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
                    ((verilog-mode verilog-ts-mode) . ("svls")))))
     (dolist (server servers eglot-server-programs)
       (add-to-list 'eglot-server-programs server)))
 
   :hook
-  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
+  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)
+   ; (eglot-managed-mode . eldoc-box-hover-at-point-mode)
+   ))
 
 (use-package flymake
   :bind
