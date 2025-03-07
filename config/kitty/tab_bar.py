@@ -10,7 +10,6 @@ def draw_tab(
     extra_data: ExtraData
 ) -> int:
     tab_bg = screen.cursor.bg
-    tab_fg = screen.cursor.fg
     default_bg = as_rgb(int(draw_data.default_bg))
 
     left_separator_symbol = ''
@@ -18,7 +17,7 @@ def draw_tab(
     min_title_length = 1 + 2
     start_draw = 2
 
-    screen.cursor.bg = tab_fg
+    screen.cursor.bg = default_bg
     screen.cursor.fg = tab_bg
     screen.draw(left_separator_symbol)
     if screen.cursor.x == 0:
@@ -35,8 +34,8 @@ def draw_tab(
             screen.draw('…')
 
     screen.draw(' ')
-    screen.cursor.fg = tab_bg
     screen.cursor.bg = default_bg
+    screen.cursor.fg = tab_bg
     screen.draw(right_separator_symbol)
 
     end = screen.cursor.x
