@@ -156,7 +156,6 @@
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
 
-
 (use-package eldoc-box
   :defer t
   :custom
@@ -178,8 +177,7 @@
 
   :hook
   (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)
-   ; (eglot-managed-mode . eldoc-box-hover-at-point-mode)
-   ))
+   (eglot-managed-mode . eldoc-box-hover-at-point-mode)))
 
 (use-package flymake
   :bind
