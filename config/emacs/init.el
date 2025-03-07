@@ -120,6 +120,9 @@
 
 (use-package eziam-themes
   :defer t
+  :config
+  (custom-set-faces '(show-paren-match ((t (:background "lightgreen" :foreground "black")))))
+  (custom-set-faces '(show-paren-mismatch ((t (:background "pink" :foreground "black")))))
   :custom
   (eziam-color-comments t)
   (eziam-scale-headings nil)
