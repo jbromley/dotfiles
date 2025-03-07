@@ -169,6 +169,10 @@
      (auth-source-pick-first-password :host "api.openai.com")))
   (chatgpt-shell-anthropic-key
    (lambda ()
-     (auth-source-pick-first-password :host "api.anthropic.com"))))
+     (auth-source-pick-first-password :host "api.anthropic.com")))
+  (chatgpt-shell-kagi-key
+   (lambda ()
+     (auth_source-pick-first-password :host "kagi.com")))
+  (chatgpt-shell-kagi-api-url-base "https://kagi.com/api/v0/fastgpt"))
 
 (provide 'base)
