@@ -19,11 +19,12 @@
         auto-revert-interval 5
         auto-revert-check-vc-info t)
 (setopt sentence-end-double-space nil)
+
 ;; Minibuffer/completion settings
 ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
-(setopt ;; enable-recursive-minibuffers t
+(setopt enable-recursive-minibuffers t
         completion-cycle-threshold 5
-        completions-detailed t             ; Show annotations with completions.
+        completions-detailed t           ; Show annotations with completions.
         tab-always-indent 'complete
         ;; completion-styles '(basic initials substring)
         completion-auto-help nil
@@ -33,7 +34,7 @@
         completions-group t
         ;;completion-auto-select 'second-tab
         )
-  ;; (completion-auto-select t))
+
 (setopt line-number-mode t
         column-number-mode t)
 (setopt x-underline-at-descent-line nil)

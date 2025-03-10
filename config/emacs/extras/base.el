@@ -40,21 +40,21 @@
    '((if (executable-find "fd" 'remote) "fd" "fdfind")
      "--full-path --color=never"))
   :bind
-  (("C-x b" . consult-buffer)     ; orig. switch-to-buffer
-   ("M-y"   . consult-yank-pop)   ; orig. yank-pop
-   ("M-s f" . consult-fd)
-   ("M-s F" . consult-find)
-   ("M-s l" . consult-line)     ; Alternative: rebind C-s to use
-   ("M-s L" . consult-line-multi) ; isearch to M-s s
+  (("C-x b" . consult-buffer)          ; orig. switch-to-buffer
+   ("M-y"   . consult-yank-pop)        ; orig. yank-pop
+   ("M-s f" . consult-fd)              
+   ("M-s F" . consult-find)            
+   ("M-s l" . consult-line)            ; Alternative: rebind C-s to use
+   ("M-s L" . consult-line-multi)      ; isearch to M-s s
    ("M-s m" . consult-man)
    ("M-s o" . consult-outline)
    ("M-s r" . consult-ripgrep)
-   ("M-s s" . consult-line) ; consult-line instead of isearch, bind
+   ("M-s s" . consult-line)            ; consult-line instead of isearch, bind
    ("M-s t" . consult-theme)
    :map isearch-mode-map
-   ("M-e" . consult-isearch-history) ; orig. isearch-edit-string
+   ("M-e" . consult-isearch-history)   ; orig. isearch-edit-string
    ("M-s e" . consult-isearch-history) ; orig. isearch-edit-string
-   ("M-s l" . consult-line) ; needed by consult-line to detect isearch
+   ("M-s l" . consult-line)            ; needed by consult-line to detect isearch
    ("M-s L" . consult-line-multi)))
 
 ;; Embark: supercharged context-dependent menu; kinda like a
@@ -82,13 +82,12 @@
 
 ;;;   Minibuffer and completion
 
-(fido-vertical-mode)
+;; (fido-vertical-mode)
 
-;; Vertico: better vertical completion for minibuffer commands
-;; (use-package vertico
-;;   :init
-;;   ;; You'll want to make sure that e.g. fido-mode isn't enabled
-;;   (vertico-mode))
+Vertico: better vertical completion for minibuffer commands
+(use-package vertico
+  :init
+  (vertico-mode))
 
 ;; (use-package vertico-directory
 ;;   :ensure nil
@@ -96,20 +95,26 @@
 ;;   :bind (:map vertico-map
 ;;               ("M-DEL" . vertico-directory-delete-word)))
 
-;; Marginalia: annotations for minibuffer
-;; (use-package marginalia
-;;   :config
-;;   (marginalia-mode))
+Orderless: powerful completion style
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles . (partial-completion))))))
 
-;; Corfu: Popup completion-at-point
-;; (use-package corfu
-;;   :init
-;;   (global-corfu-mode)
-;;   :bind
-;;   (:map corfu-map
-;;         ("SPC" . corfu-insert-separator)
-;;         ("C-n" . corfu-next)
-;;         ("C-p" . corfu-previous)))
+Marginalia: annotations for minibuffer
+(use-package marginalia
+  :config
+  (marginalia-mode))
+
+Corfu: Popup completion-at-point
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator)
+        ("C-n" . corfu-next)
+        ("C-p" . corfu-previous)))
 
 ;; Part of corfu
 ;; (use-package corfu-popupinfo
@@ -128,11 +133,6 @@
 ;;   :config
 ;;   (corfu-terminal-mode))
 
-;; Orderless: powerful completion style
-;; (use-package orderless
-;;   :config
-;;   (setq completion-styles '(orderless)))
-
 ;; Fancy completion-at-point functions; there's too much in the cape package to
 ;; configure here; dive in when you're comfortable!
 (use-package cape
@@ -140,12 +140,12 @@
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
 
-;; Pretty icons for corfu
-;; (use-package nerd-icons-corfu
-;;   :if (display-graphic-p)
-;;   :after corfu
-;;   :config
-;;   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+Pretty icons for corfu
+(use-package nerd-icons-corfu
+  :if (display-graphic-p)
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 ;;; Other tools and editing enhancements
 (setopt eldoc-echo-area-use-multiline-p t)
