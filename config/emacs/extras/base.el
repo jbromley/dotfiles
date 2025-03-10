@@ -84,7 +84,7 @@
 
 ;; (fido-vertical-mode)
 
-Vertico: better vertical completion for minibuffer commands
+;; Vertico: better vertical completion for minibuffer commands
 (use-package vertico
   :init
   (vertico-mode))
@@ -95,18 +95,19 @@ Vertico: better vertical completion for minibuffer commands
 ;;   :bind (:map vertico-map
 ;;               ("M-DEL" . vertico-directory-delete-word)))
 
-Orderless: powerful completion style
+;; Orderless: powerful completion style
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles . (partial-completion))))))
 
-Marginalia: annotations for minibuffer
+;; Marginalia: annotations for minibuffer
 (use-package marginalia
+  :ensure t
   :config
   (marginalia-mode))
 
-Corfu: Popup completion-at-point
+;; Corfu: Popup completion-at-point
 (use-package corfu
   :init
   (global-corfu-mode)
@@ -140,7 +141,7 @@ Corfu: Popup completion-at-point
   (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
 
-Pretty icons for corfu
+;; Pretty icons for corfu
 (use-package nerd-icons-corfu
   :if (display-graphic-p)
   :after corfu

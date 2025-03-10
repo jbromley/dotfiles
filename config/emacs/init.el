@@ -2,7 +2,8 @@
 
 ;;; Package initialization - we'll use the built-in GNU and MELPA archives.
 (with-eval-after-load 'package
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize))
 (setopt use-package-always-ensure t)
 
 ;;; Emacs server
