@@ -4,16 +4,13 @@
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
-(require 'use-package-ensure)
-(setopt use-package-always-ensure t)
 
-;;; Emacs server
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; Ensure all packages are installed.
+(use-package use-package-ensure
+  :custom
+  (use-package-always-ensure t))
 
-;;; Basic Emacs settings
-
+;;; Basic Emacs settings(
 (setopt set-mark-command-repeat-pop t)
 (setopt initial-major-mode 'fundamental-mode)
 (setopt display-time-default-load-average nil)
@@ -105,24 +102,20 @@
 ;;; Themes and UI
 
 (use-package modus-themes
-  :defer t
   :custom
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t))
 
 (use-package dracula-theme
-  :defer t
   :custom
   (dracula-enlarge-headings nil))
 
 (use-package solarized-theme
-  :defer t
   :custom
   (solarized-scale-org-headlines nil)
   (solarized-use-more-italic t))
 
 (use-package eziam-themes
-  :defer t
   :config
   (custom-set-faces '(show-paren-match ((t (:background "lightgreen" :foreground "black")))))
   (custom-set-faces '(show-paren-mismatch ((t (:background "pink" :foreground "black")))))
@@ -131,11 +124,11 @@
   (eziam-scale-headings nil)
   (eziam-scale-other nil))
 
-(use-package tok-theme
-  :defer t)
+(use-package tok-theme)
 
-(use-package almost-mono-theme
-  :defer t)
+(use-package almost-mono-themes)
+
+(set-cursor-color "magenta")
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode))
@@ -162,6 +155,12 @@
 
 ;; Tools for academic researchers
 ;(load-file (expand-file-name "extras/researcher.el" user-emacs-directory))
+
+;;; Emacs server
+(use-package server
+  :config
+  (unless (server-running-p)
+    (server-start)))
 
 ;;;   Built-in customization framework
 (load custom-file)
