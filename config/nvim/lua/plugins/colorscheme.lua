@@ -68,4 +68,11 @@ return {
     --     vim.cmd.colorscheme('zenbones')
     -- end
   },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "default",
+      background = light,
+    },
+  },
 }
