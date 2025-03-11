@@ -106,15 +106,6 @@
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t))
 
-(use-package dracula-theme
-  :custom
-  (dracula-enlarge-headings nil))
-
-(use-package solarized-theme
-  :custom
-  (solarized-scale-org-headlines nil)
-  (solarized-use-more-italic t))
-
 (use-package eziam-themes
   :config
   (custom-set-faces '(show-paren-match ((t (:background "lightgreen" :foreground "black")))))

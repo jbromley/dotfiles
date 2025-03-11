@@ -52,9 +52,9 @@
 
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
-                            (background-color . "#282a36")
-                            (foreground-color . "#f8f8f2")
-                                        ;(alpha-background . 97)
-                            (font . "Atkinson Hyperlegible Mono-10")
+                            ;; (background-color . "#282a36")
+                            ;; (foreground-color . "#f8f8f2")
+                            ;; (alpha-background . 97)
+                            ;; (font . "Atkinson Hyperlegible Mono-10")
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . nil)))
