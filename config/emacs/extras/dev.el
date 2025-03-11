@@ -156,12 +156,12 @@
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
 
-(use-package eldoc-box
-  :defer t
-  :custom
-  ((eldoc-documentation-strategy 'eldoc-documentation-default)
-   (eldoc-echo-area-use-multiline-p 5)
-   (eldoc-idle-delay 1.0)))
+;; (use-package eldoc-box
+;;   :defer t
+;;   :custom
+;;   ((eldoc-documentation-strategy 'eldoc-documentation-default)
+;;    (eldoc-echo-area-use-multiline-p 5)
+;;    (eldoc-idle-delay 1.0)))
 
 (use-package eglot
   :custom
