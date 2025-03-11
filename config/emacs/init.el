@@ -4,6 +4,7 @@
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize))
+(require 'use-package-ensure)
 (setopt use-package-always-ensure t)
 
 ;;; Emacs server
