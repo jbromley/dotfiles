@@ -10,7 +10,7 @@
   :custom
   (use-package-always-ensure t))
 
-;;; Basic Emacs settings(
+;;; Basic Emacs settings
 (setopt set-mark-command-repeat-pop t)
 (setopt initial-major-mode 'fundamental-mode)
 (setopt display-time-default-load-average nil)
@@ -58,6 +58,7 @@
 (pixel-scroll-precision-mode)
 
 ;; Global key binds
+(global-set-key (kbd "C-c f") #'menu-set-font)
 (global-set-key (kbd "C-z") #'zap-up-to-char)
 (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete)
 
@@ -101,10 +102,12 @@
 
 ;;; Themes and UI
 
-(use-package modus-themes
+;; Configure the built-in modus-themes
+(use-package emacs
   :custom
   (modus-themes-italic-constructs t)
-  (modus-themes-bold-constructs t))
+  (modus-themes-bold-constructs t)
+  (modus-themes-variable-pitch-ui t))
 
 (use-package eziam-themes
   :config
