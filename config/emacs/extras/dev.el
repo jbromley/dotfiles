@@ -102,6 +102,11 @@
 
 ;;;   Common file types
 
+(use-package erlang-ts
+  :defer 't
+  :mode ("\\.erl\\'" . erlang-ts-mode)
+  :interpreter ("erl"))
+
 (use-package elixir-ts-mode
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
@@ -150,7 +155,7 @@
   :defer t
   :mode ("\\.ya?ml\\'"))
 
-;;;   Eglot, the built-in LSP client for Emacs
+;;; Eglot, the built-in LSP client for Emacs
 
 ;; Helpful resources:
 ;;
@@ -163,21 +168,50 @@
 ;;    (eldoc-echo-area-use-multiline-p 5)
 ;;    (eldoc-idle-delay 1.0)))
 
+;; Make eldoc show in a buffer below the current buffer.
+(add-to-list 'display-buffer-alist
+             '("^\\*eldoc" display-buffer-at-bottom
+                 (window-height . 16)))
+
 (use-package eglot
   :custom
-  (eglot-send-changes-idle-time 0.1)
+  (eglot-send-changes-idle-time 0.5)
   (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
-
   :config
-  ;; (fset #'jsonrpc--log-event #'ignore)
+  (fset #'jsonrpc--log-event #'ignore)
   (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
+                   ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls")))))
     (dolist (server servers eglot-server-programs)
       (add-to-list 'eglot-server-programs server)))
+  (with-eval-after-load 'which-key
+    (which-key-add-keymap-based-replacements global-map
+      "C-c e" "eglot"))
+  :bind
+  (:map eglot-mode-map
+        ("C-c e b" . eglot-events-buffer)
+        ("C-c e f" . eglot-format)
+        ("C-c e F" . eglot-format-buffer)
+        ("C-c e r" . eglot-rename)
 
+        ("C-c e a" . eglot-code-actions)
+        ("C-c e q" . eglot-code-action-quickfix)
+        ("C-c e o" . eglot-code-action-organize-imports)
+
+        ("C-c e h" . eglot-help-at-point)
+
+        ("C-c e d" . eglot-find-declaration)
+        ("C-c e D" . eglot-find-definition)
+        ("C-c e i" . eglot-find-implementation)
+        ("C-c e t" . eglot-find-typeDefinition)
+        ("C-c e R" . eglot-find-references)
+        ("C-c e w" . eglot-show-workspace-configuration)
+
+        ("C-c e l" . flymake-show-diagnostics-buffer)
+        ("C-c e n" . flymake-goto-next-error)
+        ("C-c e p" . flymake-goto-prev-error))
   :hook
-  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)
-   (eglot-managed-mode . eldoc-box-hover-at-point-mode)))
+  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
 
 (use-package flymake
   :bind
