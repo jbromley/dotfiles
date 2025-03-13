@@ -39,6 +39,15 @@
   (consult-fd-args
    '((if (executable-find "fd" 'remote) "fd" "fdfind")
      "--full-path --color=never"))
+  (consult-themes '("almost-mono-\\(white\\|black\\)"
+                    "eziam-\\(light\\|dark\\)"
+                    "modus-*"
+                    dracula
+                    misterioso
+                    manoj-dark
+                    dichromacy
+                    tango
+                    leuven))
   :bind
   (("C-x b" . consult-buffer)          ; orig. switch-to-buffer
    ("M-y"   . consult-yank-pop)        ; orig. yank-pop
@@ -98,8 +107,9 @@
 ;; Orderless: powerful completion style
 (use-package orderless
   :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles . (partial-completion))))))
+  ;; (completion-category-overrides '((file (styles . (partial-completion)))
+  ;;                                  (theme (styles . (basic)))))
+  (completion-styles '(orderless basic)))
 
 ;; Marginalia: annotations for minibuffer
 (use-package marginalia
