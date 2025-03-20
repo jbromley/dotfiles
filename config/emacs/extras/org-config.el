@@ -73,4 +73,7 @@
                        (set-fill-column 80)
                        (auto-fill-mode t)))))
 
+;;; Install htmlize for org export to HTML
+(use-package htmlize)
+
 (provide 'org-config)
