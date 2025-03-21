@@ -4,22 +4,22 @@ animation = "EaseOutExpo"
 duration = 100
 
 [font]
-size = 10.0
+size = 11.0
 
 [font.bold]
-family = "Lilex"
+family = "Fira Code"
 style = "Bold"
 
 [font.bold_italic]
-family = "Lilex"
+family = "Fira Code"
 style = "Bold Italic"
 
 [font.italic]
-family = "Lilex"
+family = "Fira Code"
 style = "Italic"
 
 [font.normal]
-family = "Lilex"
+family = "Fira Code"
 style = "Regular"
 
 [window]
