@@ -36,18 +36,21 @@ setopt HIST_REDUCE_BLANKS
 [ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
 
 # Plugins
+zmodload zsh/zutil
 plugin_dir=${HOME}/.zsh
 fpath=(${plugin_dir} $fpath)
 
 # bd
-source ${plugin_dir}/zsh-bd/bd.zsh
-
-# Syntax highlighting
-source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source ${plugin_dir}/zsh-bd/bd.zsh
 
 # Fish-like auto-suggestions
+zcompile ~/.zsh/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
 source ${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
+
+# Syntax highlighting
+zcompile ~/.zsh/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/main/*.zsh}
+source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #
 # Completion
@@ -156,6 +159,8 @@ function yy() {
 # Prompt
 #
 
+eval "$(starship init zsh)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
