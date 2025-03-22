@@ -44,7 +44,7 @@
 ;; Project management
 (use-package project
   :custom
-  (project-vc-extra-root-markers '("mix.exs")))
+  (project-vc-extra-root-markers '("mix.exs" "CMakeLists.txt")))
 
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto
@@ -102,16 +102,19 @@
 
 ;;;   Common file types
 
+;; Erlang
 (use-package erlang-ts
   :defer 't
   :mode ("\\.erl\\'" . erlang-ts-mode)
   :interpreter ("erl"))
 
+;; Elixir
 (use-package elixir-ts-mode
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
   :interpreter ("iex"))
 
+;; Markdown
 (use-package markdown-mode
   :defer t
   :mode ("\\.md\\'")
@@ -120,16 +123,33 @@
                             (set-fill-column 80)
                             (auto-fill-mode t)))))
 
+;; JSON
 (use-package json-ts-mode
   :defer t
   :mode ("\\.json\\'"))
 
+;; Racket
 (use-package racket-mode
   :defer t
   :mode ("\\.rkt\\'")
   :interpreter "racket"
   :hook (racket-mode . enable-paredit-mode))
 
+;; CMake
+(defun maybe-cmake-project-mode ()
+  (if (or (file-exists-p "CMakeLists.txt")
+          (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
+      (cmake-project-mode)))
+
+(use-package cmake-mode)
+
+(use-package cmake-project
+  :after (cmake-mode)
+  :hook
+  (((c-mode c-ts-mode) . maybe-cmake-project-mode)
+   ((c++-mode c++-ts=mode) . maybe-cmake-project-mode)))
+
+;; Verilog
 (use-package verilog-ts-mode
   :defer t
   :mode ("\\.s?vh?\\'")
@@ -151,6 +171,7 @@
          :ext "\\.s?vh?"))
   (add-to-list 'treesit-auto-recipe-list jb/verilog-ts-auto-config))
 
+;; YAML
 (use-package yaml-ts-mode
   :defer t
   :mode ("\\.ya?ml\\'"))
@@ -160,18 +181,6 @@
 ;; Helpful resources:
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
-
-;; (use-package eldoc-box
-;;   :defer t
-;;   :custom
-;;   ((eldoc-documentation-strategy 'eldoc-documentation-default)
-;;    (eldoc-echo-area-use-multiline-p 5)
-;;    (eldoc-idle-delay 1.0)))
-
-;; Make eldoc show in a buffer below the current buffer.
-(add-to-list 'display-buffer-alist
-             '("^\\*eldoc" display-buffer-at-bottom
-                 (window-height . 16)))
 
 (use-package eglot
   :custom
@@ -218,8 +227,21 @@
   (("M-n" . flymake-goto-next-error)
    ("M-p" . flymake-goto-prev-error)))
 
-;;; Ligatures
+;; Eldoc configuration
 
+;; (use-package eldoc-box
+;;   :defer t
+;;   :custom
+;;   ((eldoc-documentation-strategy 'eldoc-documentation-default)
+;;    (eldoc-echo-area-use-multiline-p 5)
+;;    (eldoc-idle-delay 1.0)))
+
+;; Make eldoc show in a buffer below the current buffer.
+(add-to-list 'display-buffer-alist
+             '("^\\*eldoc" display-buffer-at-bottom
+               (window-height . 16)))
+
+;;; Ligatures
 (use-package ligature
   :config
   ;; Enable the "www" ligature in every possible major mode
@@ -248,4 +270,3 @@
   (global-ligature-mode t))
 
 (provide 'dev)
-
