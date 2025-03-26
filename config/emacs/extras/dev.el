@@ -31,10 +31,14 @@
   ;; Open shell configuration in shell-script-mode
   (add-to-list 'auto-mode-alist '("\\.?zshenv\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("\\.?zshrc\\'" . shell-script-mode))
+
+  :custom
+  (ansi-color-for-compilation-mode t)
   
   :hook
   ;; Auto parenthesis matching
-  ((prog-mode . electric-pair-mode)))
+  ((prog-mode . electric-pair-mode)
+   (compilation-filter . ansi-color-compilation-filter)))
 
 ;; Mise en place
 (use-package mise
@@ -144,6 +148,7 @@
 (use-package cmake-mode)
 
 (use-package cmake-project
+  :load-path "~/Code/emacs-cmake-project/"
   :after (cmake-mode)
   :hook
   (((c-mode c-ts-mode) . maybe-cmake-project-mode)
@@ -220,7 +225,7 @@
         ("C-c e n" . flymake-goto-next-error)
         ("C-c e p" . flymake-goto-prev-error))
   :hook
-  (((c-mode c++-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
+  (((c-mode c-ts-mode c++-mode c++-ts-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
 
 (use-package flymake
   :bind
