@@ -107,7 +107,8 @@
   :custom
   (modus-themes-italic-constructs t)
   (modus-themes-bold-constructs t)
-  (modus-themes-variable-pitch-ui t))
+  (modus-themes-variable-pitch-ui t)
+  (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
 
 (use-package eziam-themes
   :config
