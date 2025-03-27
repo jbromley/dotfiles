@@ -153,10 +153,10 @@
 (use-package cmake-project
   :load-path "~/Code/emacs-cmake-project/"
   :commands (cmake-project-mode cmake-project-configure-project)
-  :after (cmake-mode)
+  :after (:any cmake-mode cmake-ts-mode)
   :hook
   (((c-mode c-ts-mode) . maybe-cmake-project-mode)
-   ((c++-mode c++-ts=mode) . maybe-cmake-project-mode)))
+   ((c++-mode c++-ts-mode) . maybe-cmake-project-mode)))
 
 ;; Verilog
 (use-package verilog-ts-mode
