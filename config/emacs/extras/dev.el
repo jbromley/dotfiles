@@ -145,10 +145,14 @@
           (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
       (cmake-project-mode)))
 
-(use-package cmake-mode)
+(use-package cmake-mode
+  :ensure t
+  :mode ("CMakeLists.txt\\'")
+  :defer t)
 
 (use-package cmake-project
   :load-path "~/Code/emacs-cmake-project/"
+  :commands (cmake-project-mode cmake-project-configure-project)
   :after (cmake-mode)
   :hook
   (((c-mode c-ts-mode) . maybe-cmake-project-mode)
