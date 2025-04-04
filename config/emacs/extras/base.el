@@ -15,6 +15,7 @@
 ;;  - Power-ups: Embark and Consult
 ;;  - Minibuffer and completion
 ;;  - Misc. editing enhancements
+;;  - Git integration for dired
 
 ;;; Change Log:
 
@@ -185,5 +186,12 @@
    (lambda ()
      (auth_source-pick-first-password :host "kagi.com")))
   (chatgpt-shell-kagi-api-url-base "https://kagi.com/api/v0/fastgpt"))
+
+;; Provide git information in dired buffers
+(use-package dired-git
+  :ensure t
+  :defer t
+  :hook
+  (dired-mode . dired-git-mode))
 
 (provide 'base)
