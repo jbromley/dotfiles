@@ -20,9 +20,9 @@
 ;; Write code here. defcustom first, then defconst, defvar,
 ;; defsubst/defmacro and defuns last
 
-(use-package org-superstar
-  :ensure t
-  :defer t)
+(use-package org-modern
+  :hook ((org-mode . org-modern-mode)
+         (org-agenda-finalize . org-modern-agenda)))
 
 (use-package org
   :defer t
@@ -68,7 +68,7 @@
 
   :hook ((org-mode . visual-line-mode)  ; wrap lines at word breaks
          (org-mode . flyspell-mode)
-         (org-mode . (lambda () (org-superstar-mode 1)))
+         ;; (org-mode . (lambda () (org-superstar-mode 1)))
          (org-mode . (lambda ()
                        (set-fill-column 80)
                        (auto-fill-mode t)))))
