@@ -21,6 +21,7 @@
 ;; defsubst/defmacro and defuns last
 
 (use-package org-modern
+  :defer t
   :hook ((org-mode . org-modern-mode)
          (org-agenda-finalize . org-modern-agenda)))
 
