@@ -123,6 +123,7 @@
 
 (use-package almost-mono-themes)
 
+(load-theme 'modus-vivendi-tinted t)
 (set-cursor-color "magenta")
 
 (use-package doom-modeline
