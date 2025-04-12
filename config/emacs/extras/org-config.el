@@ -22,6 +22,10 @@
 
 (use-package org-modern
   :defer t
+  :custom
+  (org-modern-todo-faces
+   '(("STARTED" . (:foreground "#00ffff" :inverse-video t :weight semibold ))))
+
   :hook ((org-mode . org-modern-mode)
          (org-agenda-finalize . org-modern-agenda)))
 
