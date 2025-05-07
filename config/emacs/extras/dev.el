@@ -147,6 +147,7 @@
 
 (use-package cmake-mode
   :ensure t
+  :load-path "~/Code/emacs-cmake-project/"
   :mode ("CMakeLists.txt\\'")
   :defer t)
 
