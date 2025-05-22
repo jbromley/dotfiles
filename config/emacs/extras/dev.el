@@ -200,7 +200,8 @@
   (fset #'jsonrpc--log-event #'ignore)
   (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
-                   ((verilog-mode verilog-ts-mode) . ("svls")))))
+                   ((verilog-mode verilog-ts-mode) . ("svls"))
+                   ((sql-mode) . ("postgrestools" "lsp-proxy")))))
     (dolist (server servers eglot-server-programs)
       (add-to-list 'eglot-server-programs server)))
   (with-eval-after-load 'which-key
