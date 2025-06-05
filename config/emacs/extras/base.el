@@ -176,6 +176,7 @@
 (use-package chatgpt-shell
   :defer t
   :custom
+  (chatgpt-shell-streaming t)
   (chatgpt-shell-openai-key
    (lambda ()
      (auth-source-pick-first-password :host "api.openai.com")))
@@ -186,6 +187,16 @@
    (lambda ()
      (auth_source-pick-first-password :host "kagi.com")))
   (chatgpt-shell-kagi-api-url-base "https://kagi.com/api/v0/fastgpt"))
+
+;; Use gptel
+(use-package gptel
+  :defer t
+  :config
+  (gptel-make-anthropic "Claude" :stream t :key (lambda ()
+     (auth-source-pick-first-password :host "api.anthropic.com")))
+  :custom
+  (gptel-api-key (lambda ()
+     (auth-source-pick-first-password :host "api.openai.com"))))
 
 ;; Provide git information in dired buffers
 (use-package dired-git
