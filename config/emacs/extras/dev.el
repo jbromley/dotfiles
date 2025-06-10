@@ -159,6 +159,17 @@
   (((c-mode c-ts-mode) . maybe-cmake-project-mode)
    ((c++-mode c++-ts-mode) . maybe-cmake-project-mode)))
 
+;; SQL
+(use-package sqlformat
+  :commands (sqlformat sqlformat-buffer sqlformat-region)
+  ;; :hook (sql-mode . sqlformat-on-save-mode)
+  :init
+  (setq sqlformat-command 'pgformatter
+        sqlformat-args '("-s2" "-g" "-u1"))
+  :bind (:map sql-mode-map
+              ("C-c C-f" . sqlformat-region)
+              ("C-c C-g" . sqlformat-buffer)))
+
 ;; Verilog
 (use-package verilog-ts-mode
   :defer t
