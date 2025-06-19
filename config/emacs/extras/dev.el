@@ -209,7 +209,7 @@
   (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
   :config
   (fset #'jsonrpc--log-event #'ignore)
-  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("elixir-ls"))
+  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/lexical/bin/start_lexical.sh"))
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls"))
                    ((sql-mode) . ("postgrestools" "lsp-proxy")))))
@@ -232,10 +232,10 @@
         ("C-c e h" . eglot-help-at-point)
 
         ("C-c e d" . eglot-find-declaration)
-        ("C-c e D" . eglot-find-definition)
+        ("C-c e D" . xref-find-definition)
         ("C-c e i" . eglot-find-implementation)
         ("C-c e t" . eglot-find-typeDefinition)
-        ("C-c e R" . eglot-find-references)
+        ("C-c e R" . xref-find-references)
         ("C-c e w" . eglot-show-workspace-configuration)
 
         ("C-c e l" . flymake-show-diagnostics-buffer)
@@ -251,17 +251,11 @@
 
 ;; Eldoc configuration
 
-;; (use-package eldoc-box
-;;   :defer t
-;;   :custom
-;;   ((eldoc-documentation-strategy 'eldoc-documentation-default)
-;;    (eldoc-echo-area-use-multiline-p 5)
-;;    (eldoc-idle-delay 1.0)))
-
-;; Make eldoc show in a buffer below the current buffer.
-(add-to-list 'display-buffer-alist
-             '("^\\*eldoc" display-buffer-at-bottom
-               (window-height . 16)))
+(use-package eldoc-box
+  :ensure t
+  :defer t
+  :bind ("C-c d" . eldoc-box-help-at-point)
+  :hook (eglot-managed-mode . eldoc-box-hover-mode))
 
 ;;; Ligatures
 (use-package ligature
