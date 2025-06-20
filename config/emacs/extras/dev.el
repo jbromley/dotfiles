@@ -254,7 +254,7 @@
 (use-package eldoc-box
   :ensure t
   :defer t
-  :bind ("C-c d" . eldoc-box-help-at-point)
+  :bind (:map eglot-mode-map ("C-c d" . eldoc-box-help-at-point))
   :hook (eglot-managed-mode . eldoc-box-hover-mode))
 
 ;;; Ligatures
