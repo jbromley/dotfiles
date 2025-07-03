@@ -209,7 +209,7 @@
   (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
   :config
   (fset #'jsonrpc--log-event #'ignore)
-  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/lexical/bin/start_lexical.sh"))
+  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls"))
                    ((sql-mode) . ("postgrestools" "lsp-proxy")))))
