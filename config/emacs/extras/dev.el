@@ -116,7 +116,8 @@
 (use-package elixir-ts-mode
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
-  :interpreter ("iex"))
+  :interpreter ("iex")
+  :hook (elixir-ts-mode . (lambda () (setq fill-column 100))))
 
 ;; Markdown
 (use-package markdown-mode
