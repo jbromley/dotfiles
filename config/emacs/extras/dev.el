@@ -104,6 +104,67 @@
   :config
   (global-git-gutter-mode t))
 
+;;; Eglot, the built-in LSP client for Emacs
+
+;; Helpful resources:
+;;
+;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
+
+(use-package eglot
+  :custom
+  (eglot-send-changes-idle-time 0.5)
+  (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
+  :config
+  (fset #'jsonrpc--log-event #'ignore)
+  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
+                   ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
+                   ((verilog-mode verilog-ts-mode) . ("svls"))
+                   ((sql-mode) . ("postgrestools" "lsp-proxy")))))
+    (dolist (server servers eglot-server-programs)
+      (add-to-list 'eglot-server-programs server)))
+  (with-eval-after-load 'which-key
+    (which-key-add-keymap-based-replacements global-map
+      "C-c e" "eglot"))
+  :bind
+  (:map eglot-mode-map
+        ("C-c e b" . eglot-events-buffer)
+        ("C-c e f" . eglot-format)
+        ("C-c e F" . eglot-format-buffer)
+        ("C-c e r" . eglot-rename)
+
+        ("C-c e a" . eglot-code-actions)
+        ("C-c e q" . eglot-code-action-quickfix)
+        ("C-c e o" . eglot-code-action-organize-imports)
+
+        ("C-c e h" . eldoc-box-eglot-help-at-point)
+
+        ("C-c e d" . eglot-find-declaration)
+        ("C-c e D" . xref-find-definition)
+        ("C-c e i" . eglot-find-implementation)
+        ("C-c e t" . eglot-find-typeDefinition)
+        ("C-c e R" . xref-find-references)
+        ("C-c e w" . eglot-show-workspace-configuration)
+
+        ("C-c e l" . flymake-show-diagnostics-buffer)
+        ("C-c e n" . flymake-goto-next-error)
+        ("C-c e p" . flymake-goto-prev-error))
+  :hook
+  (((c-mode c-ts-mode c++-mode c++-ts-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
+
+(use-package flymake
+  :bind
+  (("M-n" . flymake-goto-next-error)
+   ("M-p" . flymake-goto-prev-error)))
+
+;; Eldoc configuration
+
+(use-package eldoc-box
+  :ensure t
+  :defer t
+  :bind (:map eglot-mode-map ("C-c d" . eldoc-box-help-at-point))
+  :hook (eglot-managed-mode . eldoc-box-hover-mode))
+
+
 ;;;   Common file types
 
 ;; Erlang
@@ -117,6 +178,8 @@
   :defer t
   :mode ("\\.ex\\'" "\\.exs\\'")
   :interpreter ("iex")
+  :config
+  (setq eglot-ignored-server-capabilities '(:hoverProvider))
   :hook (elixir-ts-mode . (lambda () (setq fill-column 100))))
 
 ;; Markdown
@@ -197,66 +260,6 @@
 (use-package yaml-ts-mode
   :defer t
   :mode ("\\.ya?ml\\'"))
-
-;;; Eglot, the built-in LSP client for Emacs
-
-;; Helpful resources:
-;;
-;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
-
-(use-package eglot
-  :custom
-  (eglot-send-changes-idle-time 0.5)
-  (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
-  :config
-  (fset #'jsonrpc--log-event #'ignore)
-  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
-                   ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
-                   ((verilog-mode verilog-ts-mode) . ("svls"))
-                   ((sql-mode) . ("postgrestools" "lsp-proxy")))))
-    (dolist (server servers eglot-server-programs)
-      (add-to-list 'eglot-server-programs server)))
-  (with-eval-after-load 'which-key
-    (which-key-add-keymap-based-replacements global-map
-      "C-c e" "eglot"))
-  :bind
-  (:map eglot-mode-map
-        ("C-c e b" . eglot-events-buffer)
-        ("C-c e f" . eglot-format)
-        ("C-c e F" . eglot-format-buffer)
-        ("C-c e r" . eglot-rename)
-
-        ("C-c e a" . eglot-code-actions)
-        ("C-c e q" . eglot-code-action-quickfix)
-        ("C-c e o" . eglot-code-action-organize-imports)
-
-        ("C-c e h" . eglot-help-at-point)
-
-        ("C-c e d" . eglot-find-declaration)
-        ("C-c e D" . xref-find-definition)
-        ("C-c e i" . eglot-find-implementation)
-        ("C-c e t" . eglot-find-typeDefinition)
-        ("C-c e R" . xref-find-references)
-        ("C-c e w" . eglot-show-workspace-configuration)
-
-        ("C-c e l" . flymake-show-diagnostics-buffer)
-        ("C-c e n" . flymake-goto-next-error)
-        ("C-c e p" . flymake-goto-prev-error))
-  :hook
-  (((c-mode c-ts-mode c++-mode c++-ts-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
-
-(use-package flymake
-  :bind
-  (("M-n" . flymake-goto-next-error)
-   ("M-p" . flymake-goto-prev-error)))
-
-;; Eldoc configuration
-
-(use-package eldoc-box
-  :ensure t
-  :defer t
-  :bind (:map eglot-mode-map ("C-c d" . eldoc-box-help-at-point))
-  :hook (eglot-managed-mode . eldoc-box-hover-mode))
 
 ;;; Ligatures
 (use-package ligature
