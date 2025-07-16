@@ -110,19 +110,6 @@
   (modus-themes-variable-pitch-ui t)
   (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
 
-(use-package eziam-themes
-  :config
-  (custom-set-faces '(show-paren-match ((t (:background "lightgreen" :foreground "black")))))
-  (custom-set-faces '(show-paren-mismatch ((t (:background "pink" :foreground "black")))))
-  :custom
-  (eziam-color-comments t)
-  (eziam-scale-headings nil)
-  (eziam-scale-other nil))
-
-(use-package tok-theme)
-
-(use-package almost-mono-themes)
-
 (load-theme 'modus-vivendi-tinted t)
 (set-cursor-color "magenta")
 
