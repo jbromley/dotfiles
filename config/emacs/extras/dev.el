@@ -52,6 +52,7 @@
 
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto
+  :defer t
   :custom
   (treesit-auto-install 'prompt)
   :config
@@ -108,7 +109,7 @@
 
 ;; Erlang
 (use-package erlang-ts
-  :defer 't
+  :defer t
   :mode ("\\.erl\\'" . erlang-ts-mode)
   :interpreter ("erl"))
 
@@ -122,7 +123,7 @@
 ;; Markdown
 (use-package markdown-mode
   :defer t
-  :mode ("\\.md\\'")
+  :mode ("\\.md\\'" . markdown-mode)
   :hook ((markdown-mode . (lambda ()
                             (visual-line-mode)
                             (set-fill-column 80)
@@ -141,27 +142,30 @@
   :hook (racket-mode . enable-paredit-mode))
 
 ;; CMake
-(defun maybe-cmake-project-mode ()
-  (if (or (file-exists-p "CMakeLists.txt")
-          (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
-      (cmake-project-mode)))
-
 (use-package cmake-mode
   :ensure t
+  :defer t
   :load-path "~/Code/emacs-cmake-project/"
   :mode ("CMakeLists.txt\\'")
   :defer t)
 
 (use-package cmake-project
   :load-path "~/Code/emacs-cmake-project/"
-  :commands (cmake-project-mode cmake-project-configure-project)
+  :defer t
+  :commands (cmake-project-mode cmake-project-configure-project maybe-cmake-project-mode)
   :after (:any cmake-mode cmake-ts-mode)
+  :init
+  (defun maybe-cmake-project-mode ()
+    (if (or (file-exists-p "CMakeLists.txt")
+            (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
+        (cmake-project-mode)))
   :hook
   (((c-mode c-ts-mode) . maybe-cmake-project-mode)
    ((c++-mode c++-ts-mode) . maybe-cmake-project-mode)))
 
 ;; SQL
 (use-package sqlformat
+  :defer t
   :commands (sqlformat sqlformat-buffer sqlformat-region)
   ;; :hook (sql-mode . sqlformat-on-save-mode)
   :custom
@@ -181,7 +185,7 @@
   (verilog-indent-level-declaration 2)
   (verilog-indent-level-module 2)
   (verilog-ts-indent-level 2)
-  :init
+  :config
   (setq jb/verilog-ts-auto-config
         (make-treesit-auto-recipe
          :lang 'verilog
