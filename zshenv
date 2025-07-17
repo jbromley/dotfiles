@@ -52,12 +52,8 @@ fi
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
 
 # ROS 2
-ROS_DIR=/opt/ros/iron
-if [ -f ${ROS_DIR}/setup.zsh ]; then
-    source ${ROS_DIR}/setup.zsh
-    export ROS_DOMAIN_ID=17
-    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-fi
+export ROS_DOMAIN_ID=17
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # Configure the path.
 typeset -Ux PATH path
