@@ -120,7 +120,14 @@
   (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls"))
-                   ((sql-mode) . ("postgrestools" "lsp-proxy")))))
+                   ((sql-mode) . ("postgrestools" "lsp-proxy"))
+                   ((arduino-mode) . ("arduino-language-server"
+                                      "-clangd" "/usr/lib/llvm-15/bin/clangd"
+                                      "-cli" "/usr/local/bin/arduino-cli"
+                                      "-cli-config" "~/.arduino15/arduino-cli.yaml"
+                                      "-fqbn" "lgt8fx:avr:328"
+                                      "-log"
+                                      "-logpath" "/tmp/")))))
     (dolist (server servers eglot-server-programs)
       (add-to-list 'eglot-server-programs server)))
   (with-eval-after-load 'which-key
@@ -264,6 +271,20 @@
 (use-package yaml-ts-mode
   :defer t
   :mode ("\\.ya?ml\\'"))
+
+;; Arduino
+(use-package arduino-mode
+  :defer t
+  :custom
+  (arduino-mode-home "~/Code/Arduino"))
+
+(use-package arduino-cli-mode
+  :ensure t
+  ;; :mode "\\.ino\\'"
+  :custom
+  (arduino-cli-warnings 'all)
+  (arduino-cli-verify t)
+  :hook arduino-mode)
 
 ;;; Ligatures
 (use-package ligature
