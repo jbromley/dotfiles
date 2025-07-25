@@ -145,6 +145,11 @@ function e() {
   emacs "${1:-"$(fzf)"}" &
 } 
 
+# Run a program under NVidia when in hybrid graphics mode
+function nvrun() {
+  __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia "$@"
+}
+
 # Change to directory when exiting yazi
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
