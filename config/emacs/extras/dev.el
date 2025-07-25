@@ -48,7 +48,7 @@
 ;; Project management
 (use-package project
   :custom
-  (project-vc-extra-root-markers '("mix.exs" "CMakeLists.txt")))
+  (project-vc-extra-root-markers '("mix.exs" "CMakeLists.txt" "*.ino")))
 
 ;; Automatically handle installing and using treesitter modes.
 (use-package treesit-auto
