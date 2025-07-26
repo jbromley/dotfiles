@@ -121,13 +121,12 @@
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls"))
                    ((sql-mode) . ("postgrestools" "lsp-proxy"))
-                   ((arduino-mode) . ("arduino-language-server"
-                                      "-clangd" "/usr/lib/llvm-15/bin/clangd"
-                                      "-cli" "/usr/local/bin/arduino-cli"
-                                      "-cli-config" "~/.arduino15/arduino-cli.yaml"
-                                      "-fqbn" "lgt8fx:avr:328"
-                                      "-log"
-                                      "-logpath" "/tmp/")))))
+                   ((arduino-mode) . (lambda (&optional interactive project)
+                                       (list "arduino-language-server"
+                                             "-clangd" "/usr/lib/llvm-15/bin/clangd"
+                                             "-cli" "/bin/arduino-cli"
+                                             "-cli-config" "~/.arduino15/arduino-cli.yaml"
+                                             "-fqbn" arduino-cli-default-fqbn))))))
     (dolist (server servers eglot-server-programs)
       (add-to-list 'eglot-server-programs server)))
   (with-eval-after-load 'which-key
