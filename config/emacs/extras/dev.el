@@ -31,8 +31,6 @@
   ;; Open shell configuration in shell-script-mode
   (add-to-list 'auto-mode-alist '("\\.?zshenv\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("\\.?zshrc\\'" . shell-script-mode))
-  ;; Lots of things use clangd, make sure it's on the exec-path
-  (add-to-list 'exec-path "/usr/lib/llvm-15/bin")
 
   :custom
   (ansi-color-for-compilation-mode t)
@@ -110,18 +108,17 @@
   (global-git-gutter-mode t))
 
 ;;; Eglot, the built-in LSP client for Emacs
-
 ;; Helpful resources:
 ;;
 ;;  - https://www.masteringemacs.org/article/seamlessly-merge-multiple-documentation-sources-eldoc
-
 (use-package eglot
   :custom
   (eglot-send-changes-idle-time 0.5)
   (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
   :config
   (fset #'jsonrpc--log-event #'ignore)
-  (let ((servers '(((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
+  (let ((servers '(((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("/usr/lib/llvm-15/bin/clangd"))
+                   ((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls"))
                    ((sql-mode) . ("postgrestools" "lsp-proxy"))
@@ -221,20 +218,6 @@
   :load-path "~/Code/emacs-cmake-project/"
   :mode ("CMakeLists.txt\\'")
   :defer t)
-
-(use-package cmake-project
-  :load-path "~/Code/emacs-cmake-project/"
-  :defer t
-  :commands (cmake-project-mode cmake-project-configure-project maybe-cmake-project-mode)
-  :after (:any cmake-mode cmake-ts-mode)
-  :init
-  (defun maybe-cmake-project-mode ()
-    (if (or (file-exists-p "CMakeLists.txt")
-            (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
-        (cmake-project-mode)))
-  :hook
-  (((c-mode c-ts-mode) . maybe-cmake-project-mode)
-   ((c++-mode c++-ts-mode) . maybe-cmake-project-mode)))
 
 ;; SQL
 (use-package sqlformat
