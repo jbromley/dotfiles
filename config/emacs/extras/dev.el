@@ -31,6 +31,8 @@
   ;; Open shell configuration in shell-script-mode
   (add-to-list 'auto-mode-alist '("\\.?zshenv\\'" . shell-script-mode))
   (add-to-list 'auto-mode-alist '("\\.?zshrc\\'" . shell-script-mode))
+  ;; Lots of things use clangd, make sure it's on the exec-path
+  (add-to-list 'exec-path "/usr/lib/llvm-15/bin")
 
   :custom
   (ansi-color-for-compilation-mode t)
