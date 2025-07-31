@@ -43,7 +43,9 @@
 ;; Mise en place
 (use-package mise
   :config
-  (global-mise-mode))
+  (global-mise-mode)
+  :custom
+  (mise-executable "~/.local/bin/mise"))
 
 ;; Project management
 (use-package project
