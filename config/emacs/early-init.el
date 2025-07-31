@@ -45,16 +45,15 @@
 (scroll-bar-mode -1)
 
 (setq default-frame-alist '((fullscreen . maximized)
-
                             ;; You can turn off scroll bars by uncommenting these lines:
                             (vertical-scroll-bars . nil)
                             (horizontal-scroll-bars . nil)
 
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
-                            ;; (background-color . "#282a36")
-                            ;; (foreground-color . "#f8f8f2")
-                            ;; (alpha-background . 97)
+                            (background-color . "#0d0e1c")
+                            (foreground-color . "#fcfefd")
+                            (alpha-background . 97)
                             ;; (font . "Atkinson Hyperlegible Mono-10")
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . nil)))
