@@ -5,11 +5,6 @@
 # configuration on GitHub at https://github.com/Phantas0s/.dotfiles/tree/master/zsh
 #======================================================================
 
-# Enable Powerlevel10k instant prompt.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Emacs key bindings
 bindkey -e
 
@@ -52,9 +47,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 zcompile ~/.zsh/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/main/*.zsh}
 source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#
 # Completion
-#
 
 # ROS 2 colcon
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
@@ -160,12 +153,5 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-#
 # Prompt
-#
-
 eval "$(starship init zsh)"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

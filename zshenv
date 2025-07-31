@@ -53,7 +53,7 @@ fi
 
 # ROS 2
 export ROS_DOMAIN_ID=17
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+# export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # Configure the path.
 typeset -Ux PATH path

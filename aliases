@@ -56,3 +56,9 @@ alias gpull='git pull'
 # Kitty aliases
 alias vimg="kitten icat"
 alias kitty-theme="kitten themes --config-file-name=themes.conf"
+
+# distrobox
+alias dbox="distrobox"
+
+# arduino-cli
+alias ardcli="arduino-cli"
