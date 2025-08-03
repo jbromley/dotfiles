@@ -1,8 +1,8 @@
 ;;; org-config.el --- Org mode configuration -*-coding: utf-8 -*-
 ;;
-;; Copyright (C) 2025 J. Bromnley <jbromley@gmail.com>
+;; Copyright (C) 2025 J. Bromley <jbromley@gmail.com>
 ;;
-;; Author:      J. Bromnley <jbromley@gmail.com>
+;; Author:      J. Bromley <jbromley@gmail.com>
 ;; Version:     0.1
 ;; Package-Requires: ("org")
 ;; Keywords:    calendar,hypermedia,outlines
