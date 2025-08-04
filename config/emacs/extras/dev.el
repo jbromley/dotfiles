@@ -147,7 +147,7 @@
         ("C-c e h" . eldoc-box-eglot-help-at-point)
 
         ("C-c e d" . eglot-find-declaration)
-        ("C-c e D" . xref-find-definition)
+        ("C-c e D" . xref-find-definitions)
         ("C-c e i" . eglot-find-implementation)
         ("C-c e t" . eglot-find-typeDefinition)
         ("C-c e R" . xref-find-references)
@@ -157,7 +157,7 @@
         ("C-c e n" . flymake-goto-next-error)
         ("C-c e p" . flymake-goto-prev-error))
   :hook
-  (((c-mode c-ts-mode c++-mode c++-ts-mode elixir-mode elixir-ts-mode python-mode) . eglot-ensure)))
+  (((c-mode c-ts-mode c++-mode c++-ts-mode elixir-mode elixir-ts-mode python-mode racket-mode) . eglot-ensure)))
 
 (use-package flymake
   :bind
