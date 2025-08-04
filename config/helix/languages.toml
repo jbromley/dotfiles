@@ -1,12 +1,10 @@
-[language-server]
-clangd = { command = "clangd", args=["--compile-commands-dir=compile_commands_directory"] }
-
 [[language]]
 name = "python"
 auto-format = true
 
-[language-server.elixir-ls.config]
-elixirLS.dialyzerEnabled = true
+[[language]]
+name = "elixir"
+text-width = 100
 
 [[language]]
 name = "xml"
@@ -16,6 +14,9 @@ file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd",
 name = "yaml"
 file-types = ["yml", "yaml", "rviz"]
 
-[[language]]
-name = "cpp"
-indent = { tab-width = 4, unit = " " }
+[language-server.clangd]
+command = "clangd"
+args=["--compile-commands-dir=."]
+
+[language-server.elixir-ls.config]
+elixirLS.dialyzerEnabled = true
