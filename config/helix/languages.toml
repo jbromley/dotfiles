@@ -1,22 +1,51 @@
+# Arduino
 [[language]]
-name = "python"
+name = "arduino"
+scope = "source.ino"
+injection-regex = "arduino"
+file-types = ["ino"]
+comment-tokens = "//"
+block-comment-tokens = {start="/*", end="*/"}
+indent = { tab-width = 2, unit = "  " }
+formatter = { command = "clang-format" , args = ["--style=llvm", "%{buffer_name}"]}
+language-servers = [ "arduino-lsp" ]
+
+[language-server.arduino-lsp]
+command = "arduino-language-server"
+args = ["-clangd", "/usr/lib/llvm-15/bin/clangd", "-cli", "/bin/arduino-cli",
+        "-cli-config", "~/.arduino15/arduino-cli.yaml", "-fqbn", "arduino:avr:uno"]
+required-root-patterns = ["*.ino"]
+
+# C++
+[[language]]
+name = "cpp"
 auto-format = true
-
-[[language]]
-name = "elixir"
-text-width = 100
-
-[[language]]
-name = "xml"
-file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd", "gml", "xaml", "gir", "xacro"]
-
-[[language]]
-name = "yaml"
-file-types = ["yml", "yaml", "rviz"]
+formatter = {command = "clang-format", args=["--style=llvm", "%{buffer_name}"]}
 
 [language-server.clangd]
 command = "clangd"
 args=["--compile-commands-dir=."]
 
+# Elixir
+[[language]]
+name = "elixir"
+text-width = 100
+
 [language-server.elixir-ls.config]
-elixirLS.dialyzerEnabled = true
+config = { elixirLS.dialyzerEnabled = true }
+
+# Python
+[[language]]
+name = "python"
+auto-format = true
+
+# XML
+[[language]]
+name = "xml"
+file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd", "gml", "xaml", "gir", "xacro"]
+
+# YAML
+[[language]]
+name = "yaml"
+file-types = ["yml", "yaml", "rviz"]
+
