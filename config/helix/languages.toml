@@ -1,20 +1,20 @@
 # Arduino
 [[language]]
 name = "arduino"
-scope = "source.ino"
+scope = "source.arduino"
 injection-regex = "arduino"
 file-types = ["ino"]
-comment-tokens = "//"
-block-comment-tokens = {start="/*", end="*/"}
+roots = ["sketch.yaml"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "clang-format" , args = ["--style=llvm", "%{buffer_name}"]}
 language-servers = [ "arduino-lsp" ]
 
 [language-server.arduino-lsp]
 command = "arduino-language-server"
-args = ["-clangd", "/usr/lib/llvm-15/bin/clangd", "-cli", "/bin/arduino-cli",
-        "-cli-config", "~/.arduino15/arduino-cli.yaml", "-fqbn", "arduino:avr:uno"]
-required-root-patterns = ["*.ino"]
+
+[[grammar]]
+name = "arduino"
+source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", rev = "ce02903e3ae74c729e9415dc32c276447b1c8afd" }
 
 # C++
 [[language]]
