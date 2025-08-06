@@ -175,7 +175,7 @@ return {
 		font_size = 10.0,
 	},
 
-	font = wezterm.font("JetBrainsMono Nerd Font"),
+	font = wezterm.font("Atkinson Hyperlegible Mono"),
 	font_size = 10.0,
 
 	tab_bar_at_bottom = true,
