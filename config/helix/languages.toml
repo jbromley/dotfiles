@@ -9,6 +9,8 @@ scope = "source.arduino"
 injection-regex = "arduino"
 file-types = ["ino"]
 roots = ["sketch.yaml"]
+comment-tokens = "//"
+block-comment-tokens = {start = "/*", end = "*/"}
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "clang-format" , args = ["--style=llvm", "%{buffer_name}"]}
 language-servers = [ "arduino-language-server" ]
@@ -20,8 +22,11 @@ source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", 
 # C++
 [[language]]
 name = "cpp"
+file-types = ["cc", "hh", "c++", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", "ixx", "txx", "C", "H", "cu", "cuh", "cppm", "h++", "ii", "inl", { glob = ".hpp.in" }, { glob = ".h.in" }]
+comment-token = ["//", "///", "//!"]
+block-comment-tokens = [{start = "/*", end = "*/"}, {start = "/**", end = "*/"}, {start = "/*!", end = "*/"}]
 auto-format = true
-formatter = {command = "clang-format", args=["--style=llvm", "%{buffer_name}"]}
+formatter = {command = "clang-format", args=["--style=llvm"]}
 
 [language-server.clangd]
 command = "clangd"
