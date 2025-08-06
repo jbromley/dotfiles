@@ -7,7 +7,7 @@
 
 #: Colors for selected text while grabbing.
 
-# cursor #ad7fa8
+cursor #FF00FF
 
 #: Cursor color while grabbing.
 
