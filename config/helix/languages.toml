@@ -1,4 +1,8 @@
 # Arduino
+[language-server.arduino-language-server]
+command = "arduino-language-server"
+args = ["-log", "-logpath", "/tmp"]
+
 [[language]]
 name = "arduino"
 scope = "source.arduino"
@@ -7,10 +11,7 @@ file-types = ["ino"]
 roots = ["sketch.yaml"]
 indent = { tab-width = 2, unit = "  " }
 formatter = { command = "clang-format" , args = ["--style=llvm", "%{buffer_name}"]}
-language-servers = [ "arduino-lsp" ]
-
-[language-server.arduino-lsp]
-command = "arduino-language-server"
+language-servers = [ "arduino-language-server" ]
 
 [[grammar]]
 name = "arduino"
@@ -24,7 +25,6 @@ formatter = {command = "clang-format", args=["--style=llvm", "%{buffer_name}"]}
 
 [language-server.clangd]
 command = "clangd"
-args=["--compile-commands-dir=."]
 
 # Elixir
 [[language]]
