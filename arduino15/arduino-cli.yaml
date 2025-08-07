@@ -1,0 +1,5 @@
+directories:                                                                                                                                                                                                                                                                           
+  user: /home/jay/Code/Arduino
+board_manager:
+    additional_urls:
+        - https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json
