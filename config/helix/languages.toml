@@ -44,6 +44,12 @@ config = { elixirLS.dialyzerEnabled = true }
 name = "python"
 auto-format = true
 
+# Haskell
+[[language]]
+name = "haskell"
+auto-format = true
+formatter = {command = "hindent", args = ["--line-length", "100"]}
+
 # XML
 [[language]]
 name = "xml"
