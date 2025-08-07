@@ -1,4 +1,12 @@
 theme = "dracula"
 
+[editor]
+cursorline = true
+color-modes = true
+trim-trailing-whitespace = true
+
+[editor.statusline]
+center = ["file-type"]
+
 [keys.select]
 "C-`" = "switch_to_uppercase"
