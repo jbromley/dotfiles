@@ -20,7 +20,7 @@ source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", 
 # C++
 [[language]]
 name = "cpp"
-auto-format = true
+auto-format = false
 formatter = {command = "clang-format", args=["--style=llvm", "%{buffer_name}"]}
 
 [language-server.clangd]
