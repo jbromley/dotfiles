@@ -7,7 +7,7 @@
 
 #: Colors for selected text while grabbing.
 
-cursor #FF00FF
+cursor #ff00ff
 
 #: Cursor color while grabbing.
 
@@ -15,7 +15,7 @@ cursor #FF00FF
 
 #: Key shortcuts {{{
 
-# map q      quit
+map q      quit
 
 #: Exit the grabber without copying anything.
 

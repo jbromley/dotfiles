@@ -25,8 +25,8 @@ name = "cpp"
 file-types = ["cc", "hh", "c++", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", "ixx", "txx", "C", "H", "cu", "cuh", "cppm", "h++", "ii", "inl", { glob = ".hpp.in" }, { glob = ".h.in" }]
 comment-token = ["//", "///", "//!"]
 block-comment-tokens = [{start = "/*", end = "*/"}, {start = "/**", end = "*/"}, {start = "/*!", end = "*/"}]
-auto-format = true
-formatter = {command = "clang-format", args=["--style=llvm"]}
+auto-format = false
+formatter = {command = "clang-format", args=["--style=file"]}
 
 [language-server.clangd]
 command = "clangd"
