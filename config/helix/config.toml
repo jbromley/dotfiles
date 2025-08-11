@@ -10,3 +10,10 @@ center = ["file-type"]
 
 [keys.select]
 "C-`" = "switch_to_uppercase"
+
+[keys.normal]
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-h = "jump_view_left"
+C-l = "jump_view_right"
+
