@@ -71,11 +71,11 @@ autoload bashcompinit; bashcompinit
 
 # Fzf
 source <(fzf --zsh)
-bindkey -s '^V' 'nvim $(fzf --preview "bat --color always {}");^M'
-# bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
+bindkey -s '^V' 'hx $(fzf --preview "bat --color always {}");^M'
+bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
 
 # zoxide
-[ -x /usr/bin/zoxide ] || [ -x /usr/local/bin/zoxide ] && eval "$(zoxide init zsh)" 
+[ -x /usr/bin/zoxide ] || [ -x /usr/local/bin/zoxide ] && eval "$(zoxide init zsh)"
 
 # Dircolors
 [ -f ${HOME}/.dircolors ] && eval "$(dircolors -b ${HOME}/.dircolors)"
@@ -129,14 +129,14 @@ function p() {
 }
 
 # Open a file in nvim using an argument or fzf
-function n() { 
-  nvim "${1:-"$(fzf)"}" 
-} 
+function h() {
+  hx "${1:-"$(fzf)"}"
+}
 
 # Open a file in emacs using an argument or fzf
-function e() { 
+function e() {
   emacs "${1:-"$(fzf)"}" &
-} 
+}
 
 # Run a program under NVidia when in hybrid graphics mode
 function nvrun() {
