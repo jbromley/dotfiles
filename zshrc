@@ -167,6 +167,7 @@ function yy() {
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		cd -- "$cwd" || exit
 	fi
+  trap - RETURN ERR
 }
 
 # Prompt
