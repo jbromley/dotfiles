@@ -34,7 +34,7 @@ setopt HIST_REDUCE_BLANKS
 # Plugins
 zmodload zsh/zutil
 plugin_dir=${HOME}/.zsh
-fpath=("${plugin_dir}" "$fpath")
+fpath=("${plugin_dir}" ${fpath})
 
 # bd
 # source ${plugin_dir}/zsh-bd/bd.zsh
@@ -89,7 +89,7 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 # Dircolors
-[ -f "HOME}/.dircolors" ] && eval "$(dircolors -b ${HOME}/.dircolors)"
+[ -f "${HOME}/.dircolors" ] && eval "$(dircolors -b -- "${HOME}/.dircolors")"
 
 # Prompt
 function set_term_title() {
