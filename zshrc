@@ -28,39 +28,46 @@ setopt HIST_NO_STORE
 setopt HIST_REDUCE_BLANKS
 
 # Aliases
-[ -f ${HOME}/.aliases ] && source ${HOME}/.aliases
+# shellcheck source=/dev/null
+[ -f "${HOME}/.aliases" ] && source "${HOME}/.aliases"
 
 # Plugins
 zmodload zsh/zutil
 plugin_dir=${HOME}/.zsh
-fpath=(${plugin_dir} $fpath)
+fpath=("${plugin_dir}" "$fpath")
 
 # bd
 # source ${plugin_dir}/zsh-bd/bd.zsh
 
 # Fish-like auto-suggestions
 zcompile ~/.zsh/zsh-autosuggestions/{zsh-autosuggestions.zsh,src/**/*.zsh}
-source ${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh
+# shellcheck source=/dev/null
+source "${plugin_dir}/zsh-autosuggestions/zsh-autosuggestions.zsh"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#606060"
 
 # Syntax highlighting
 zcompile ~/.zsh/zsh-syntax-highlighting/{zsh-syntax-highlighting.zsh,highlighters/main/*.zsh}
-source ${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# shellcheck source=/dev/null
+source "${plugin_dir}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Completion
 
 # ROS 2 colcon
 colcon_comp=/usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
+# shellcheck source=/dev/null
 [ -f ${colcon_comp} ] && source ${colcon_comp}
 
 ros2_arg_comp=${ROS_DIR}/share/ros2cli/environment/ros2-argcomplete.zsh
-[ -f ${ros2_arg_comp} ] && source ${ros2_arg_comp}
+# shellcheck source=/dev/null
+[ -f "${ros2_arg_comp}" ] && source "${ros2_arg_comp}"
 
 # zsh completion sources
-fpath=(${plugin_dir}/zsh-completions/src $fpath)
+# shellcheck disable=SC2128,SC2206
+fpath=("${plugin_dir}/zsh-completions/src" ${fpath})
 autoload -Uz compinit; compinit
 _comp_options+=(globdots)
-source ${plugin_dir}/completion.zsh
+# shellcheck source=/dev/null
+source "${plugin_dir}/completion.zsh"
 
 # bash completions
 autoload bashcompinit; bashcompinit
@@ -70,7 +77,9 @@ autoload bashcompinit; bashcompinit
 #
 
 # Fzf
+# shellcheck source=/dev/null
 source <(fzf --zsh)
+# shellcheck disable=SC2016
 bindkey -s '^V' 'hx $(fzf --preview "bat --color always {}");^M'
 bindkey -s '^W' 'fzf --preview="bat --color always {}" --bind shift-up:preview-page-up,shift-down:preview-page-down;^M'
 
@@ -80,7 +89,7 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 # Dircolors
-[ -f ${HOME}/.dircolors ] && eval "$(dircolors -b ${HOME}/.dircolors)"
+[ -f "HOME}/.dircolors" ] && eval "$(dircolors -b ${HOME}/.dircolors)"
 
 # Prompt
 function set_term_title() {
@@ -90,6 +99,8 @@ function set_term_title() {
 precmd_functions+=(set_term_title)
 
 # Set up atuin
+# shellcheck disable=SC1091
+source "${HOME}/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
 #
@@ -101,7 +112,7 @@ function psinfo() {
     if [ -z "$1" ]; then
         echo "Usage: psinfo <regex>"
     else
-        ps -ef | grep -E "$1" | grep -v grep
+        pgrep -a "$1"
     fi
 }
 
@@ -110,7 +121,8 @@ function zp() {
     if [ -z "$1" ]; then
         echo "Usage: zp DIRECTORY"
     else
-        pushd $(zoxide query "$1")
+        dir=$(zoxide query "$1") || exit
+        pushd "${dir}" || exit
     fi
 }
 
@@ -118,10 +130,10 @@ function zp() {
 function p() {
     case "$#" in
     0)
-        popd
+        popd || exit
         ;;
     1)
-        pushd "$1"
+        pushd "$1" || exit
         ;;
     *)
         echo "p [DIR]"
@@ -147,12 +159,14 @@ function nvrun() {
 
 # Change to directory when exiting yazi
 function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  set -Eeuo pipefail
+	local tmp
+	tmp="$(mktemp -t yazi-cwd.XXXXXX)" || exit
+  trap 'rm -rf -- "${tmp}"' ERR RETURN
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
+		cd -- "$cwd" || exit
 	fi
-	rm -f -- "$tmp"
 }
 
 # Prompt
