@@ -19,10 +19,10 @@ if status is-interactive
     abbr --add psg pgrep -a
 
     # Commands to run in interactive sessions can go here
-    source $HOME/.atuin/bin/env.fish
-    atuin init fish | source
     fzf --fish | source
     eval "$(zoxide init fish)"
     mise activate fish | source
+    source $HOME/.atuin/bin/env.fish
+    atuin init fish | source
     eval "$(starship init fish)"
 end
