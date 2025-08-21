@@ -18,6 +18,16 @@ if status is-interactive
     abbr --add ardcli arduino-cli
     abbr --add psg pgrep -a
 
+    # fzf preview function
+    function __fzf_preview --description 'side-by-side fzf file preview'
+        set file $argv[1]
+        if test -d "$file"
+            command -v tree >/dev/null; and tree -C -L 2 -- "$file" | head -n 200
+            return
+        end
+        bat --color=always --style=plain --paging=never --line-range=:300 -- "$file" 2>/dev/null
+    end
+
     # Commands to run in interactive sessions can go here
     fzf --fish | source
     eval "$(zoxide init fish)"
