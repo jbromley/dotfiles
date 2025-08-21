@@ -59,3 +59,11 @@ file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd",
 [[language]]
 name = "yaml"
 file-types = ["yml", "yaml", "rviz"]
+
+# JSON
+[language-server]
+vscode-json-languageserver = { command = "vscode-json-languageserver", args = ["--stdio"], config = { provideFormatter = true, json = { validate = { enable = true } } } }
+
+[[language]]
+name = "json"
+language-servers = [ "vscode-json-languageserver" ]
