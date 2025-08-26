@@ -1,6 +1,7 @@
 # Abbreviations
 abbr --add b bat
 abbr --add bc bc -ql
+abbr --add d diff --color -uw
 abbr --add gadd git add
 abbr --add gco git checkout
 abbr --add gcom git commit
