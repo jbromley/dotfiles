@@ -1,4 +1,4 @@
-function zp --description 'push a directory while using zoxide'
+function zoxide_push --description 'push a directory while using zoxide'
     set args (count $argv)
     if test $args -eq 1
         set dir (zoxide query $argv[1])

@@ -1,4 +1,4 @@
-function p --description 'push or pop a directory'
+function push_or_pop --description 'push or pop a directory'
     switch (count $argv)
         case 0
             popd

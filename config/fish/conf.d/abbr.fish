@@ -1,4 +1,7 @@
 # Abbreviations
+abbr --add -- - cd -
+abbr --add -- ... cd ../..
+abbr --add -- .... cd ../../..
 abbr --add b bat
 abbr --add bc bc -ql
 abbr --add d diff --color -uw
@@ -15,3 +18,6 @@ abbr --add dboxenter distrobox enter
 abbr --add dboxstop distrobox stop
 abbr --add ardcli arduino-cli
 abbr --add psg pgrep -a
+abbr --add o xdg-open
+abbr --add p push_or_pop
+abbr --add zp zoxide_push
