@@ -11,13 +11,13 @@ file-types = ["ino"]
 roots = ["sketch.yaml"]
 comment-tokens = "//"
 block-comment-tokens = {start = "/*", end = "*/"}
-indent = { tab-width = 2, unit = "  " }
-formatter = { command = "clang-format" , args = ["--style=llvm", "%{buffer_name}"]}
-language-servers = [ "arduino-language-server" ]
+indent = {tab-width = 2, unit = "  "}
+formatter = {command = "clang-format" , args = ["--style=llvm", "%{buffer_name}"]}
+language-servers = ["arduino-language-server"]
 
 [[grammar]]
 name = "arduino"
-source = { git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", rev = "ce02903e3ae74c729e9415dc32c276447b1c8afd" }
+source = {git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", rev = "ce02903e3ae74c729e9415dc32c276447b1c8afd"}
 
 # C++
 [[language]]
@@ -37,7 +37,7 @@ name = "elixir"
 text-width = 100
 
 [language-server.elixir-ls.config]
-config = { elixirLS.dialyzerEnabled = true }
+config = {elixirLS.dialyzerEnabled = true}
 
 # Python
 [[language]]
@@ -49,6 +49,12 @@ auto-format = true
 name = "haskell"
 auto-format = true
 formatter = {command = "hindent", args = ["--line-length", "100"]}
+
+# Markdown
+[[language]]
+name = "markdown"
+formatter = {command = "dprint", args = ["fmt", "--stdin", "md"]}
+auto-format = false
 
 # XML
 [[language]]
