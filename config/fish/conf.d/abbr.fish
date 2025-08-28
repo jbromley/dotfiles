@@ -10,6 +10,7 @@ abbr --add gco git checkout
 abbr --add gcom git commit
 abbr --add gp git pull
 abbr --add gP git push
+abbr --add gst git status
 abbr --add lzg lazygit
 abbr --add vimg kitten icat
 abbr --add kfont kitten choose-fonts
