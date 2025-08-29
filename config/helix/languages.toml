@@ -65,6 +65,8 @@ file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd",
 [[language]]
 name = "yaml"
 file-types = ["yml", "yaml", "rviz"]
+formatter = {command = "dprint", args = ["fmt", "--stdin", "md"]}
+auto-format = false
 
 # JSON
 [language-server]
