@@ -44,6 +44,12 @@ config = {elixirLS.dialyzerEnabled = true}
 name = "python"
 auto-format = true
 
+# Bash
+[[language]]
+name="bash"
+indent = {tab-width = 4, unit = "    "}
+formatter = {command = "shfmt", args = ["-i", "4", "-"]}
+
 # Haskell
 [[language]]
 name = "haskell"
