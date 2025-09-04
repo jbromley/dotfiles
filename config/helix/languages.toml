@@ -61,6 +61,7 @@ formatter = {command = "hindent", args = ["--line-length", "100"]}
 name = "markdown"
 formatter = {command = "dprint", args = ["fmt", "--stdin", "md"]}
 auto-format = false
+rulers = [80]
 
 # XML
 [[language]]
