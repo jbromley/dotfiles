@@ -40,6 +40,10 @@ text-width = 100
 config = {elixirLS.dialyzerEnabled = true}
 
 # Python
+[language-server.pylsp.config.pylsp.plugins]
+black = { enabled = true }
+rope = { enabled = true }
+
 [[language]]
 name = "python"
 auto-format = false
