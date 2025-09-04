@@ -1,4 +1,15 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-[manager]
+[mgr]
 ratio = [ 1, 3, 3 ]
+
+[opener]
+play = [
+  { run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+edit = [
+  { run = '$EDITOR "$@"', block = true, for = "unix" },
+]
+open = [
+  { run = 'xdg-open "$@"', desc = "Open" }
+]
