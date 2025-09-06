@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Exec=firefox -P Home %u
+Exec=firefox -P home %u
 Terminal=false
 X-MultipleArgs=false
 Icon=firefox
