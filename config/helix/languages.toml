@@ -63,13 +63,18 @@ formatter = {command = "hindent", args = ["--line-length", "100"]}
 # Markdown
 [[language]]
 name = "markdown"
+
 formatter = {command = "dprint", args = ["fmt", "--stdin", "md"]}
 auto-format = false
 rulers = [80]
 
 # XML
+[language-server.lemminx]
+command = "lemminx"
+
 [[language]]
 name = "xml"
+language-servers = ["lemminx"]
 file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd", "gml", "xaml", "gir", "xacro"]
 
 # YAML
