@@ -12,7 +12,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 9
+font pango:Atkinson Hyperlegible 10
 
 # Gaps
 gaps inner 1px
@@ -54,7 +54,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl -p playerctld previous
 bindsym XF86AudioStop exec --no-startup-id playerctl -p playerctld pause
 
 # Use pactl to adjust volume in PulseAudio.
-exec --no-startup-id pavol blip
+exec --no-startup-id pavol init
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pavol up 5 && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pavol down 5 && $refresh_i3status
@@ -214,5 +214,6 @@ for_window [class="Spotify"] floating enable
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+        font pango:Atkinson Hyperlegible Mono 10
         status_command i3status
 }
