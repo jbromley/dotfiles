@@ -1,22 +1,26 @@
 #!/bin/bash
 
 action="$1"
+amount="${2:-0}"
 
 case "${action}" in
-    down)
-	pactl set-sink-volume @DEFAULT_SINK@ -2%
-	;;
-    up)
-	pactl set-sink-volume @DEFAULT_SINK@ +2%
-	;;
-    mute)
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
-	;;
-	mutemic)
-	pactl set-source-mute @DEFAULT_SOURCE@ toggle
-	;;
-    *)
-	exit 1
-	;;
+blip)
+    pactl upload-sample /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga blip
+    ;;
+down)
+    pactl set-sink-volume @DEFAULT_SINK@ -${amount}%
+    ;;
+up)
+    pactl set-sink-volume @DEFAULT_SINK@ +${amount}%
+    ;;
+mute)
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    ;;
+mutemic)
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    ;;
+*)
+    exit 1
+    ;;
 esac
-ogg123 -q /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+pactl play-sample blip
