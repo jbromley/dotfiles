@@ -48,17 +48,18 @@ exec --no-startup-id nm-applet
 
 # Setup up playctl daemon for multimedia control.
 exec_always --no-startup-id playctld daemon
-bindsym XF86AudioPlay   exec --no-startup-id playerctl -p playerctld play-pause
-bindsym XF86AudioNext   exec --no-startup-id playerctl -p playerctld next
-bindsym XF86AudioPrev   exec --no-startup-id playerctl -p playerctld previous
-bindsym XF86AudioStop   exec --no-startup-id playerctl -p playerctld pause
+bindsym XF86AudioPlay exec --no-startup-id playerctl -p playerctld play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl -p playerctld next
+bindsym XF86AudioPrev exec --no-startup-id playerctl -p playerctld previous
+bindsym XF86AudioStop exec --no-startup-id playerctl -p playerctld pause
 
 # Use pactl to adjust volume in PulseAudio.
+exec --no-startup-id pavol blip
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pavol up 5 && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pavol down 5 && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pavol mute && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pavol mutemic && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
