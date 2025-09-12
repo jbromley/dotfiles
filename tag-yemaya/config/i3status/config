@@ -37,7 +37,7 @@ battery all {
 }
 
 disk "/" {
-        format = "/ %avail"
+        format = "🖴 / %avail"
 }
 
 load {
@@ -51,8 +51,8 @@ memory {
 }
 
 volume master {
-        format = "🔊 %volume"
-        format_muted = "🔊 <span foreground='#888888'>M %volume</span>"
+        format = " %volume"
+        format_muted = "<span foreground='#888888'>  %volume</span>"
         device = "default"
         mixer = "Master"
 }
