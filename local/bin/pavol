@@ -12,6 +12,9 @@ case "${action}" in
     mute)
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 	;;
+	mutemic)
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+	;;
     *)
 	exit 1
 	;;
