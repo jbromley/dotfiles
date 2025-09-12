@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
-screenshot=$(mktemp --suffix=.png)
-lockscreen=$(mktemp --suffix=.png)
-scrot --silent --overwrite ${screenshot}
-convert -grayscale Rec709Luminance -scale 12.5% -scale 800% ${screenshot} ${lockscreen}
-rm ${screenshot}
-i3lock -e -i ${lockscreen}
+# Take a screen shot, pixelate it, and use it as the lock screen.
+screensize=$(xrandr | grep -F '*' | mawk -F' ' '{print($1)}')
+scrot --silent -F - |
+    convert - -scale 12.5% -scale 800% RGB:- |
+    i3lock -e --raw "${screensize}:rgb" --image /dev/stdin
