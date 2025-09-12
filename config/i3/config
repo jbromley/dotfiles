@@ -23,13 +23,13 @@ gaps outer 1px
 #font pango:DejaVu Sans Mono 8
 
 # Set the wallpaper
-exec --no-startup-id sh -c '[[ -x ${HOME}/.fehbg ]] && ${HOME}/,fehbg'
+exec --no-startup-id sh -c '[[ -x ${HOME}/.fehbg ]] && ${HOME}/.fehbg'
 
 # Set the Caps Lock key to be VoidSymbol
 exec_always --no-startup-id sh -c 'xmodmap ${HOME}/.Xmodmap'
 
 # Set up Natural Scrolling for the mouse.
-exec_always --no-startup-id sh -c 'xinput set-prop "Logitech M510" "libinput Natural Scrolling Enabled" 1'
+exec_always --no-startup-id ${HOME}/.local/bin/config-pointer.sh
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
