@@ -4,7 +4,7 @@ action="$1"
 amount="${2:-0}"
 
 case "${action}" in
-blip)
+init)
     pactl upload-sample /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga blip
     ;;
 down)
