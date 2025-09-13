@@ -3,4 +3,4 @@
 screensize=$(xrandr | grep -F '*' | mawk -F' ' '{print($1)}')
 scrot --silent -F - |
     convert - -scale 12.5% -scale 800% RGB:- |
-    i3lock -e --raw "${screensize}:rgb" --image /dev/stdin
+    i3lock -e -f -n --raw "${screensize}:rgb" --image /dev/stdin
