@@ -67,8 +67,8 @@ my_keys = {
 	{ key = 't',          mods = 'LEADER',     action = act.SpawnTab 'CurrentPaneDomain' },
 	{ key = 'n',          mods = 'LEADER',     action = act.SpawnWindow },
 
-	{ key = '5',          mods = 'ALT|CTRL',   action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
-	{ key = '\'',         mods = 'ALT|CTRL',   action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+	{ key = '%',          mods = 'SHIFT|LEADER',   action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+	{ key = '\"',         mods = 'SHIFT|LEADER',   action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
 
 	{ key = 'Enter',      mods = 'LEADER',     action = act.ToggleFullScreen },
 	{ key = 'z',          mods = 'LEADER',     action = act.TogglePaneZoomState },
@@ -132,14 +132,14 @@ return {
 	term = "wezterm",
 	initial_cols = 120,
 	initial_rows = 50,
-	color_scheme = "Dracula (Official)",
+	-- color_scheme = "Dracula (Official)",
 
 	window_frame = {
 		font_size = 10.0,
 	},
 
 	font = wezterm.font("Atkinson Hyperlegible Mono"),
-	font_size = 10.0,
+	font_size = 11.0,
 
 	tab_bar_at_bottom = true,
 	tab_max_width = 256,
