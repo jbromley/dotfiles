@@ -31,7 +31,8 @@ exec --no-startup-id picom
 exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 
 # Set the Caps Lock key to be VoidSymbol
-exec --no-startup-id sh -c 'xmodmap ${HOME}/.Xmodmap'
+# exec --no-startup-id sh -c 'xmodmap ${HOME}/.Xmodmap'
+exec --no-startup-id setxkbmap -option caps:none
 
 # Set up Natural Scrolling for the mouse.
 exec --no-startup-id ${HOME}/.local/bin/config-pointer.sh
