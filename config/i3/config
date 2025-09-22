@@ -30,9 +30,9 @@ exec --no-startup-id picom
 # Set the wallpaper
 exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 
-# Set the Caps Lock key to be VoidSymbol
+# Set the Caps Lock key to be Super_L
 # exec --no-startup-id sh -c 'xmodmap ${HOME}/.Xmodmap'
-exec --no-startup-id setxkbmap -option caps:none
+exec --no-startup-id setxkbmap -option caps:super
 
 # Set up Natural Scrolling for the mouse.
 exec --no-startup-id ${HOME}/.local/bin/config-pointer.sh
