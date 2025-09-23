@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+if [[ "$1" == "--select=capture" ]]; then
+    scrot --select=capture --file "${HOME}/Pictures/Screenshots/%FT%T.png" "$@"
+else
+    scrot --file "${HOME}/Pictures/Screenshots/%FT%T.png" "$@" &
+fi
+pactl play-sample shutter &

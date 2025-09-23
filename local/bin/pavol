@@ -6,6 +6,7 @@ amount="${2:-0}"
 case "${action}" in
 init)
     pactl upload-sample /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga blip
+    pactl upload-sample /usr/share/sounds/freedesktop/stereo/screen-capture.oga shutter
     ;;
 down)
     pactl set-sink-volume @DEFAULT_SINK@ -${amount}%

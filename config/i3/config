@@ -98,9 +98,9 @@ bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 # Select an open window
 
 # Take screenshots - whole screen, focused window, selected region
-bindsym Print exec --no-startup-id scrot --file ${HOME}/Pictures/Screenshots/%FT%T.png
-bindsym Shift+Print exec --no-startup-id scrot --focused --file ${HOME}/Pictures/Screenshots/%FT%T.png
-bindsym --release Ctrl+Print exec --no-startup-id scrot --select=capture --file ${HOME}/Pictures/Screenshots/%FT%T.png
+bindsym Print exec --no-startup-id screenshot
+bindsym Shift+Print exec --no-startup-id screenshot --focused
+bindsym --release Ctrl+Print exec --no-startup-id screenshot --select=capture
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
