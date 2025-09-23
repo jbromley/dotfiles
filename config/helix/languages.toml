@@ -32,22 +32,13 @@ formatter = {command = "clang-format", args=["--style=file"]}
 command = "clangd"
 
 # Elixir
-[language-server.expert]
-command = "expert"
-
 [[language]]
 name = "elixir"
-language-servers = ["expert"]
 text-width = 100
 rulers = [100]
 
 [language-server.elixir-ls.config]
 config = {elixirLS.dialyzerEnabled = true}
-
-# Heex
-[[language]]
-name = "heex"
-language-servers = ["expert"]
 
 # Python
 [language-server.pylsp.config.pylsp.plugins]
