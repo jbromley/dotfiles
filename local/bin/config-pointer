@@ -18,7 +18,7 @@ declare -A device_config
 device_config=(
     ["Logitech M510"]="configure_mouse"
     ["Logitech USB Receiver Mouse"]="configure_mouse"
-    ["ETPS/2 Elantech Touchpad"]="configure_trackpad"
+    ["ELAN0412:00 04F3:32A3 Touchpad"]="configure_trackpad"
 )
 
 # Store the output of `xinput` once

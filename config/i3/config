@@ -38,7 +38,7 @@ exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 exec --no-startup-id setxkbmap -option caps:super
 
 # Set up Natural Scrolling for the mouse.
-exec --no-startup-id ${HOME}/.local/bin/config-pointer.sh
+exec --no-startup-id ${HOME}/.local/bin/config-pointer
 
 # Start polybar
 exec_always --no-startup-id ${HOME}/.local/bin/polybar-launch.sh
