@@ -9,7 +9,7 @@ LOCK_CMD="loginctl lock-session"
 # Whether to ask for user's confirmation
 enable_confirmation=false
 
-usage="$(basename "$0") [-h] [-c] [-p name] -- display a menu for shutdown, reboot, lock etc.
+usage="$(basename "$0") [-h] [-c] [-p name] -- display a menu for power off, reboot, lock etc.
 
 where:
     -h  show this help text
@@ -36,7 +36,7 @@ declare -a menu
 declare -a cmds
 
 # Menu with keys/commands
-menu=(Lock Logout Suspend Reboot Shutdown)
+menu=(Lock Logout Suspend Reboot "Power off")
 cmds=("${LOCK_CMD}" "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
 menu_nrows=${#menu[@]}
 
