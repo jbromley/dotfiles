@@ -2,6 +2,7 @@
 # Present a rofi menu that allows the user to lock the session, exit i3,
 # suspend, reboot, or power off the machine. Requires systemctl. loginctl is
 # used for locking, though another program can be configured.
+set -Euo pipefail
 
 # Use a custom lock script
 LOCK_CMD="loginctl lock-session"
@@ -36,29 +37,22 @@ declare -a menu
 declare -a cmds
 
 # Menu with keys/commands
-menu=(Lock Logout Suspend Reboot "Power off")
+menu=("Lock" "Log out" "Suspend" "Reboot" "Power off")
 cmds=("${LOCK_CMD}" "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
 menu_nrows=${#menu[@]}
 
 # Menu entries that may trigger a confirmation message
-menu_confirm="Shutdown Reboot Suspend"
+menu_confirm="Power off Reboot Suspend"
 
-launcher_options=(-dmenu -i -lines "${menu_nrows}" -p "${ROFI_TEXT}"
-    "${rofi_colors}" "${ROFI_OPTIONS[@]}")
-rofi_colors=(-bc "${BORDER_COLOR}" -bg "${BG_COLOR}" -fg "${FG_COLOR}"
-    -hlfg "${HLFG_COLOR}" -hlbg "${HLBG_COLOR}")
+launcher_options=(-dmenu -i -lines "${menu_nrows}")
 
 launcher=(rofi "${launcher_options[@]}")
 selection="$(printf '%s\n' "${menu[@]}" | "${launcher[@]}")"
 
 function ask_confirmation() {
-    confirmed=$(echo -e "Yes\nNo" | rofi -dmenu -i -lines 2 -p "${selection}?" \
-        "${rofi_colors}" "${ROFI_OPTIONS[@]}")
-    [ "${confirmed}" == "Yes" ] && confirmed=0
-
-    if [ "${confirmed}" == 0 ]; then
-        i3-msg -q "exec ${menu[${selection}]}"
-    fi
+    local selection="$1"
+    confirmed=$(echo -e "Yes\nNo" | rofi -dmenu -i -lines 2 -p "${selection}?")
+    [ "${confirmed}" == "Yes" ] && return 0 || return 1
 }
 
 function get_index() {
@@ -66,7 +60,7 @@ function get_index() {
     declare -a a
     value="$1"
     shift
-    a=($@)
+    a=("$@")
     for i in "${!a[@]}"; do
         if [[ "${a[$i]}" = "${value}" ]]; then
             echo "${i}"
@@ -75,12 +69,13 @@ function get_index() {
     done
 }
 
-if [[ $? -eq 0 && ! -z ${selection} ]]; then
-    if [[ "${enable_confirmation}" = true &&
-        ${menu_confirm} =~ (^|[[:space:]])"${menu[${selection}]}"($|[[:space:]]) ]]; then
-        ask_confirmation
+if [[ $? -eq 0 && -n ${selection} ]]; then
+    cmdindex=$(get_index "${selection}" "${menu[@]}")
+    if [[ "${enable_confirmation}" = true ]] && [[ ${menu_confirm} =~ $selection ]]; then
+        if ask_confirmation "${selection}"; then
+            echo i3-msg -q "exec ${cmds[${cmdindex}]}"
+        fi
     else
-        cmdindex=$(get_index "${selection}" "${menu[@]}")
-        i3-msg -q "exec ${cmds[${cmdindex}]}"
+        echo i3-msg -q "exec ${cmds[${cmdindex}]}"
     fi
 fi
