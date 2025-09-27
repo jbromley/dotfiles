@@ -21,8 +21,8 @@ client.background       #FFFFFF
 font pango:Atkinson Hyperlegible 10
 
 # Gaps
-gaps inner 1px
-gaps outer 1px
+gaps inner 2px
+gaps outer 2px
 
 # Configure DPMS
 exec_always --no-startup-id xset dpms 300 600 900
@@ -35,7 +35,7 @@ exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 
 # Set the Caps Lock key to be Super_L
 # exec --no-startup-id sh -c 'xmodmap ${HOME}/.Xmodmap'
-exec --no-startup-id setxkbmap -option caps:super
+exec --no-startup-id setxkbmap -layout us,latam -option grp:shifts_toggle -option caps:super
 
 # Set up Natural Scrolling for the mouse.
 exec --no-startup-id ${HOME}/.local/bin/config-pointer
