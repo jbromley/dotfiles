@@ -73,9 +73,9 @@ if [[ $? -eq 0 && -n ${selection} ]]; then
     cmdindex=$(get_index "${selection}" "${menu[@]}")
     if [[ "${enable_confirmation}" = true ]] && [[ ${menu_confirm} =~ $selection ]]; then
         if ask_confirmation "${selection}"; then
-            echo i3-msg -q "exec ${cmds[${cmdindex}]}"
+            i3-msg -q "exec ${cmds[${cmdindex}]}"
         fi
     else
-        echo i3-msg -q "exec ${cmds[${cmdindex}]}"
+        i3-msg -q "exec ${cmds[${cmdindex}]}"
     fi
 fi
