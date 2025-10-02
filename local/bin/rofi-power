@@ -37,7 +37,7 @@ declare -a menu
 declare -a cmds
 
 # Menu with keys/commands
-menu=("Lock" "Log out" "Suspend" "Reboot" "Power off")
+menu=("Lock" "Log out" "Suspend" "Restart" "Power off")
 cmds=("${LOCK_CMD}" "i3-msg exit" "systemctl suspend" "systemctl reboot" "systemctl poweroff")
 menu_nrows=${#menu[@]}
 
