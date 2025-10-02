@@ -27,15 +27,8 @@ gaps outer 2px
 # Configure DPMS
 exec_always --no-startup-id xset dpms 300 600 900
 
-# Run the compositor
-exec --no-startup-id picom
-
 # Set the wallpaper
 exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
-
-# Set the Caps Lock key to be Super_L
-# exec --no-startup-id sh -c 'xmodmap ${HOME}/.Xmodmap'
-exec --no-startup-id setxkbmap -layout us,latam -option grp:shifts_toggle -option caps:super
 
 # Set up Natural Scrolling for the mouse.
 exec --no-startup-id ${HOME}/.local/bin/config-pointer
@@ -45,7 +38,7 @@ exec_always --no-startup-id ${HOME}/.local/bin/polybar-launch.sh
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
+# exec --no-startup-id dex --autostart --environment i3
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -54,9 +47,12 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --ignore-sleep --transfer-sleep-lock -- fuzzylock
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+# Start system-tray apps
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+
+# Set the Caps Lock key to be Super_L
+exec_always --no-startup-id "setxkbmap -layout us,latam -option grp:shifts_toggle -option caps:super"
 
 # Setup up playctl daemon for multimedia control.
 exec_always --no-startup-id playctld daemon
