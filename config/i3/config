@@ -31,7 +31,7 @@ exec_always --no-startup-id xset dpms 300 600 900
 exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 
 # Start the compositor.
-exec --no-startup_id picom
+exec --no-startup-id picom
 
 # Set up natural scrolling for mouse and trackpads.
 exec --no-startup-id ${HOME}/.local/bin/config-pointer
