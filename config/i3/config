@@ -30,7 +30,10 @@ exec_always --no-startup-id xset dpms 300 600 900
 # Set the wallpaper
 exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 
-# Set up Natural Scrolling for the mouse.
+# Start the compositor.
+exec --no-startup_id picom
+
+# Set up natural scrolling for mouse and trackpads.
 exec --no-startup-id ${HOME}/.local/bin/config-pointer
 
 # Start polybar
@@ -52,7 +55,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # Set the Caps Lock key to be Super_L
-exec_always --no-startup-id "setxkbmap -layout us,latam -option grp:shifts_toggle -option caps:super"
+exec_always --no-startup-id sh -c "setxkbmap -layout us,latam -option grp:shifts_toggle -option caps:super"
 
 # Setup up playctl daemon for multimedia control.
 exec_always --no-startup-id playctld daemon
