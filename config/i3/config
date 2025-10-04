@@ -1,5 +1,4 @@
 # i3 config file (v4)
-#
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 
@@ -42,9 +41,6 @@ exec_always --no-startup-id ${HOME}/.local/bin/polybar-launch.sh
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 # exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -91,10 +87,8 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 # Launch a program by executable name
 bindsym $mod+p exec --no-startup-id rofi -show run
 
-# Select a window
-bindsym $mod+Shift+w exec --no-startup-id rofi -show window
-
 # Select an open window
+bindsym $mod+Shift+w exec --no-startup-id rofi -show window
 
 # Take screenshots - whole screen, focused window, selected region
 bindsym Print exec --no-startup-id screenshot
@@ -108,10 +102,10 @@ bindsym --release Ctrl+Print exec --no-startup-id screenshot --select=capture
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -120,10 +114,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -132,10 +126,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Ctrl+h split h
+bindsym $mod+apostrophe split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Ctrl+v split v
+bindsym $mod+equal split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -245,6 +241,7 @@ for_window [class="gnome-calculator"] floating enable
 for_window [class="Spotify"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Virt-manager"] floating enable
+for_window [title="Event Tester"] floating enable
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
