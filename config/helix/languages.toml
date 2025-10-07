@@ -43,6 +43,7 @@ config = {elixirLS.dialyzerEnabled = true}
 # Python
 [language-server.pylsp.config.pylsp.plugins]
 black = {enabled = true}
+flake8 = {enabled = true}
 rope = {enabled = true}
 pycodestyle = {enabled = true, maxLineLength = 88, ignore = ["E203", "W503"]}
 
