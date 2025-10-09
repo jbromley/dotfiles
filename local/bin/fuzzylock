@@ -1,12 +1,12 @@
 #! /usr/bin/env bash
 # Take a screen shot, pixelate it, and use it as the lock screen.
-declare -a effects
-effects=("-scale 12.5% -scale 800%" \
-    "-scale 12.5% -colorspace Gray -scale 800%" \
-    "-spread 4" \
-    "-spread 4 -colorspace Gray")
-idx=$((RANDOM % ${#effects[@]}))
-effect="${effects[$idx]}"
+# declare -a effects
+# effects=("-scale 12.5% -scale 800%" \
+#     "-scale 12.5% -colorspace Gray -scale 800%" \
+#     "-spread 8" \
+#     "-spread 8 -colorspace Gray")
+# idx=$((RANDOM % ${#effects[@]}))
+effect="-spread 8"
 
 screensize=$(xrandr | grep -F '*' | mawk -F' ' '{print($1)}')
 scrot --silent -F - |
