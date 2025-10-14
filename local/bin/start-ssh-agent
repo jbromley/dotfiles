@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+set -eou pipefail
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed '/^echo/d' > "$SSH_ENV"
+    echo succeeded
+    chmod 600 "$SSH_ENV"
+    # shellcheck disable=SC1090
+    . "$SSH_ENV" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+# Source SSH settings, if applicable
+if [ -f "$SSH_ENV" ]; then
+    # shellcheck disable=SC1090
+    . "$SSH_ENV" > /dev/null
+    [[ $(pgrep -a ssh-agent) =~ ${SSH_AGENT_PID}.*ssh-agent ]] || start_agent
+else
+    start_agent
+fi
