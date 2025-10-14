@@ -4,7 +4,7 @@ animation = "EaseOutExpo"
 duration = 100
 
 [font]
-size = 8.0
+size = 9.0
 
 # [font.bold]
 # family = "Fira Code"
@@ -23,7 +23,7 @@ size = 8.0
 # style = "Regular"
 
 [window]
-decorations = "None"
+decorations = "Full"
 opacity = 0.875
 
 [window.dimensions]
