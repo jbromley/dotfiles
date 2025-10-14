@@ -1,4 +1,4 @@
-;;; org-config.el --- Org mode configuration -*-coding: utf-8 -*-
+;;; org-config.el --- Org mode configuration -*- coding: utf-8; lexical-binding: t; -*-
 ;;
 ;; Copyright (C) 2025 J. Bromley <jbromley@gmail.com>
 ;;

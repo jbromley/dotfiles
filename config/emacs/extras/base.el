@@ -1,4 +1,4 @@
-;;; base.el --- UI, consult, and completion enhancements -*-coding: utf-8 -*-
+;;; base.el --- UI, consult, and completion enhancements -*- coding: utf-8; lexical-binding: t; -*-
 ;;
 ;; Copyright (C) 2025 J. Bromnley <jbromley@gmail.com>
 ;;

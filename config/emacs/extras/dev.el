@@ -1,4 +1,4 @@
-;;; dev.el --- Configure development tools -*-coding: utf-8 -*-
+;;; dev.el --- Configure development tools -*- coding: utf-8; lexical-binding: t; -*-
 ;;
 ;; Copyright (C) 2025 J. Bromley <jbromley@gmail.com>
 ;;

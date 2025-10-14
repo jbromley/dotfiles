@@ -1,4 +1,4 @@
-;;; Minimal init.el
+;;; init.el -*- coding: utf-8; lexical-binding: t; -*-
 
 ;;; Package initialization - we'll use the built-in GNU and MELPA archives.
 (with-eval-after-load 'package

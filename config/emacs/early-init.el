@@ -1,10 +1,6 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;   Basic settings for quick startup and convenience
-;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; early-init.el -*- coding: utf-8; lexical-binding: t; -*-
 
-(setq use-package-compute-statistics t)
+;; (setq use-package-compute-statistics t)
 
 ;; Configure GC for fast initialization.
 (setq gc-cons-threshold most-positive-fixnum
