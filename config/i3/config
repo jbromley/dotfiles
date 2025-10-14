@@ -26,6 +26,9 @@ gaps outer 2px
 # Configure DPMS
 exec_always --no-startup-id xset dpms 300 600 900
 
+# Start the SSH agent
+exec --no-startup-id ${HOME}/.local/bin/start-ssh-agent
+
 # Set the wallpaper
 exec --no-startup-id sh -c '[ -x ${HOME}/.fehbg ] && ${HOME}/.fehbg'
 
