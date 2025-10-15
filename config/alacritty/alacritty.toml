@@ -24,7 +24,7 @@ style = "Regular"
 
 [window]
 decorations = "Full"
-opacity = 0.875
+opacity = 0.96875
 
 [window.dimensions]
 columns = 100
