@@ -94,3 +94,19 @@ vscode-json-languageserver = { command = "vscode-json-languageserver", args = ["
 [[language]]
 name = "json"
 language-servers = [ "vscode-json-languageserver" ]
+
+[[language]]
+name = "sql"
+language-servers = [ "pgtools" ]
+auto-format = true
+roots = [ "postgrestools.jsonc", ".git" ]
+file-types = [ "sql" ]
+
+[language.indent]
+tab-width = 2
+unit = "  "
+
+[language-server.pgtools]
+command = "postgrestools"
+args = [ "lsp-proxy" ]
+timeout = 10
