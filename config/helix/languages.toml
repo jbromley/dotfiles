@@ -32,8 +32,12 @@ formatter = {command = "clang-format", args=["--style=file"]}
 command = "clangd"
 
 # Elixir
+[language-server.expert]
+command = "expert"
+
 [[language]]
 name = "elixir"
+language-servers = [ "elixir-ls" ]
 text-width = 100
 rulers = [100]
 
@@ -41,12 +45,6 @@ rulers = [100]
 config = {elixirLS.dialyzerEnabled = true}
 
 # Python
-[language-server.pylsp.config.pylsp.plugins]
-black = {enabled = true}
-flake8 = {enabled = true}
-rope = {enabled = true}
-pycodestyle = {enabled = true, maxLineLength = 88, ignore = ["E203", "W503"]}
-
 [[language]]
 name = "python"
 auto-format = false

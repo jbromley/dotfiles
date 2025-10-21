@@ -1,9 +1,10 @@
-theme = "dracula"
-
 [editor]
 cursorline = true
 color-modes = true
 trim-trailing-whitespace = true
+
+[editor.lsp]
+signature-help-position = "below"
 
 [editor.statusline]
 center = ["file-type"]
