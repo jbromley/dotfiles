@@ -4,7 +4,8 @@ color-modes = true
 trim-trailing-whitespace = true
 
 [editor.lsp]
-signature-help-position = "below"
+auto-signature-help = true
+display-inlay-hints = true
 
 [editor.statusline]
 center = ["file-type"]
@@ -18,3 +19,7 @@ C-k = "jump_view_up"
 C-h = "jump_view_left"
 C-l = "jump_view_right"
 C-b = "@ b%id "
+A-h = "signature_help"
+
+[keys.insert]
+A-h = "signature_help"
