@@ -3,7 +3,7 @@
 set $mod Mod4
 
 # Default terminal
-set $term alacritty
+set $term kitty
 
 # Colors
 # class                 border  bground text    indicator child_border
