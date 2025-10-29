@@ -6,7 +6,7 @@
 #     "-spread 8" \
 #     "-spread 8 -colorspace Gray")
 # idx=$((RANDOM % ${#effects[@]}))
-effect="-spread 4"
+effect="-spread 2"
 
 screensize=$(xrandr | grep -F '*' | mawk -F' ' '{print($1)}')
 scrot --silent -F - |
