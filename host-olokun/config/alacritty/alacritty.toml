@@ -1,0 +1,34 @@
+
+[bell]
+animation = "EaseOutExpo"
+duration = 100
+
+[font]
+size = 8.0
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrains Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[window]
+decorations = "Full"
+opacity = 0.96875
+
+[window.dimensions]
+columns = 100
+lines = 50
+
+[general]
+import = ["~/.config/alacritty/theme.toml"]
