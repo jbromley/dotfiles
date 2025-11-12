@@ -5,30 +5,15 @@ duration = 100
 
 [font]
 size = 10.0
-
-[font.bold]
-family = "JetBrains Mono"
-style = "Bold"
-
-[font.bold_italic]
-family = "JetBrains Mono"
-style = "Bold Italic"
-
-[font.italic]
-family = "JetBrains Mono"
-style = "Italic"
-
-[font.normal]
-family = "JetBrains Mono"
-style = "Regular"
+normal= { family = "JetBrains Mono", style = "Regular" }
+bold = { family = "JetBrains Mono", style = "Bold" }
+bold_italic = { family = "JetBrains Mono", style = "Bold Italic" }
+italic = { family = "JetBrains Mono", style = "Italic" }
 
 [window]
-decorations = "Full"
-opacity = 0.96875
-
-[window.dimensions]
-columns = 100
-lines = 50
+dimensions = { columns = 100, lines = 50 }
+decorations = "None"
+opacity = 0.9375
 
 [general]
 import = ["~/.config/alacritty/theme.toml"]
