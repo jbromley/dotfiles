@@ -17,7 +17,7 @@ language-servers = ["arduino-language-server"]
 
 [[grammar]]
 name = "arduino"
-source = {git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", rev = "ce02903e3ae74c729e9415dc32c276447b1c8afd"}
+source = {git = "https://github.com/tree-sitter-grammars/tree-sitter-arduino", rev = "2f0c1223c50aa4b754136db544204c6fc99ffc77"}
 
 # C++
 [[language]]
