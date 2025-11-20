@@ -47,8 +47,18 @@ config = {elixirLS.dialyzerEnabled = true}
 # Python
 [[language]]
 name = "python"
+language-servers = ["pylsp"]
 auto-format = false
-rulers = [88]
+rulers = [96]
+
+# Pylsp config
+[language-server.pylsp.config]
+pylsp.plugins.black.enabled = true
+pylsp.plugins.black.line_length = 96
+pylsp.plugins.pycodestyle.enabled = true
+pylsp.plugins.pycodestyle.maxLineLength = 96
+pylsp.plugins.flake8.enabled = false
+pylsp.plugins.flake8.maxLineLength = 96
 
 # Bash
 [[language]]
