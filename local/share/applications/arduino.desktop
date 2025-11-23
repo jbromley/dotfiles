@@ -1,7 +1,7 @@
 [Desktop Entry]
 Comment=Open-source electronics platform
-Exec=env _JAVA_OPTIONS=-Dawt.useSystemAAFontSettings=on /opt/arduino/arduino
-Icon=/opt/arduino/lib/icons/256x256/apps/arduino.png
+Exec=env _JAVA_OPTIONS=-Dawt.useSystemAAFontSettings=on /opt/arduino/arduino-ide
+Icon=/opt/arduino/resources/app/resources/icons/512x512.png
 Name=Arduino
 NoDisplay=false
 Path=/opt/arduino
