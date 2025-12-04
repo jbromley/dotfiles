@@ -1,3 +1,7 @@
+# Start Alacritty Themes
+general.import = ["/home/jay/.config/alacritty/colors/tomorrow-night-blue.toml"]
+# End Alacritty Themes
+
 
 [bell]
 animation = "EaseOutExpo"
@@ -15,5 +19,5 @@ dimensions = { columns = 100, lines = 50 }
 decorations = "None"
 opacity = 0.9375
 
-[general]
-import = ["~/.config/alacritty/theme.toml"]
+# [general]
+# import = ["~/.config/alacritty/theme.toml"]
