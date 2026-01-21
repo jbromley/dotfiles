@@ -157,7 +157,7 @@
         ("C-c e n" . flymake-goto-next-error)
         ("C-c e p" . flymake-goto-prev-error))
   :hook
-  (((c-mode c-ts-mode c++-mode c++-ts-mode elixir-mode elixir-ts-mode python-mode racket-mode) . eglot-ensure)))
+  (((elixir-mode elixir-ts-mode python-mode racket-mode) . eglot-ensure)))
 
 (use-package flymake
   :bind

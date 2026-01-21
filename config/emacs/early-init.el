@@ -1,4 +1,4 @@
-;;; early-init.el -*- coding: utf-8; lexical-binding: t; -*-
+;; early-init.el -*- coding: utf-8; lexical-binding: t; -*-
 
 ;; (setq use-package-compute-statistics t)
 
@@ -50,6 +50,6 @@
                             (background-color . "#0d0e1c")
                             (foreground-color . "#fcfefd")
                             (alpha-background . 97)
-                            ;; (font . "Atkinson Hyperlegible Mono-10")
+                            (font . "JetBrains Mono-10")
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . nil)))
