@@ -110,7 +110,7 @@
   (modus-themes-variable-pitch-ui t)
   (modus-themes-to-toggle '(modus-operandi-tinted modus-vivendi-tinted)))
 
-(load-theme 'modus-vivendi-tinted t)
+;; (load-theme 'modus-vivendi-tinted t)
 (set-cursor-color "magenta")
 
 (use-package doom-modeline

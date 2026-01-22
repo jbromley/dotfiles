@@ -47,9 +47,9 @@
 
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
-                            (background-color . "#0d0e1c")
-                            (foreground-color . "#fcfefd")
-                            (alpha-background . 97)
-                            (font . "JetBrains Mono-10")
+                            ;; (background-color . "#0d0e1c")
+                            ;; (foreground-color . "#fcfefd")
+                            ;; (alpha-background . 97)
+                            ;; (Font . "JetBrains Mono-10")
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . nil)))
