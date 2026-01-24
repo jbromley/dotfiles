@@ -60,9 +60,15 @@ pylsp.plugins.pycodestyle.maxLineLength = 96
 pylsp.plugins.flake8.enabled = false
 pylsp.plugins.flake8.maxLineLength = 96
 
+# Racket
+[[language]]
+name = "racket"
+formatter = {command = "raco", args = ["fmt"]}
+auto-format = false
+
 # Bash
 [[language]]
-name="bash"
+name = "bash"
 indent = {tab-width = 4, unit = "    "}
 formatter = {command = "shfmt", args = ["-i", "4", "-"]}
 
