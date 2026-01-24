@@ -1,6 +1,8 @@
 # Colorize output, add file type indicator, and put sizes in human readable format
 [ $(uname) = "Darwin" ] && alias ls='ls -F -G' || alias ls='ls --color=auto --classify'
-alias ll='ls -l'
+
+alias ll='ls -alF'
+alias la='ls -A'
 alias lla='ls -la'
 
 # On Linux use some color options for grep
@@ -14,13 +16,11 @@ alias ssh='nocorrect ssh'
 alias sudo='nocorrect sudo'
 alias tmux='nocorrect tmux'
 
-setopt correct_all
-
 # Directory aliases
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g ......='../../../../..'
+alias ...='../..'
+alias ....='../../..'
+alias .....='../../../..'
+alias ......='../../../../..'
 
 alias -- -='cd -'
 alias 1='cd -'
@@ -36,7 +36,7 @@ alias 9='cd -9'
 alias d='dirs -v | head -10'
 
 # Emacs, terminal emacsclient, and windowed emacsclient
-alias e=emacsclient -a ''
+alias e='emacsclient -a'
 
 # Open files easily with desktop tools
 alias o='xdg-open'
