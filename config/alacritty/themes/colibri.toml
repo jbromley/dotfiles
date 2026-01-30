@@ -1,0 +1,29 @@
+# Colibri theme scheme for Alacritty
+
+[colors.primary]
+background = '#452859'
+foreground = '#ebeafa'
+
+[colors.cursor]
+text = '#452859'
+cursor = '#f22c86'
+
+[colors.normal]
+black = '#697C81'
+red = '#f47868'
+green = '#9ff28f'
+yellow = '#e8dca0'
+blue = '#a4a0e8'
+magenta = '#dbbfef'
+cyan = '#35bf86'
+white = '#ebeafa'
+
+[colors.bright]
+black = '#281733'
+red = '#f22c86'
+green = '#35bf86'
+yellow = '#ffcd1c'
+blue = '#6f44f0'
+magenta = '#9445ae'
+cyan = '#9ff28f'
+white = '#ffffff'

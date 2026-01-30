@@ -1,5 +1,5 @@
 # Start Alacritty Themes
-general.import = ["/home/jay/.config/alacritty/colors/dracula.toml"]
+general.import = ["themes/colibri.toml"]
 # End Alacritty Themes
 
 
@@ -17,4 +17,4 @@ italic = { family = "JetBrains Mono", style = "Italic" }
 [window]
 dimensions = { columns = 100, lines = 50 }
 decorations = "None"
-opacity = 0.9375
+opacity = 0.98
