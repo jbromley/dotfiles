@@ -6,4 +6,5 @@ if status is-interactive
     fzf --fish | source
     eval "$(zoxide init fish)"
     mise activate fish | source
+    eval (starship init fish)
 end
