@@ -1,3 +1,5 @@
+# Theme (Colibri)
+
 [colors]
 cursor = { text = 'CellForeground', cursor = '#ebeafa' }
 selection = { text = 'CellForeground', background = '#6b527d' }

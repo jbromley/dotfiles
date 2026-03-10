@@ -1,5 +1,5 @@
 # Start Alacritty Themes
-general.import = ["/home/jay/.config/alacritty/colors/colibri-256.toml"]
+general.import = ["~/.config/alacritty/colors/tomorrow_night_blue.toml"]
 # End Alacritty Themes
 
 [bell]
