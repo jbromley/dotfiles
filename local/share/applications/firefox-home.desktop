@@ -17,7 +17,7 @@ Keywords=Internet;WWW;Browser;Web;Explorer;
 X-GNOME-FullName=Firefox Web Browser
 
 [Desktop Action new-window]
-Exec=firefox -P Home --new-window %u
+Exec=firefox -P home --new-window %u
 Name=New Window
 
 [Desktop Action new-private-window]
