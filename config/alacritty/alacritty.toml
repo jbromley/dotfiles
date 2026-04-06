@@ -1,6 +1,6 @@
-# Start Alacritty Themes
-general.import = ["~/.config/alacritty/colors/tomorrow_night_blue.toml"]
-# End Alacritty Themes
+
+[general]
+import = ["/home/jb/.config/alacritty/themes/dracula-pro.toml"]
 
 [bell]
 animation = "EaseOutExpo"
@@ -8,18 +8,23 @@ duration = 100
 
 [font]
 size = 10
-# normal= { family = "Atkinson Hyperlegible Mono", style = "Regular" }
-# bold = { family = "Atkinson Hyperlegible Mono", style = "Bold" }
-# bold_italic = { family = "Atkinson Hyperlegible Mono", style = "Bold Italic" }
-# italic = { family = "Atkinson Hyperlegible Mono", style = "Italic" }
 
 [window]
-dimensions = { columns = 100, lines = 50 }
 decorations = "None"
 opacity = 0.98
 
+[window.dimensions]
+columns = 100
+lines = 50
+
 [keyboard]
-bindings = [
-  { key = "Enter", mods = "Control|Shift", action = "ToggleFullscreen"},
-  { key = "Enter", mods = "Alt", action = "ToggleMaximized"},
-]
+
+[[keyboard.bindings]]
+key = "Enter"
+mods = "Control|Shift"
+action = "ToggleFullscreen"
+
+[[keyboard.bindings]]
+key = "Enter"
+mods = "Alt"
+action = "ToggleMaximized"
