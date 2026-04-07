@@ -1,6 +1,6 @@
 
 [general]
-import = ["/home/jb/.config/alacritty/themes/dracula-pro.toml"]
+import = ["~/.config/alacritty/themes/dracula-pro.toml"]
 
 [bell]
 animation = "EaseOutExpo"
