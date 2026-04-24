@@ -12,9 +12,6 @@ abbr --add gp git pull
 abbr --add gP git push
 abbr --add gst git status
 abbr --add lzg lazygit
-abbr --add vimg kitten icat
-abbr --add kfont kitten choose-fonts
-abbr --add ktheme kitten themes
 abbr --add dboxenter distrobox enter
 abbr --add dboxstop distrobox stop
 abbr --add ardcli arduino-cli
