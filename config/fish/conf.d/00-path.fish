@@ -1,4 +1,4 @@
 fish_add_path --path $HOME/.local/bin
-
-# opencode
-fish_add_path /home/jay/.opencode/bin
+if [ -d /opt/cdist ]
+    fish_add_path /opt/cdist/bin
+end
