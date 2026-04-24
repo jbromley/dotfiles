@@ -71,6 +71,7 @@ auto-format = false
 name = "bash"
 indent = {tab-width = 4, unit = "    "}
 formatter = {command = "shfmt", args = ["-i", "4", "-"]}
+file-types = [ { glob = "**/cdist/**" }]
 
 # Haskell
 [[language]]
