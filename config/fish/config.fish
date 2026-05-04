@@ -1,7 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    set --global EDITOR hx
-    set --global hydro_multiline true
+    set --global --export EDITOR hx
     dprint completions fish | source
     fzf --fish | source
     eval "$(zoxide init fish)"
