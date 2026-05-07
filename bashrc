@@ -52,8 +52,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
+if [ -f "${HOME}/.aliases" ]; then
+    . "${HOME}/.aliases"
 fi
 
 # Enable programmable completion.
@@ -65,12 +65,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export EDITOR=vim
+export EDITOR=hx
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-eval "$(starship init bash)"
+eval "$(dprint completions bash)"
+eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
+eval "$(mise activate bash)"
+eval "$(starship init bash)"
