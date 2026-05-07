@@ -72,6 +72,11 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Set up Rust if it is installed.
+if [ -f "${HOME}/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
 eval "$(dprint completions bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
