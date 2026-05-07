@@ -53,12 +53,11 @@ alias gco='git checkout'
 alias gcomm='git commit'
 alias gpull='git pull'
 
-# Kitty aliases
-alias vimg="kitten icat"
-alias kitty-theme="kitten themes --config-file-name=themes.conf"
-
 # distrobox
 alias dbox="distrobox"
+alias dboxls="distrobox ls"
+alias dboxe="distrobox enter"
+alias dboxs="distrobox stop"
 
 # arduino-cli
 alias ardcli="arduino-cli"
