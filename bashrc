@@ -79,6 +79,6 @@ fi
 
 eval "$(dprint completions bash)"
 eval "$(fzf --bash)"
-eval "$(zoxide init bash)"
 eval "$(mise activate bash)"
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
