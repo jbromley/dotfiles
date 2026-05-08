@@ -9,10 +9,10 @@ alias lla='ls -la'
 [ "$(uname -s)" = "Linux" ] && alias grep='grep --color=auto'
 
 # Directory aliases
-alias ...='../..'
-alias ....='../../..'
-alias .....='../../../..'
-alias ......='../../../../..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 alias -- -='cd -'
 alias 1='cd -'
