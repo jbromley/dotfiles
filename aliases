@@ -8,14 +8,6 @@ alias lla='ls -la'
 # On Linux use some color options for grep
 [ "$(uname -s)" = "Linux" ] && alias grep='grep --color=auto'
 
-# Don't correct some things.
-alias man='nocorrect man'
-alias mkdir='nocorrect mkdir'
-alias mv='nocorrect mv'
-alias ssh='nocorrect ssh'
-alias sudo='nocorrect sudo'
-alias tmux='nocorrect tmux'
-
 # Directory aliases
 alias ...='../..'
 alias ....='../../..'
@@ -42,7 +34,8 @@ alias e='emacsclient -a'
 alias o='xdg-open'
 
 # bat
-alias b='bat'
+alias b='batcat'
+alias bat='batcat'
 
 # bc
 alias bc='bc -ql'
@@ -53,12 +46,14 @@ alias gco='git checkout'
 alias gcomm='git commit'
 alias gpull='git pull'
 
-# Kitty aliases
-alias vimg="kitten icat"
-alias kitty-theme="kitten themes --config-file-name=themes.conf"
-
 # distrobox
 alias dbox="distrobox"
+alias dboxls="distrobox ls"
+alias dboxe="distrobox enter"
+alias dboxs="distrobox stop"
+
+# Lazygit
+alias lzg="lazygit"
 
 # arduino-cli
 alias ardcli="arduino-cli"
