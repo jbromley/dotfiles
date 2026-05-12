@@ -51,18 +51,30 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f "${HOME}/.aliases" ]; then
     . "${HOME}/.aliases"
 fi
 
+# Functions
+zp() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: zp DIRECTORY"
+        return 1
+    fi
+
+    local dir
+    if dir="$(zoxide query "$1")"; then
+        pushd "$dir" >/dev/null
+    fi
+}
+
 # Enable programmable completion.
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 export EDITOR=hx
