@@ -56,6 +56,21 @@ if [ -f "${HOME}/.aliases" ]; then
 fi
 
 # Functions
+p() {
+    case "$#" in
+        0)
+            popd
+            ;;
+        1)
+            pushd "$1"
+            ;;
+        *)
+            echo "p [DIR]"
+            return 1
+            ;;
+    esac
+}
+
 zp() {
     if [ "$#" -ne 1 ]; then
         echo "Usage: zp DIRECTORY"
