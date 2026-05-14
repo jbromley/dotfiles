@@ -47,7 +47,8 @@ config = {elixirLS.dialyzerEnabled = true}
 # Python
 [[language]]
 name = "python"
-language-servers = ["pylsp"]
+language-servers = ["pylsp", "ruff"]
+formatter = { command = "ruff", args = ["format"] }
 auto-format = false
 rulers = [96]
 
