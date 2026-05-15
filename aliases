@@ -33,10 +33,6 @@ alias e='emacsclient -a'
 # Open files easily with desktop tools
 alias o='xdg-open'
 
-# bat
-alias b='batcat'
-alias bat='batcat'
-
 # bc
 alias bc='bc -ql'
 
