@@ -36,6 +36,11 @@ alias o='xdg-open'
 # bc
 alias bc='bc -ql'
 
+# bat
+# On Ubuntu the bat pager is named `batcat`
+alias b='batcat'
+alias bat='batcat'
+
 # git
 alias gadd='git add'
 alias gco='git checkout'
