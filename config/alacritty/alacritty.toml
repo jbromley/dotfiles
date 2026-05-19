@@ -1,6 +1,6 @@
 
 [general]
-import = ["~/.config/alacritty/themes/dracula-pro.toml"]
+import = ["~/.config/alacritty/themes/solarized_light.toml"]
 
 [bell]
 animation = "EaseOutExpo"
