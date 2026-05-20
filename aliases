@@ -37,9 +37,11 @@ alias o='xdg-open'
 alias bc='bc -ql'
 
 # bat
-# On Ubuntu the bat pager is named `batcat`
-alias b='batcat'
-alias bat='batcat'
+# On Ubuntu the bat pager is sometimes named `batcat`
+if [ -x /usr/bin/batcat ]; then
+    alias b='batcat'
+    alias bat='batcat'
+fi
 
 # git
 alias gadd='git add'
