@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (C) 2025 J. Bromnley <jbromley@gmail.com>
 ;;
-;; Author:      J. Bromnley <jbromley@gmail.com>
+;; Author:      J. Bromley <jbromley@gmail.com>
 ;; Version:     0.1
 ;; Package-Requires: ("avy" "consult" "cape" "kind-icon" "vterm" "wgrep")
 ;; Keywords:    calendar,hypermedia,outlines
