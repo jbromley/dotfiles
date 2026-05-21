@@ -9,10 +9,10 @@ alias lla='ls -la'
 [ "$(uname -s)" = "Linux" ] && alias grep='grep --color=auto'
 
 # Directory aliases
-alias ...='../..'
-alias ....='../../..'
-alias .....='../../../..'
-alias ......='../../../../..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 alias -- -='cd -'
 alias 1='cd -'
@@ -33,12 +33,15 @@ alias e='emacsclient -a'
 # Open files easily with desktop tools
 alias o='xdg-open'
 
-# bat
-alias b='batcat'
-alias bat='batcat'
-
 # bc
 alias bc='bc -ql'
+
+# bat
+# On Ubuntu the bat pager is sometimes named `batcat`
+if [ -x /usr/bin/batcat ]; then
+    alias b='batcat'
+    alias bat='batcat'
+fi
 
 # git
 alias gadd='git add'
