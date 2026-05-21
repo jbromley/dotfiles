@@ -45,7 +45,7 @@
   :config
   (global-mise-mode)
   :custom
-  (mise-executable "~/.local/bin/mise"))
+  (mise-executable "/usr/bin/mise"))
 
 ;; Project management
 (use-package project
@@ -117,7 +117,8 @@
   (eglot-extend-to-xref t) ; activate Eglot in referenced non-project files
   :config
   (fset #'jsonrpc--log-event #'ignore)
-  (let ((servers '(;((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("/usr/lib/llvm-15/bin/clangd"))
+  (let ((servers '(((c-mode c-ts-mode c++-mode c++-ts-mode objc-mode) . ("/usr/bin/clangd"))
+                   ((python-mode python-ts-mode) . ("/usr/bin/pylsp"))
                    ((elixir-mode elixir-ts-mode heex-ts-mode) . ("/opt/elixir-ls/language_server.sh"))
                    ((erlang-mode erlang-ts-mode) "erlang_ls" "--transport" "stdio")
                    ((verilog-mode verilog-ts-mode) . ("svls"))
