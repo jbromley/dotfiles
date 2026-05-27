@@ -23,7 +23,7 @@ family = "JetBrains Mono"
 style = "Regular"
 
 [window]
-decorations = "Full"
+decorations = "None"
 opacity = 0.96875
 
 [window.dimensions]
@@ -31,4 +31,4 @@ columns = 100
 lines = 50
 
 [general]
-import = ["~/.config/alacritty/theme.toml"]
+import = ["~/.config/alacritty/themes/solarized_light.toml"]
