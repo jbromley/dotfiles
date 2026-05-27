@@ -30,5 +30,10 @@ opacity = 0.96875
 columns = 100
 lines = 50
 
+[[keyboard.bindings]]
+key = "Enter"
+mods = "Alt"
+action = "ToggleMaximized"
+
 [general]
 import = ["~/.config/alacritty/themes/solarized_light.toml"]
