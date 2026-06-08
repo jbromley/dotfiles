@@ -29,12 +29,12 @@ auto-format = false
 formatter = {command = "clang-format", args=["--style=file"]}
 
 # Elixir
-[language-server.expert]
-command = "expert"
-
+# Use `expert` for LSP. It is now the official Elixir LSP.
+# Use `mix format` for code formatting.
 [[language]]
 name = "elixir"
 language-servers = [ "expert" ]
+formatter = {command = "mix", args = ["format"]}
 text-width = 100
 rulers = [100]
 
