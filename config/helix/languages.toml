@@ -28,16 +28,13 @@ block-comment-tokens = [{start = "/*", end = "*/"}, {start = "/**", end = "*/"},
 auto-format = false
 formatter = {command = "clang-format", args=["--style=file"]}
 
-[language-server.clangd]
-command = "clangd"
-
 # Elixir
 [language-server.expert]
 command = "expert"
 
 [[language]]
 name = "elixir"
-language-servers = [ "elixir-ls" ]
+language-servers = [ "expert" ]
 text-width = 100
 rulers = [100]
 
