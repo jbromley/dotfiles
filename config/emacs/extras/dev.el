@@ -45,7 +45,7 @@
   :config
   (global-mise-mode)
   :custom
-  (mise-executable "/usr/bin/mise"))
+  (mise-executable "~/.local/bin/mise"))
 
 ;; Project management
 (use-package project
