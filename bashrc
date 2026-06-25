@@ -101,8 +101,8 @@ if [ -f "${HOME}/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
+eval "$(mise activate bash)"
 eval "$(dprint completions bash)"
 eval "$(fzf --bash)"
-eval "$(mise activate bash)"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
