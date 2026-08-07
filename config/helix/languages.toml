@@ -95,6 +95,8 @@ command = "lemminx"
 [[language]]
 name = "xml"
 language-servers = ["lemminx"]
+formatter = {command = "xmllint", args = ["--format"]}
+auto-format = false
 file-types = ["xml", "mobileconfig", "plist", "xib", "storyboard", "svg", "xsd", "gml", "xaml", "gir", "xacro"]
 
 # YAML
