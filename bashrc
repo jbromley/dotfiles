@@ -96,13 +96,13 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Set up Rust if it is installed.
-if [ -f "${HOME}/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
+# Set up Rust and GHC if they are installed.
+[ -f "${HOME}/.cargo/env" ] && . "${HOME}/.cargo/env"
+[ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env"
 
 eval "$(mise activate bash)"
 eval "$(dprint completions bash)"
 eval "$(fzf --bash)"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
