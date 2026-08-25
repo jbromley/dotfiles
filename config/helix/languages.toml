@@ -47,7 +47,7 @@ name = "python"
 language-servers = ["pylsp", "ruff"]
 formatter = { command = "ruff", args = ["format", "-"] }
 auto-format = false
-rulers = [96]
+rulers = [120]
 
 # Pylsp config
 [language-server.pylsp.config]
