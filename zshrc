@@ -74,12 +74,16 @@ fpath=("${HOME}/.zsh" ${fpath})
 autoload -Uz compinit
 compinit
 
+# Set up local bin directory.
+if [ -d "$HOME/.local/bin" ] ; then
+    path+=${HOME}/.local/bin
+fi
+
+eval "$(mise activate zsh)"
 eval "$(dprint completions zsh)"
 eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-
-# Prompt
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 # Syntax highlighting. Sourced last, since it needs to wrap widgets defined
 # by everything above. Not bundled with zsh itself, so this looks for either
