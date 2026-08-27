@@ -46,7 +46,7 @@
         tab-width 4)
 (setopt tab-bar-show 1)
 ;; (setopt display-line-numbers-width 3)
-(setopt custom-file "~/.config/emacs/custom.el")
+(setopt custom-file "~/.emacs.d/custom.el")
 
 ;; Emacs configuration functions
 (global-auto-revert-mode)
