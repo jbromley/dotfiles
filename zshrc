@@ -7,6 +7,7 @@
 
 # History behavior (HISTFILE/HISTSIZE/SAVEHIST are set in ~/.zshenv).
 setopt HIST_IGNORE_SPACE     # Don't record lines that start with a space.
+setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS  # Drop older duplicates when a new one is recorded.
 setopt HIST_SAVE_NO_DUPS     # Don't write duplicate lines to HISTFILE.
 setopt HIST_REDUCE_BLANKS    # Trim superfluous whitespace before recording.
