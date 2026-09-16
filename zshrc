@@ -25,10 +25,6 @@ if command -v dircolors >/dev/null 2>&1; then
     fi
 fi
 
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-export COLORTERM=truecolor
-
 # Add an "alert" alias for long running commands. Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(fc -ln -1 | sed -e '\''s/[;&|]\s*alert$//'\'')"'
@@ -74,11 +70,6 @@ fpath=("${HOME}/.zsh" ${fpath})
 [ -r "${HOME}/.zsh/completion.zsh" ] && source "${HOME}/.zsh/completion.zsh"
 autoload -Uz compinit
 compinit
-
-# Set up local bin directory.
-if [ -d "$HOME/.local/bin" ] ; then
-    path+=${HOME}/.local/bin
-fi
 
 eval "$(mise activate zsh)"
 eval "$(dprint completions zsh)"

@@ -23,25 +23,14 @@ export FZF_CTRL_R_OPTS="--prompt 'history> '"
 # Don't let Python venv add anything to the prompt.
 export VIRTUAL_ENV_DISABLE_PROMPT=yes
 
-# Golang
-if [ -d "${HOME}/go" ]; then
-    export GOPATH="${HOME}/go"
-    export GOBIN="${GOPATH}/bin"
-fi
+# Use color in GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export COLORTERM=truecolor
 
-# Mise version manager
-mise_executable=${HOME}/.local/bin/mise
-if [ -x ${mise_executable} ]; then
-  eval "$(${mise_executable} activate zsh)"
-fi
+# Set up environments for various tools.
 
-# OCaml environment
-[[ ! -r '${HOME}/.opam/opam-init/init.zsh' ]] || source '${HOME}/.opam/opam-init/init.zsh' &> /dev/null
-
-opam_executable="${HOME}/.local/share/mise/installs/opam/latest/bin/opam"
-if [ -x "$opam_executable" ]; then
-  eval "$($opam_executable env)"
-fi
+# Local executables directory
+[ -d "$HOME/.local/bin" ] &&  path+=${HOME}/.local/bin
 
 # Rust
 [ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
