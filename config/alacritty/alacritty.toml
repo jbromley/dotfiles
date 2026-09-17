@@ -32,3 +32,9 @@ action = "ToggleFullscreen"
 key = "Enter"
 mods = "Alt"
 action = "ToggleMaximized"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "CreateNewWindow"
+
