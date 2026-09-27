@@ -28,6 +28,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export COLORTERM=truecolor
 
 # Set up environments for various tools.
+export SUDO_EDITOR=hx
 
 # Local executables directory
 [ -d "$HOME/.local/bin" ] &&  path+=${HOME}/.local/bin
