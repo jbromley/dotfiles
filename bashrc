@@ -9,8 +9,9 @@ case $- in
 esac
 
 # Set up history
-HISTSIZE=1024
-HISTFILESIZE=4096
+HISTFILE=${HOME}/.bash_history
+HISTSIZE=4096
+HISTFILESIZE=16384
 HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 PROMPT_COMMAND='history -a; history -n'
@@ -56,10 +57,10 @@ fi
 p() {
     case "$#" in
         0)
-            popd
+            popd || return
             ;;
         1)
-            pushd "$1"
+            pushd "$1" || return
             ;;
         *)
             echo "p [DIR]"
@@ -76,7 +77,7 @@ zp() {
 
     local dir
     if dir="$(zoxide query "$1")"; then
-        pushd "$dir" >/dev/null
+        pushd "$dir" >/dev/null || return
     fi
 }
 
