@@ -28,6 +28,12 @@ block-comment-tokens = [{start = "/*", end = "*/"}, {start = "/**", end = "*/"},
 auto-format = false
 formatter = {command = "clang-format", args=["--style=file"]}
 
+# Dockerfile
+# Helix 25.07.1 predates the upstream dockerfmt default (helix#15067).
+[[language]]
+name = "dockerfile"
+formatter = {command = "dockerfmt"}
+
 # Elixir
 # Use `expert` for LSP. It is now the official Elixir LSP.
 # Use `mix format` for code formatting.
