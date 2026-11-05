@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+;;;
 ;;; Emacs Bedrock
 ;;;
 ;;; Extra config: Writer
@@ -12,11 +14,6 @@
 ;;;
 ;;; Olivetti narrows the window margins so that your text is centered.
 ;;; This makes writing in a wide, dedicated window more pleasant.
-;;;
-;;; NOTE: the Olivetti package lives on the MELPA repository; you will
-;;; need to update the `package-archives' variable in init.el before
-;;; before loading this file; see the comment in init.el under
-;;; "Package initialization".
 
 ;;; Contents:
 ;;;
@@ -26,13 +23,21 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
+;;;   General prose-friendly behavior
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (>= emacs-major-version 30)       ; compat test
+  (add-hook 'text-mode-hook 'visual-wrap-prefix-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Spell checking
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Jinx: Enchanted spell-checking
 (use-package jinx
-  :ensure t
   :hook (((text-mode prog-mode) . jinx-mode))
   :bind (("C-;" . jinx-correct))
   :custom
@@ -56,7 +61,6 @@
 
 ;; Olivetti: Set the window margins so your text is centered
 (use-package olivetti
-  :ensure t
   ;; Uncomment below to make olivetti-mode turn on automatically in certain modes
   ; :hook ((markdown-mode . olivetti-mode))
   )

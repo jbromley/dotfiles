@@ -1,55 +1,61 @@
-;; early-init.el -*- coding: utf-8; lexical-binding: t; -*-
+;;; -*- lexical-binding: t -*-
+;;;  ________                                                _______                 __                            __
+;;; /        |                                              /       \               /  |                          /  |
+;;; $$$$$$$$/ _____  ____   ______   _______  _______       $$$$$$$  | ______   ____$$ | ______   ______   _______$$ |   __
+;;; $$ |__   /     \/    \ /      \ /       |/       |      $$ |__$$ |/      \ /    $$ |/      \ /      \ /       $$ |  /  |
+;;; $$    |  $$$$$$ $$$$  |$$$$$$  /$$$$$$$//$$$$$$$/       $$    $$</$$$$$$  /$$$$$$$ /$$$$$$  /$$$$$$  /$$$$$$$/$$ |_/$$/
+;;; $$$$$/   $$ | $$ | $$ |/    $$ $$ |     $$      \       $$$$$$$  $$    $$ $$ |  $$ $$ |  $$/$$ |  $$ $$ |     $$   $$<
+;;; $$ |_____$$ | $$ | $$ /$$$$$$$ $$ \_____ $$$$$$  |      $$ |__$$ $$$$$$$$/$$ \__$$ $$ |     $$ \__$$ $$ \_____$$$$$$  \
+;;; $$       $$ | $$ | $$ $$    $$ $$       /     $$/       $$    $$/$$       $$    $$ $$ |     $$    $$/$$       $$ | $$  |
+;;; $$$$$$$$/$$/  $$/  $$/ $$$$$$$/ $$$$$$$/$$$$$$$/        $$$$$$$/  $$$$$$$/ $$$$$$$/$$/       $$$$$$/  $$$$$$$/$$/   $$/
 
-;; (setq use-package-compute-statistics t)
 
-;; Configure GC for fast initialization.
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.5)
-
-(defun jb/emacs-startup ()
-  (setq gc-cons-threshold (* 16 1024 1024)
-        gc-cons-percentage 0.1))
-
-(add-hook 'emacs-startup-hook #'jb/emacs-startup)
-
-;; Basic frame settings
-(setopt frame-resize-pixelwise t
-        frame-inhibit-implied-resize t
-        use-dialog-box t
-        use-file-dialog nil
-        use-short-answers t
-        inhibit-splash-screen t
-        inhibit-startup-screen t
-        inhibit-startup-echo-area-message user-login-name
-        inhibit-startup-buffer-menu t)
-
-(setq frame-title-format '("%b")
-      ring-bell-function 'ignore
-      inhibit-x-resources t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Basic settings for quick startup and convenience
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Startup speed, annoyance suppression
-(setopt byte-compile-warnings (not 'obsolete)
-        warning-suppress-log-types '((comp) (bytecomp))
-        native-comp-async-report-warnings-errors 'silent)
+(setq bedrock--initial-gc-threshold gc-cons-threshold)
+(setq gc-cons-threshold 10000000)
+(setq byte-compile-warnings '(not obsolete))
+(setq warning-suppress-log-types '((comp) (bytecomp)))
+(setq native-comp-async-report-warnings-errors 'silent)
 
-;; Silence startup message
-(setopt inhibit-startup-echo-area-message (user-login-name))
+;; Silence stupid startup message
+(advice-add #'display-startup-echo-area-message :override #'ignore)
 
-;; Default frame configuration: full screen, good-looking title bar on macOS
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+;; Tell use-package to install if missing by default
+;; Use `:ensure nil' in packages you *don't* want to install
+(setq use-package-always-ensure t)
 
-(setq default-frame-alist '((fullscreen . maximized)
+;; Setting *-resize-pixelwise to `t' lets frames/windows resize
+;; smoothly at sub-character increments
+(setq frame-resize-pixelwise t)
+; (setq window-resize-pixelwise t)
+
+(when (fboundp 'tool-bar-mode) ; When in a GUI, disable tool bar;
+  (tool-bar-mode -1))          ; all these tools are in the menu-bar anyway
+
+;; These settings apply to *all* frames.
+(setq default-frame-alist '(
                             ;; You can turn off scroll bars by uncommenting these lines:
-                            (vertical-scroll-bars . nil)
-                            (horizontal-scroll-bars . nil)
+                            ;; (vertical-scroll-bars . nil)
+                            ;; (horizontal-scroll-bars . nil)
+                            (ns-appearance . dark)
+                            (ns-transparent-titlebar . t)
 
+                            ;; Use this to turn off the OS window decoration
+                            ;; (undecorated-round . t)
+                            ;; (internal-border-width . 3)
+                            ))
+
+;; These settings apply to the first frame created. The
+;; (back|fore)ground-color settings need to live here so that a
+;; theme's background color applies correctly to subsequent frames.
+(setq initial-frame-alist '((fullscreen . maximized)
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
-                            ;; (background-color . "#0d0e1c")
-                            ;; (foreground-color . "#fcfefd")
-                            ;; (alpha-background . 97)
-                            ;; (Font . "JetBrains Mono-10")
-                            (ns-appearance . dark)
-                            (ns-transparent-titlebar . nil)))
+                            (background-color . "#000000")
+                            (foreground-color . "#ffffff")))

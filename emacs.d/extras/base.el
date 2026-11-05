@@ -1,120 +1,122 @@
-;;; base.el --- UI, consult, and completion enhancements -*- coding: utf-8; lexical-binding: t; -*-
-;;
-;; Copyright (C) 2025 J. Bromnley <jbromley@gmail.com>
-;;
-;; Author:      J. Bromley <jbromley@gmail.com>
-;; Version:     0.1
-;; Package-Requires: ("avy" "consult" "cape" "kind-icon" "vterm" "wgrep")
-;; Keywords:    calendar,hypermedia,outlines
-;; URL:         https://orgmode.org
-;;
-;;; Commentary:
+;;; -*- lexical-binding: t -*-
+;;;
+;;; Emacs Bedrock
+;;;
+;;; Extra config: Base enhancements
 
-;; This package configures the following items.
-;;  - Motion aids
-;;  - Power-ups: Embark and Consult
-;;  - Minibuffer and completion
-;;  - Misc. editing enhancements
-;;  - Git integration for dired
+;;; Usage: Append or require this file from init.el to enable various UI/UX
+;;; enhancements.
+;;;
+;;; The consult package in particular has a vast number of functions that you
+;;; can use as replacements to what Emacs provides by default. Please see the
+;;; consult documentation for more information and help:
+;;;
+;;;     https://github.com/minad/consult
+;;;
+;;; In particular, many users may find `consult-line' to be more useful to them
+;;; than isearch, so binding this to `C-s' might make sense. This is left to the
+;;; user to configure, however, as isearch and consult-line are not equivalent.
 
-;;; Change Log:
+;;; Contents:
+;;;
+;;;  - Motion aids
+;;;  - Power-ups: Embark and Consult
+;;;  - Minibuffer and completion
+;;;  - Misc. editing enhancements
 
-;;; Code:
-
-;; Write code here. defcustom first, then defconst, defvar,
-;; defsubst/defmacro and defuns last
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Motion aids
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package avy
   :demand t
   :bind (("C-c j" . avy-goto-line)
-         ("s-j"   . avy-goto-char-timer)))
+         ("s-j"   . avy-goto-char-timer)
+	 :map isearch-mode-map
+	 ("s-j" . avy-isearch)		; Jump to highlighted isearch candidate
+	 ))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Power-ups: Embark and Consult
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Consult: Misc. enhanced commands
 (use-package consult
-  :custom
-  (consult-narrow-key "<")
-  (consult-fd-args
-   '((if (executable-find "fd" 'remote) "fd" "fdfind")
-     "--full-path --color=never"))
-  (consult-themes '("almost-mono-\\(white\\|black\\)"
-                    "eziam-\\(light\\|dark\\)"
-                    "modus-*"
-                    dracula
-                    misterioso
-                    manoj-dark
-                    dichromacy
-                    tango
-                    leuven))
-  :bind
-  (("C-x b" . consult-buffer)          ; orig. switch-to-buffer
-   ("M-y"   . consult-yank-pop)        ; orig. yank-pop
-   ("M-s f" . consult-fd)              
-   ("M-s F" . consult-find)            
-   ("M-s l" . consult-line)            ; Alternative: rebind C-s to use
-   ("M-s L" . consult-line-multi)      ; isearch to M-s s
-   ("M-s m" . consult-man)
-   ("M-s o" . consult-outline)
-   ("M-s r" . consult-ripgrep)
-   ("M-s s" . consult-line)            ; consult-line instead of isearch, bind
-   ("M-s t" . consult-theme)
-   :map isearch-mode-map
-   ("M-e" . consult-isearch-history)   ; orig. isearch-edit-string
-   ("M-s e" . consult-isearch-history) ; orig. isearch-edit-string
-   ("M-s l" . consult-line)            ; needed by consult-line to detect isearch
-   ("M-s L" . consult-line-multi)))
+  :bind (
+         ;; Drop-in replacements
+         ("C-x b" . consult-buffer)     ; orig. switch-to-buffer
+         ("M-y"   . consult-yank-pop)   ; orig. yank-pop
+         ;; Searching
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)       ; Alternative: rebind C-s to use
+         ("M-s s" . consult-line)       ; consult-line instead of isearch, bind
+         ("M-s L" . consult-line-multi) ; isearch to M-s s
+         ("M-s o" . consult-outline)
+         ;; Isearch integration
+         :map isearch-mode-map
+         ("M-e" . consult-isearch-history)   ; orig. isearch-edit-string
+         ("M-s e" . consult-isearch-history) ; orig. isearch-edit-string
+         ("M-s l" . consult-line)            ; needed by consult-line to detect isearch
+         ("M-s L" . consult-line-multi)      ; needed by consult-line to detect isearch
+         )
+  :config
+  ;; Narrowing lets you restrict results to certain groups of candidates
+  (setq consult-narrow-key "<"))
+
+(use-package embark-consult)
 
 ;; Embark: supercharged context-dependent menu; kinda like a
 ;; super-charged right-click.
-;; (use-package embark
-;;   :demand t
-;;   :after avy
-;;   :bind (("C-c a" . embark-act))     ; bind this to an easy key to hit
-;;   :init
-;;   ;; Add the option to run embark when using avy
-;;   (defun jb/avy-action-embark (pt)
-;;     (unwind-protect
-;;         (save-excursion
-;;           (goto-char pt)
-;;           (embark-act))
-;;       (select-window
-;;        (cdr (ring-ref avy-ring 0))))
-;;     t)
+(use-package embark
+  :demand t
+  :after (avy embark-consult)
+  :bind (("C-c a" . embark-act))        ; bind this to an easy key to hit
+  :init
+  ;; Add the option to run embark when using avy
+  (defun bedrock/avy-action-embark (pt)
+    (unwind-protect
+        (save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+    t)
 
-;;   ;; After invoking avy-goto-char-timer, hit "." to run embark at the next
-;;   ;; candidate you select
-;;   (setf (alist-get ?. avy-dispatch-alist) 'jb/avy-action-embark))
+  ;; After invoking avy-goto-char-timer, hit "." to run embark at the next
+  ;; candidate you select
+  (setf (alist-get ?. avy-dispatch-alist) 'bedrock/avy-action-embark)
 
-;; (use-package embark-consult)
+  :config
+  ;; Replace which-key-mode with a completing-read menu that does
+  ;; approximately the same thing
+  (which-key-mode -1)
+  (setopt embark-auto-prefix-help-delay 1.0)
+  (embark-auto-prefix-help-mode))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
 ;;;   Minibuffer and completion
-
-;; (fido-vertical-mode)
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Vertico: better vertical completion for minibuffer commands
 (use-package vertico
   :init
+  ;; You'll want to make sure that e.g. fido-mode isn't enabled
   (vertico-mode))
 
-;; (use-package vertico-directory
-;;   :ensure nil
-;;   :after vertico
-;;   :bind (:map vertico-map
-;;               ("M-DEL" . vertico-directory-delete-word)))
-
-;; Orderless: powerful completion style
-(use-package orderless
-  :custom
-  ;; (completion-category-overrides '((file (styles . (partial-completion)))
-  ;;                                  (theme (styles . (basic)))))
-  (completion-styles '(orderless basic)))
+(use-package vertico-directory
+  :ensure nil
+  :after vertico
+  :bind (:map vertico-map
+              ("M-DEL" . vertico-directory-delete-word)))
 
 ;; Marginalia: annotations for minibuffer
 (use-package marginalia
-  :ensure t
   :config
   (marginalia-mode))
 
@@ -129,21 +131,15 @@
         ("C-p" . corfu-previous)))
 
 ;; Part of corfu
-;; (use-package corfu-popupinfo
-;;   :after corfu
-;;   :ensure nil
-;;   :hook (corfu-mode . corfu-popupinfo-mode)
-;;   :custom
-;;   (corfu-popupinfo-delay '(0.25 . 0.1))
-;;   (corfu-popupinfo-hide nil)
-;;   :config
-;;   (corfu-popupinfo-mode))
-
-;; Make corfu popup come up in terminal overlay
-;; (use-package corfu-terminal
-;;   :if (not (display-graphic-p))
-;;   :config
-;;   (corfu-terminal-mode))
+(use-package corfu-popupinfo
+  :after corfu
+  :ensure nil
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :custom
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  (corfu-popupinfo-hide nil)
+  :config
+  (corfu-popupinfo-mode))
 
 ;; Fancy completion-at-point functions; there's too much in the cape package to
 ;; configure here; dive in when you're comfortable!
@@ -153,57 +149,29 @@
   (add-to-list 'completion-at-point-functions #'cape-file))
 
 ;; Pretty icons for corfu
-(use-package nerd-icons-corfu
+(use-package kind-icon
   :if (display-graphic-p)
   :after corfu
   :config
-  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
-;;; Other tools and editing enhancements
-(setopt eldoc-echo-area-use-multiline-p t)
-(setopt max-mini-window-height 8)
+(use-package eshell
+  :init
+  (defun bedrock/setup-eshell ()
+    ;; Something funny is going on with how Eshell sets up its keymaps; this is
+    ;; a work-around to make C-r bound in the keymap
+    (keymap-set eshell-mode-map "C-r" 'consult-history))
+  :hook ((eshell-mode . bedrock/setup-eshell)))
 
-(use-package vterm
-  :defer t
-  :commands (vterm vterm-other-window))
-
-;; Modify search results en masse
-(use-package wgrep
-  :config
-  (setq wgrep-auto-save-buffer t))
-
-;; Use ChatGPT in Emacs
-(use-package chatgpt-shell
-  :defer t
-  :commands (chatgpt-shell)
+;; Eat: Emulate A Terminal
+(use-package eat
   :custom
-  (chatgpt-shell-streaming t)
-  (chatgpt-shell-openai-key
-   (lambda ()
-     (auth-source-pick-first-password :host "api.openai.com")))
-  (chatgpt-shell-anthropic-key
-   (lambda ()
-     (auth-source-pick-first-password :host "api.anthropic.com")))
-  (chatgpt-shell-kagi-key
-   (lambda ()
-     (auth_source-pick-first-password :host "kagi.com")))
-  (chatgpt-shell-kagi-api-url-base "https://kagi.com/api/v0/fastgpt"))
+  (eat-term-name "xterm")
+  :config
+  (eat-eshell-mode)                     ; use Eat to handle term codes in program output
+  (eat-eshell-visual-command-mode))     ; commands like less will be handled by Eat
 
-;; ;; Use gptel
-;; (use-package gptel
-;;   :defer t
-;;   :config
-;;   (gptel-make-anthropic "Claude" :stream t :key (lambda ()
-;;      (auth-source-pick-first-password :host "api.anthropic.com")))
-;;   :custom
-;;   (gptel-api-key (lambda ()
-;;      (auth-source-pick-first-password :host "api.openai.com"))))
-
-;; Provide git information in dired buffers
-(use-package dired-git
-  :ensure t
-  :defer t
-  :hook
-  (dired-mode . dired-git-mode))
-
-(provide 'base)
+;; Orderless: powerful completion style
+(use-package orderless
+  :config
+  (setq completion-styles '(orderless basic)))
