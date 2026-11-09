@@ -180,7 +180,7 @@ If the new path's directories does not exist, create them."
 (setopt completion-eager-update t)                     ; Update display as-you-type
 
 ;; Uncomment to get automatic inline completion previews
-;(completion-preview-mode)
+(completion-preview-mode)
 
 
 (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete) ; TAB acts more like how it does in the shell
@@ -246,7 +246,7 @@ If the new path's directories does not exist, create them."
 ;(setopt pixel-scroll-precision-interpolate-mice nil)
 
 ;; Use common keystrokes by default
-(cua-mode)
+;(cua-mode)
 
 ;; Makes it easier to repeat commands; `C-x o C-x o' becomes `C-x o o'
 ;; See https://karthinks.com/software/it-bears-repeating/
@@ -332,10 +332,10 @@ If the new path's directories does not exist, create them."
 
 ;; UI/UX enhancements mostly focused on minibuffer and autocompletion interfaces
 ;; These ones are *strongly* recommended!
-;(load-file (expand-file-name "extras/base.el" user-emacs-directory))
+(load-file (expand-file-name "extras/base.el" user-emacs-directory))
 
 ;; Packages for software development
-;(load-file (expand-file-name "extras/dev.el" user-emacs-directory))
+(load-file (expand-file-name "extras/dev.el" user-emacs-directory))
 
 ;; Vim-bindings in Emacs (evil-mode configuration)
 ;(load-file (expand-file-name "extras/vim-like.el" user-emacs-directory))
@@ -346,7 +346,7 @@ If the new path's directories does not exist, create them."
 ;; Org-mode configuration
 ;; WARNING: need to customize things inside the elisp file before use! See
 ;; the file extras/org-intro.txt for help.
-;(load-file (expand-file-name "extras/org.el" user-emacs-directory))
+(load-file (expand-file-name "extras/org.el" user-emacs-directory))
 
 ;; Email configuration in Emacs
 ;; WARNING: needs the `mu' program installed; see the elisp file for more
@@ -373,10 +373,6 @@ If the new path's directories does not exist, create them."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
- ;; This sets the default font for Emacs. Height is in 1/10 pt; configure as desired.
- ;; The example font listed here, Iosevka Output, is available here: https://codeberg.org/ashton314/iosevka-output
- ;; '(default ((t (:weight normal :height 130 :width expanded :family "Iosevka Output"))))
  )
 
 (setq gc-cons-threshold (or bedrock--initial-gc-threshold 800000))
