@@ -71,7 +71,7 @@ fpath=("${HOME}/.zsh" ${fpath})
 autoload -Uz compinit
 compinit
 
-eval "$(mise activate zsh)"
+# eval "$(mise activate zsh)"
 eval "$(dprint completions zsh)"
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
